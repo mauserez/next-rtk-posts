@@ -1,0 +1,26 @@
+.albums {
+	white-space: nowrap;
+	flex-wrap: nowrap;
+	width: 100%;
+	overflow: scroll;
+}
+
+.album {
+	width: 120px;
+}
+
+.albumImage {
+	height: 140px;
+	border-radius: 16px;
+	background-color: antiquewhite;
+}
+
+.title {
+	font-weight: 600;
+	font-size: 14px;
+}
+
+.subtitle {
+	font-size: 10px;
+	color: var(--color-secondary);
+}

@@ -1,0 +1,8 @@
+.icon {
+	color: var(--color-primary);
+}
+.logo {
+	font-size: 32px;
+	font-weight: 600;
+	color: var(--color-purple);
+}

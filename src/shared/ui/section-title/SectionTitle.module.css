@@ -1,0 +1,15 @@
+.bold {
+	font-weight: 600;
+}
+
+.light {
+	font-weight: 400;
+}
+
+.md {
+	font-size: 32px;
+}
+
+.sm {
+	font-size: 24px;
+}

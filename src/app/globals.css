@@ -3,31 +3,50 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+	--color-primary: #3e445d;
+	--color-secondary: #9da1bb;
+
+	--color-white: #fff;
+	--color-gray: #cccbd3;
+	--color-purple: #8b4ddc;
+	--color-red: #f25768;
+
+	--bg-body: #c0d2fc;
+	--bg-content: #ecf1ff;
+	--bg-profile: #fff;
+	--bg-contrast: #303650;
+
+	--bg-star: #ffc431;
+	--bg-purple: #8847da;
+	--bg-red: #f25768;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+* {
+	box-sizing: border-box;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+	width: 100vw;
+	height: 100vh;
+	background-color: var(--bg-body);
+	color: var(--color-primary);
+	padding: 72px 88px;
+	font-family: var(--font-montserrat);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.custom-font-sans {
+	font-family: system-ui, Helvetica, Arial, sans-serif;
 }
+
+.body__section {
+	max-width: 1440px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1fr 400px;
+	border-radius: 16px;
+	height: 100%;
+}
+
+/* @layer utilities {
+
+} */

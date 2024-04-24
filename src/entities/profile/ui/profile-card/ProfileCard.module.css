@@ -1,0 +1,28 @@
+.card {
+	padding: 40px 46px;
+	background-color: var(--bg-profile);
+}
+
+.avatar {
+	margin-left: auto;
+	position: relative;
+	background-color: var(--bg-contrast);
+}
+
+.avatar > span {
+	color: var(--color-gray);
+}
+
+.badge {
+	background-color: var(--bg-red);
+}
+
+.badge > span {
+	color: var(--color-white);
+	font-weight: 500;
+}
+
+.info {
+	font-weight: 600;
+	font-size: 15px;
+}
