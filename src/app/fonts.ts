@@ -6,7 +6,7 @@ export const fontInter = Inter({
 	display: "swap",
 });
 
-export const fontMont = Montserrat({
+export const fontMontserrat = Montserrat({
 	subsets: ["latin"],
 	variable: "--font-montserrat",
 	display: "swap",

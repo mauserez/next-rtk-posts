@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import s from "./ProfileCard.module.css";
-import { Albums, Posts } from "..";
+import { MyAlbums, MyPosts } from "..";
 import { Group, Avatar, Badge, Stack } from "@mantine/core";
 
 export const ProfileCard = () => {
@@ -14,14 +14,13 @@ export const ProfileCard = () => {
 					</Avatar>
 				</Group>
 				<div>Posts</div>
-
 				<Avatar size={48} className={s.avatar} radius="lg">
 					1
 				</Avatar>
 			</Group>
 
-			<Albums />
-			<Posts />
+			<MyAlbums />
+			<MyPosts />
 		</Stack>
 	);
 };

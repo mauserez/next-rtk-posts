@@ -1,15 +1,15 @@
 "use client";
 
-import { ReactNode, useLayoutEffect, useRef, ComponentProps } from "react";
-import { Group } from "@mantine/core";
+import { ReactNode, useLayoutEffect, useRef } from "react";
+import { Group, GroupProps } from "@mantine/core";
 import s from "./HorizontalScroller.module.css";
 
 type HorizontalScrollerProps = {
 	children: ReactNode;
-} & ComponentProps<"div">;
+} & GroupProps;
 
 export const HorizontalScroller = (props: HorizontalScrollerProps) => {
-	const { children } = props;
+	const { children, ...groupProps } = props;
 	const scrollerRef = useRef<HTMLDivElement>(null);
 
 	useLayoutEffect(() => {
@@ -71,8 +71,10 @@ export const HorizontalScroller = (props: HorizontalScrollerProps) => {
 	}, []);
 
 	return (
-		<Group ref={scrollerRef} className={s.items}>
-			{children}
-		</Group>
+		<div className={s.wrap}>
+			<Group ref={scrollerRef} className={s.scroller} {...groupProps}>
+				{children}
+			</Group>
+		</div>
 	);
 };

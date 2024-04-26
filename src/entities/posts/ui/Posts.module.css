@@ -1,0 +1,13 @@
+.title {
+	font-weight: 500;
+	font-size: 14px;
+}
+
+.text {
+	color: var(--color-secondary);
+	font-size: 11px;
+}
+
+.skeleton::after {
+	background-color: #303650;
+}

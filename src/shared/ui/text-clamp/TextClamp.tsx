@@ -8,11 +8,13 @@ type TextClampProps = {
 } & ComponentProps<"div">;
 
 export const TextClamp = (props: TextClampProps) => {
-	const { children, className = "", lineCount = 1 } = props;
+	const { children, className = "", lineCount = 1, ...otherProps } = props;
+	
 	return (
 		<div
 			style={{ WebkitLineClamp: lineCount }}
 			className={clsx(s.clamp, className)}
+			{...otherProps}
 		>
 			{children}
 		</div>

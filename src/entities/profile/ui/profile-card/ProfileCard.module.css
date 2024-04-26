@@ -1,6 +1,7 @@
 .card {
 	padding: 40px 46px;
 	background-color: var(--bg-profile);
+	overflow: hidden;
 }
 
 .avatar {

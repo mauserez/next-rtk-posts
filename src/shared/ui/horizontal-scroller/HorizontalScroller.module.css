@@ -1,4 +1,9 @@
-.items {
+.wrap {
+	width: 100%;
+	overflow-x: hidden;
+}
+
+.scroller {
 	position: relative;
 	width: 100%;
 	overflow-x: scroll;
@@ -9,9 +14,12 @@
 	transform: scale(0.98);
 	will-change: transform;
 	user-select: none;
-	cursor: pointer;
 }
 
-.items::-webkit-scrollbar {
+.scroller::-webkit-scrollbar {
 	display: none;
+}
+
+.scroller > * {
+	white-space: initial;
 }

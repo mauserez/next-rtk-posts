@@ -1,12 +1,6 @@
-.albums {
-	white-space: nowrap;
-	flex-wrap: nowrap;
-	width: 100%;
-	overflow: scroll;
-}
-
 .album {
-	width: 120px;
+	min-width: 120px;
+	cursor: pointer;
 }
 
 .albumImage {
@@ -21,6 +15,6 @@
 }
 
 .subtitle {
-	font-size: 10px;
+	font-size: 11px;
 	color: var(--color-secondary);
 }

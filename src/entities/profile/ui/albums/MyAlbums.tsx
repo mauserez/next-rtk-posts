@@ -1,12 +1,12 @@
 import { SectionTitle, TextClamp, HorizontalScroller } from "@/shared/ui";
 import { Stack } from "@mantine/core";
-import s from "./Albums.module.css";
+import s from "./MyAlbums.module.css";
 
-export const Albums = () => {
+export const MyAlbums = () => {
 	return (
-		<Stack className={s.albums}>
+		<Stack>
 			<SectionTitle size="sm" boldText="Albums" />
-			<HorizontalScroller className={s.albums}>
+			<HorizontalScroller>
 				{[...Array(10)].map((i, idx) => (
 					<Stack key={idx} gap={"xs"} className={s.album}>
 						<div className={s.albumImage}>img</div>

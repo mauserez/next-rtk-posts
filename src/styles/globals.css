@@ -15,6 +15,7 @@
 	--bg-content: #ecf1ff;
 	--bg-profile: #fff;
 	--bg-contrast: #303650;
+	--bg-button: #e0e9ff;
 
 	--bg-star: #ffc431;
 	--bg-purple: #8847da;
@@ -42,7 +43,7 @@ body {
 	max-width: 1440px;
 	margin: 0 auto;
 	display: grid;
-	grid-template-columns: 1fr 400px;
+	grid-template-columns: minmax(0, 1fr) 400px;
 	border-radius: 16px;
 	height: 100%;
 }

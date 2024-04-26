@@ -1,17 +1,20 @@
-import Image from "next/image";
-import { SectionTitle } from "@/shared/ui";
-import { Stack } from "@mantine/core";
+import { Input } from "@/shared/ui";
+import { Stack, Group } from "@mantine/core";
+import { Albums } from "@/entities/albums/ui/Albums";
+import { Posts } from "@/entities/posts/ui/Posts";
 
 export default function Home() {
 	return (
 		<Stack gap={48}>
-			<div>
-				<SectionTitle boldText="Discover" lightText="for yourself" />
-			</div>
-
-			<div>
-				<SectionTitle size="sm" boldText="Top" lightText="reviews" />
-			</div>
+			<Group>
+				<Input
+					withLeftIcon
+					style={{ width: "225px" }}
+					placeholder="Search something"
+				/>
+			</Group>
+			<Albums />
+			<Posts />
 		</Stack>
 	);
 }

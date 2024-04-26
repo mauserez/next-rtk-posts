@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
+
 import { Providers } from "@/providers";
 import { Header, Content } from "@/shared/layout";
 import { ProfileCard } from "@/entities/profile/ui";
+import { ColorSchemeScript } from "@mantine/core";
+import { fontMontserrat } from "./fonts";
 
-import { fontInter, fontMont } from "./fonts";
-import "./reset.css";
-import "./globals.css";
-import clsx from "clsx";
+import "../styles/styles.css";
 
 export const metadata: Metadata = {
 	title: "Posts",
@@ -20,7 +20,15 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={fontMont.variable}>
+			<head>
+				<ColorSchemeScript />
+				<link rel="shortcut icon" href="/favicon.svg" />
+				<meta
+					name="viewport"
+					content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
+				/>
+			</head>
+			<body className={fontMontserrat.variable}>
 				<Providers>
 					<section className="body__section">
 						<Content>

@@ -1,0 +1,45 @@
+.posts {
+	row-gap: 0;
+}
+
+.post {
+	padding: 12px 0;
+	border-top-left-radius: 16px;
+	border-bottom-left-radius: 16px;
+	transition: padding 0.4s;
+	cursor: pointer;
+}
+
+.post:hover {
+	padding: 12px 0 12px 12px;
+	color: var(--color-white);
+	background-color: var(--bg-contrast);
+	margin-right: -48px;
+	transition: background-color 0.2s, padding 0.4s;
+}
+
+.title {
+	font-weight: 600;
+	font-size: 14px;
+}
+
+.text {
+	color: var(--color-secondary);
+	font-size: 11px;
+}
+
+.iconActive {
+	color: var(--color-red);
+}
+
+.icons {
+	margin-left: auto;
+}
+
+.icons > * {
+	cursor: pointer;
+}
+
+.post:hover .icons {
+	margin-right: 48px;
+}
