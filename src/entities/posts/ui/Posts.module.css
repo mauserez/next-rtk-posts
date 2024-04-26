@@ -3,6 +3,10 @@
 	font-size: 14px;
 }
 
+.title::first-letter {
+	text-transform: uppercase !important;
+}
+
 .text {
 	color: var(--color-secondary);
 	font-size: 11px;

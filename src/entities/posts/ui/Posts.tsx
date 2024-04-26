@@ -63,7 +63,9 @@ const PostList = (props: PostListProps) => {
 					<Group wrap="nowrap">
 						<Avatar radius={11}>{post.id}</Avatar>
 						<Stack gap={4}>
-							<TextClamp className={s.title}>{post.title}</TextClamp>
+							<TextClamp>
+								<div className={s.title}>{post.title}</div>
+							</TextClamp>
 							<TextClamp className={s.text}>{post.body}</TextClamp>
 						</Stack>
 					</Group>

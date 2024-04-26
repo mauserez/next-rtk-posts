@@ -10,12 +10,17 @@ export const ProfileCard = () => {
 				<Group gap="xs">
 					Albums
 					<Avatar radius={11} size={32} className={s.badge}>
-						1
+						4
 					</Avatar>
 				</Group>
-				<div>Posts</div>
+				<Group gap="xs">
+					Posts
+					<Avatar radius={11} size={32} className={s.badge}>
+						2
+					</Avatar>
+				</Group>
 				<Avatar size={48} className={s.avatar} radius="lg">
-					1
+					О
 				</Avatar>
 			</Group>
 

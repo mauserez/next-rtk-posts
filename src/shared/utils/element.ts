@@ -1,0 +1,19 @@
+export const createHex = () => {
+	let hex = "";
+	const hexValues = "0123456789abcdef";
+
+	for (let i = 0; i < 6; i++) {
+		hex += hexValues.charAt(Math.floor(Math.random() * hexValues.length));
+	}
+	return hex;
+};
+
+export const randomGradient = (degree: number | null = null) => {
+	const deg = !degree ? Math.floor(Math.random() * 360) : degree;
+	const firstColor = createHex();
+	const secondColor = createHex();
+
+	const gradient = `linear-gradient(${deg}deg,#${firstColor},#${secondColor})`;
+
+	return gradient;
+};
