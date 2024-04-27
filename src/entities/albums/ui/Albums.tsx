@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { AssocArray } from "@/shared/types";
 import { HorizontalScroller, SectionTitle, TextClamp } from "@/shared/ui";
@@ -9,9 +8,9 @@ import { Skeleton, Stack } from "@mantine/core";
 import { randomGradient } from "@/shared/utils/element";
 
 import { AlbumType } from "../model/types";
-import clsx from "clsx";
-import s from "./Albums.module.css";
 import Link from "next/link";
+import s from "./Albums.module.css";
+import clsx from "clsx";
 
 type AlbumsProps = {
 	options?: AssocArray;
@@ -42,7 +41,7 @@ export const Albums = (props: AlbumsProps) => {
 
 	return (
 		<Stack>
-			<SectionTitle boldText="Api" lightText="albums" />
+			<SectionTitle boldText="Api" lightText="Albums" />
 			<HorizontalScroller>{content}</HorizontalScroller>
 		</Stack>
 	);
@@ -87,7 +86,6 @@ const AlbumList = (props: AlbumListProps) => {
 							className={s.album}
 							key={idx}
 						>
-							{/* <Image priority alt="Photo" src={photo.url} fill /> */}
 							<div className={s.info}>
 								<TextClamp>
 									<div className={s.title}>{album.title}</div>
