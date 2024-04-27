@@ -1,13 +1,14 @@
 "use client";
 
-import { Skeleton } from "@mantine/core";
-import { useQuery } from "@tanstack/react-query";
+import { Skeleton, Stack } from "@mantine/core";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { AlbumType, PhotoType } from "@/entities/albums/model/types";
 import { randomGradient } from "@/shared/utils/element";
 import { fetchPhotos } from "../../api/fetchAlbumPhotos";
 
-import { useState } from "react";
+import { memo, useRef } from "react";
 import s from "./AlbumPhotos.module.css";
+import { Button } from "@/shared/ui";
 
 type AlbumPhotosProps = {
 	albumId: AlbumType["id"];
@@ -15,22 +16,25 @@ type AlbumPhotosProps = {
 
 export const AlbumPhotos = (props: AlbumPhotosProps) => {
 	const { albumId } = props;
-
-	const [page, setPage] = useState(1);
-	const [limit, setLimit] = useState(10);
-
-	const options = { albumId: albumId, limit: 10, page: page };
-
-	let albumPhotos: PhotoType[] = [];
+	const page = useRef(1);
+	const options = { albumId: albumId, page: page.current };
 
 	const {
 		data: photos,
 		status,
 		error,
-	} = useQuery({
-		queryKey: ["photos", albumId, page],
+		fetchStatus,
+		hasNextPage,
+		fetchNextPage,
+	} = useInfiniteQuery({
+		queryKey: ["photos", albumId],
 		queryFn: () => fetchPhotos(options),
 		enabled: !!albumId,
+		initialPageParam: 1,
+		getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
+			page.current = lastPageParam + 1;
+			return !!lastPage.length === false ? undefined : page.current;
+		},
 	});
 
 	let content;
@@ -40,7 +44,29 @@ export const AlbumPhotos = (props: AlbumPhotosProps) => {
 	} else if (status === "error") {
 		content = error.message;
 	} else {
-		content = <PhotoGallery photos={[...albumPhotos, ...photos]} />;
+		const albumPhotos: PhotoType[] = [];
+
+		photos.pages.map((pageArray) => {
+			albumPhotos.push(...pageArray);
+		});
+
+		content = (
+			<Stack>
+				<PhotoGallery photos={albumPhotos} />
+				{hasNextPage ? (
+					<Button
+						className={s.loadMore}
+						disabled={fetchStatus === "fetching"}
+						loading={fetchStatus === "fetching"}
+						onClick={() => {
+							fetchNextPage();
+						}}
+					>
+						Load more
+					</Button>
+				) : null}
+			</Stack>
+		);
 	}
 
 	return content;
@@ -50,7 +76,7 @@ type PhotoGalleryProps = {
 	photos: PhotoType[];
 };
 
-const PhotoGallery = (props: PhotoGalleryProps) => {
+const PhotoGallery = memo(function photoGallery(props: PhotoGalleryProps) {
 	const { photos } = props;
 
 	return (
@@ -66,7 +92,7 @@ const PhotoGallery = (props: PhotoGalleryProps) => {
 			})}
 		</div>
 	);
-};
+});
 
 const Loader = () => {
 	return (

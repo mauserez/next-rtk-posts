@@ -9,6 +9,7 @@ type Options = {
 
 export const fetchPhotos = async (options: Options): Promise<PhotoType[]> => {
 	const { albumId, limit = 10, page = 1 } = options;
+	console.log(page);
 
 	return mainApi
 		.get(`/photos?albumId=${albumId}&_page=${page}&_limit=${limit}`)
