@@ -8,3 +8,4 @@ export { HorizontalScroller } from "./horizontal-scroller/HorizontalScroller";
 export { Input } from "./input/Input";
 export { Button, type ButtonProps } from "./button/Button";
 export { ButtonGroup } from "./button-group/ButtonGroup";
+export { LikeButton } from "./like-button/LikeButton";

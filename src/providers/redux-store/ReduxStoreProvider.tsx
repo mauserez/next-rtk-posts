@@ -1,21 +1,22 @@
 "use client";
 
 import { ReactNode } from "react";
-import { useRef } from "react";
 import { Provider } from "react-redux";
-import { makeStore, AppStore } from "../../shared/store/redux/store";
+import { persistor, store } from "../../shared/store/redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 
-type TanstackReduxStoreProvider = {
+type ReduxStoreProviderProps = {
 	children: ReactNode;
 };
 
-export const ReduxStoreProvider = (props: TanstackReduxStoreProvider) => {
+export const ReduxStoreProvider = (props: ReduxStoreProviderProps) => {
 	const { children } = props;
-	const storeRef = useRef<AppStore>();
 
-	if (!storeRef.current) {
-		storeRef.current = makeStore();
-	}
-
-	return <Provider store={storeRef.current}>{children}</Provider>;
+	return (
+		<Provider store={store}>
+			<PersistGate loading={null} persistor={persistor}>
+				{children}
+			</PersistGate>
+		</Provider>
+	);
 };

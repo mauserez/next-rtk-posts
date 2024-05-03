@@ -1,37 +1,36 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { PostType } from "@/entities/posts/model/types";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { removeBy } from "@/shared/utils/array";
 
 export interface PostsState {
-	value: number;
+	favoritePosts: PostType[];
 }
 
 const initialState: PostsState = {
-	value: 0,
+	favoritePosts: [],
 };
 
 export const postsSlice = createSlice({
 	name: "posts",
 	initialState,
 	reducers: {
-		increment: (state) => {
-			state.value += 1;
+		addPost: (state, action: PayloadAction<PostType>) => {
+			state.favoritePosts.push(action.payload);
 		},
-		decrement: (state) => {
-			state.value -= 1;
-		},
-		incrementByAmount: (state, action: PayloadAction<number>) => {
-			state.value += action.payload;
+		removePost: (state, action: PayloadAction<PostType["id"]>) => {
+			console.log(state);
+			console.log(action.payload);
+			state.favoritePosts = removeBy(state.favoritePosts, "id", action.payload);
 		},
 	},
 	selectors: {
-		currentValue: (state) => {
-			return state.value;
+		isFavoritePost: (state, postId: PostType["id"]) => {
+			return state.favoritePosts.some((el) => el.id === postId);
 		},
 	},
 });
 
-// Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = postsSlice.actions;
-export const { currentValue } = postsSlice.selectors;
+export const { addPost, removePost } = postsSlice.actions;
+export const { isFavoritePost } = postsSlice.selectors;
 
 export default postsSlice.reducer;

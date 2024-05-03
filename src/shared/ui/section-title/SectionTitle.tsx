@@ -7,7 +7,7 @@ import s from "./SectionTitle.module.css";
 type SectionTitleProps = {
 	boldText?: string | ReactNode;
 	lightText?: string | ReactNode;
-	size?: "sm" | "md" | "lg";
+	size?: "xs" | "sm" | "md" | "lg";
 	uppercase?: boolean;
 } & GroupProps;
 

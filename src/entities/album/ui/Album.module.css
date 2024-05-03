@@ -1,55 +1,24 @@
-.album {
-	position: relative;
-	min-height: 240px;
-	min-width: 190px;
-	max-width: 190px;
-	border-radius: 16px;
-	overflow: hidden;
-	display: flex;
-	flex-direction: column;
-	//background-color: azure;
-	background-size: cover;
-}
-
-.info {
-	min-height: 70px;
-	margin-top: auto;
-	border-radius: 16px;
-	background-color: var(--bg-contrast);
-	padding: 16px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	gap: 4px;
-	color: var(--color-white);
-	z-index: 1;
-}
-
-.title {
-	font-weight: 600;
-	font-size: 14px;
-	line-height: 1;
-}
-
-.title::first-letter {
-	text-transform: uppercase;
-}
-
-.description {
-	color: var(--color-secondary);
-	font-size: 11px;
-	line-height: 1;
-}
-
 .loader {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-auto-rows: auto;
+	gap: 24px;
+}
+
+@media screen and (max-width: 1280px) {
+	.loader {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+.loader > * {
+	aspect-ratio: 12/16;
 	background: rgb(147, 147, 150);
 	background: linear-gradient(
 		180deg,
 		rgb(222 231 255) 1%,
 		rgb(236 241 255) 100%
 	);
-}
-
-.loaderInfo {
-	gap: 8px;
+	border-radius: 16px;
+	position: relative;
 }

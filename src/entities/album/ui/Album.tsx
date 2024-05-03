@@ -1,14 +1,12 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { HorizontalScroller, SectionTitle, TextClamp } from "@/shared/ui";
+import { SectionTitle } from "@/shared/ui";
 import { fetchAlbum } from "../api/fetchAlbum";
-import { Skeleton, Stack } from "@mantine/core";
-import { randomGradient } from "@/shared/utils/element";
-import { AlbumType, PhotoType } from "@/entities/albums/model/types";
+import { Stack } from "@mantine/core";
+import { AlbumType } from "@/entities/albums/model/types";
 import { AlbumPhotos } from "./album-photos/AlbumPhotos";
 
-import clsx from "clsx";
 import s from "./Album.module.css";
 
 type AlbumsProps = {
@@ -38,8 +36,8 @@ export const Album = (props: AlbumsProps) => {
 	}
 
 	return (
-		<Stack>
-			<SectionTitle boldText={`Album ${id}`} lightText="" />
+		<Stack gap={4}>
+			<SectionTitle size="md" boldText={`Album ${id}`} />
 			{content}
 		</Stack>
 	);
@@ -47,16 +45,11 @@ export const Album = (props: AlbumsProps) => {
 
 const Loader = () => {
 	return (
-		<>
-			{[...Array(9)].map((i, idx) => (
-				<div key={idx} className={clsx(s.album, s.loader, "ldr")}>
-					<div className={clsx(s.info, s.loaderInfo)}>
-						<Skeleton color="#fff" height={8} radius="xl" />
-						<Skeleton color="#fff" height={8} mt={6} radius="xl" />
-					</div>
-				</div>
+		<div className={s.loader}>
+			{[...Array(4)].map((i, idx) => (
+				<div key={idx} className="ldr"></div>
 			))}
-		</>
+		</div>
 	);
 };
 
@@ -69,12 +62,7 @@ const AlbumDetail = (props: AlbumListProps) => {
 
 	return (
 		<Stack>
-			<SectionTitle
-				size="sm"
-				uppercase
-				boldText={album?.title}
-				lightText={""}
-			/>
+			<SectionTitle size="xs" uppercase boldText={album?.title} />
 			<AlbumPhotos albumId={album.id} />
 		</Stack>
 	);

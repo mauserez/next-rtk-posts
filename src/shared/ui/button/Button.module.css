@@ -12,3 +12,9 @@
 	background-color: var(--bg-red);
 	color: var(--color-white);
 }
+
+.button:disabled,
+.button:disabled:hover {
+	background-color: #bbb;
+	color: #666;
+}

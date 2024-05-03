@@ -11,7 +11,3 @@
 	color: var(--color-secondary);
 	font-size: 11px;
 }
-
-.skeleton::after {
-	background-color: #303650;
-}

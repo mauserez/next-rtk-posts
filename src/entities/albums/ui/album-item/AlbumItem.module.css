@@ -9,6 +9,7 @@
 	flex-direction: column;
 	//background-color: azure;
 	background-size: cover;
+	cursor: pointer;
 }
 
 .info {
@@ -41,15 +42,10 @@
 	line-height: 1;
 }
 
-.loader {
-	background: rgb(147, 147, 150);
-	background: linear-gradient(
-		180deg,
-		rgb(222 231 255) 1%,
-		rgb(236 241 255) 100%
-	);
-}
-
-.loaderInfo {
-	gap: 8px;
+.like {
+	position: absolute;
+	right: 8px;
+	top: 8px;
+	color: #fff;
+	z-index: 1;
 }

@@ -1,12 +1,15 @@
 .album {
 	min-width: 120px;
+	max-width: 120px;
 	cursor: pointer;
+	flex: 1;
 }
 
 .albumImage {
-	height: 140px;
 	border-radius: 16px;
 	background-color: antiquewhite;
+	aspect-ratio: 10/12;
+	position: relative;
 }
 
 .title {
@@ -17,4 +20,10 @@
 .subtitle {
 	font-size: 11px;
 	color: var(--color-secondary);
+}
+
+.like {
+	right: 8px;
+	top: 8px;
+	position: absolute;
 }

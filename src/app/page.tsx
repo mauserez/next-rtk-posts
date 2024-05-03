@@ -1,7 +1,7 @@
 import { Input } from "@/shared/ui";
 import { Stack, Group } from "@mantine/core";
-import { Albums } from "@/entities/albums/ui/Albums";
-import { Posts } from "@/entities/posts/ui/Posts";
+import { Albums } from "@/entities/albums/ui/album-list/AlbumList";
+import { Posts } from "@/entities/posts/ui/post-list/PostList";
 
 export default function Home() {
 	return (

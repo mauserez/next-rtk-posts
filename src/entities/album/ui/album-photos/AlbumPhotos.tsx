@@ -75,7 +75,7 @@ export const AlbumPhotos = (props: AlbumPhotosProps) => {
 type PhotoGalleryProps = {
 	photos: PhotoType[];
 };
-
+/*
 const PhotoGallery = memo(function photoGallery(props: PhotoGalleryProps) {
 	const { photos } = props;
 
@@ -92,7 +92,25 @@ const PhotoGallery = memo(function photoGallery(props: PhotoGalleryProps) {
 			})}
 		</div>
 	);
-});
+}); */
+
+const PhotoGallery = (props: PhotoGalleryProps) => {
+	const { photos } = props;
+
+	return (
+		<div className={s.photos}>
+			{photos.map((photo, idx) => {
+				const gradient = randomGradient();
+
+				return (
+					<div key={idx} style={{ background: `${gradient}` }}>
+						{photo.id}
+					</div>
+				);
+			})}
+		</div>
+	);
+};
 
 const Loader = () => {
 	return (

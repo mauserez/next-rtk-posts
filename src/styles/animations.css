@@ -1,5 +1,6 @@
 .ldr {
 	position: relative;
+	overflow: hidden;
 }
 
 .ldr::before {

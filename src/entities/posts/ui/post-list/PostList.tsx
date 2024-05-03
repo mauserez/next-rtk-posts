@@ -1,13 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { ButtonGroup, SectionTitle, TextClamp } from "@/shared/ui";
-import { Grid, Group, Skeleton, Stack, Avatar } from "@mantine/core";
-import { PrimitiveType } from "@/shared/types";
 import { useQuery } from "@tanstack/react-query";
-import { fetchPosts } from "../api/fetchPosts";
-import { PostType } from "../model/types";
-import s from "./Posts.module.css";
+import { Button, ButtonGroup, SectionTitle } from "@/shared/ui";
+import { Grid, Group, Skeleton, Stack } from "@mantine/core";
+
+import { PrimitiveType } from "@/shared/types";
+import { fetchPosts } from "../../api/fetchPosts";
+import { PostType } from "../../model/types";
+import { PostItem } from "../post-item/PostItem";
+
+import s from "./PostList.module.css";
 
 export const Posts = () => {
 	const [filter, setFilter] = useState<PrimitiveType>(1);
@@ -20,17 +23,18 @@ export const Posts = () => {
 
 	const {
 		data: posts,
-		fetchStatus,
 		status,
 		refetch,
+		isFetching,
 	} = useQuery({
 		queryKey: ["posts"],
 		queryFn: () => fetchPosts(),
+		staleTime: Infinity,
 	});
 
 	let content;
 
-	if (status === "pending" || fetchStatus === "fetching") {
+	if (status === "pending" || isFetching) {
 		content = <Loader />;
 	} else if (status === "error") {
 		content = "error";
@@ -40,7 +44,17 @@ export const Posts = () => {
 
 	return (
 		<Stack>
-			<SectionTitle size="sm" boldText="API" lightText="Posts" />
+			<Group justify="space-between">
+				<SectionTitle size="sm" boldText="API" lightText="Posts" />
+				<Button
+					disabled={isFetching}
+					onClick={() => {
+						refetch();
+					}}
+				>
+					Refresh
+				</Button>
+			</Group>
 			<Stack gap={24}>
 				<ButtonGroup onClick={setFilter} buttons={buttons} />
 				{content}
@@ -57,21 +71,11 @@ const PostList = (props: PostListProps) => {
 	const { posts } = props;
 
 	return (
-		<Grid>
+		<div className={s.posts}>
 			{posts.map((post, i) => (
-				<Grid.Col key={i} span={{ base: 12, lg: 6 }}>
-					<Group wrap="nowrap">
-						<Avatar radius={11}>{post.id}</Avatar>
-						<Stack gap={4}>
-							<TextClamp>
-								<div className={s.title}>{post.title}</div>
-							</TextClamp>
-							<TextClamp className={s.text}>{post.body}</TextClamp>
-						</Stack>
-					</Group>
-				</Grid.Col>
+				<PostItem key={i} post={post} />
 			))}
-		</Grid>
+		</div>
 	);
 };
 

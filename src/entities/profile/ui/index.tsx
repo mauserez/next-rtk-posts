@@ -1,3 +1,3 @@
 export { ProfileCard } from "./profile-card/ProfileCard";
-export { MyAlbums } from "./albums/MyAlbums";
-export { MyPosts } from "./posts/MyPosts";
+export { MyAlbums } from "./my-albums/MyAlbums";
+export { MyPosts } from "./my-posts/MyPosts";

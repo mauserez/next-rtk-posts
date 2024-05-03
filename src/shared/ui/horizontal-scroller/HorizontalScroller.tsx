@@ -72,7 +72,12 @@ export const HorizontalScroller = (props: HorizontalScrollerProps) => {
 
 	return (
 		<div className={s.wrap}>
-			<Group ref={scrollerRef} className={s.scroller} {...groupProps}>
+			<Group
+				align="flex-start"
+				ref={scrollerRef}
+				className={s.scroller}
+				{...groupProps}
+			>
 				{children}
 			</Group>
 		</div>
