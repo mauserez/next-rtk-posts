@@ -14,7 +14,7 @@ export const Header = () => {
 	};
 
 	return (
-		<header>
+		<header className={s.header}>
 			<Group justify="space-between">
 				<Logo />
 				<Button onClick={handleBack} className={s.back}>

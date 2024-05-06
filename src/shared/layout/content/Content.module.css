@@ -1,7 +1,9 @@
 .content {
 	display: flex;
 	flex-direction: column;
-	padding: 40px 46px;
+	padding: 0 46px 40px 46px;
 	gap: 48px;
 	background-color: var(--bg-content);
+	max-height: calc(100vh - 144px);
+	overflow: auto;
 }

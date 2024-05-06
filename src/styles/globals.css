@@ -45,7 +45,6 @@ body {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr) 400px;
 	border-radius: 16px;
-	height: 100%;
 }
 
 /* @layer utilities {

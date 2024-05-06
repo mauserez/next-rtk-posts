@@ -9,7 +9,10 @@ import clsx from "clsx";
 
 import s from "./ButtonGroup.module.css";
 
-type AssocButtons = { value: PrimitiveType; label: string | ReactNode }[];
+type AssocButtons = {
+	value: PrimitiveType;
+	label: string | ReactNode;
+}[];
 
 type ButtonGroupTypes = {
 	buttonProps?: ButtonProps;

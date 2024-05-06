@@ -1,3 +1,12 @@
+.header {
+	position: sticky;
+	top: 0;
+	padding-top: 40px;
+	z-index: 1;
+	background-color: var(--bg-content);
+	padding-bottom: 16px;
+}
+
 .back:hover {
 	background-color: var(--bg-purple) !important;
 }

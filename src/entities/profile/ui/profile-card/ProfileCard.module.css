@@ -1,7 +1,9 @@
 .card {
 	padding: 40px 46px;
 	background-color: var(--bg-profile);
-	overflow: hidden;
+	max-height: calc(100vh - 144px);
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 .avatar {

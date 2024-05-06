@@ -32,10 +32,8 @@ export default function RootLayout({
 				<Providers>
 					<section className="body__section">
 						<Content>
-							<>
-								<Header />
-								{children}
-							</>
+							<Header />
+							{children}
 						</Content>
 						<ProfileCard />
 					</section>

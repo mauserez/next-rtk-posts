@@ -5,21 +5,23 @@ import { useQuery } from "@tanstack/react-query";
 import { Button, ButtonGroup, SectionTitle } from "@/shared/ui";
 import { Grid, Group, Skeleton, Stack } from "@mantine/core";
 
-import { PrimitiveType } from "@/shared/types";
 import { fetchPosts } from "../../api/fetchPosts";
 import { PostType } from "../../model/types";
 import { PostItem } from "../post-item/PostItem";
+import { PrimitiveType } from "@/shared/types";
 
 import s from "./PostList.module.css";
 
 export const Posts = () => {
-	const [filter, setFilter] = useState<PrimitiveType>(1);
+	const [userFilter, setUserFilter] = useState<PrimitiveType>(1);
 
 	const buttons = [
-		{ value: 1, label: "Today" },
-		{ value: 2, label: "Week" },
-		{ value: 3, label: "Month" },
+		{ value: 1, label: "Leanne Graham" },
+		{ value: 2, label: "Ervin Howell" },
+		{ value: 3, label: "Clementine Bauch" },
 	];
+
+	const options = { user: userFilter as number };
 
 	const {
 		data: posts,
@@ -27,8 +29,8 @@ export const Posts = () => {
 		refetch,
 		isFetching,
 	} = useQuery({
-		queryKey: ["posts"],
-		queryFn: () => fetchPosts(),
+		queryKey: ["posts", userFilter],
+		queryFn: () => fetchPosts(options),
 		staleTime: Infinity,
 	});
 
@@ -56,7 +58,7 @@ export const Posts = () => {
 				</Button>
 			</Group>
 			<Stack gap={24}>
-				<ButtonGroup onClick={setFilter} buttons={buttons} />
+				<ButtonGroup onClick={setUserFilter} buttons={buttons} />
 				{content}
 			</Stack>
 		</Stack>

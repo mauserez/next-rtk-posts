@@ -13,19 +13,21 @@ export const ProfileCard = () => {
 	const postCount = posts.length.toString();
 
 	return (
-		<Stack gap={48} className={clsx("rounded-r-3xl", s.card)}>
+		<Stack gap={48} className={clsx("rounded-r-2xl", s.card)}>
 			<Group gap="xl" className={s.info}>
-				<Group gap="xs">
-					Albums
-					<Avatar radius={11} size={32} className={s.badge}>
-						{albumCount}
-					</Avatar>
-				</Group>
-				<Group gap="xs">
-					Posts
-					<Avatar radius={11} size={32} className={s.badge}>
-						{postCount}
-					</Avatar>
+				<Group>
+					<Group gap="xs">
+						Albums
+						<Avatar radius={11} size={32} className={s.badge}>
+							{albumCount}
+						</Avatar>
+					</Group>
+					<Group gap="xs">
+						Posts
+						<Avatar radius={11} size={32} className={s.badge}>
+							{postCount}
+						</Avatar>
+					</Group>
 				</Group>
 				<Avatar size={48} className={s.avatar} radius="lg">
 					О

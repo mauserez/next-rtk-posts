@@ -1,0 +1,29 @@
+::-webkit-scrollbar {
+	width: 17px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 20px;
+	background-color: #d2d5e1;
+	border: 6px solid transparent;
+	background-clip: content-box;
+	transition: background-image 4s, background-color 4s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: #c471ed; /* fallback for old browsers */
+	background-image: -webkit-linear-gradient(
+		to bottom,
+		#c471ed,
+		#f64f59
+	); /* Chrome 10-25, Safari 5.1-6 */
+	background-image: linear-gradient(
+		to bottom,
+		#c471ed,
+		#f64f59
+	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}

@@ -6,20 +6,26 @@
 	padding: 12px;
 	border-top-left-radius: 16px;
 	border-bottom-left-radius: 16px;
-	transition: padding 0.1s;
 	cursor: pointer;
-	margin-left: -12px;
 	position: relative;
+	margin-left: -12px;
 	margin-right: -48px;
+	transition: background-color 0.1s, margin 0.4s;
 }
 
 .post:hover {
 	color: var(--color-white);
 	background-color: var(--bg-contrast);
-	transition: background-color 0.1s, padding 0.1s;
+	transition: background-color 0.1s, margin 0.4s;
+	margin-left: 0px;
+}
+
+.post:hover .postBody {
+	margin-right: 36px;
 }
 
 .postBody {
+	transition: margin 0.4s;
 	margin-right: 48px;
 }
 
@@ -28,13 +34,17 @@
 	font-size: 14px;
 }
 
+.title::first-letter {
+	text-transform: uppercase;
+}
+
 .text {
 	color: var(--color-secondary);
 	font-size: 11px;
 }
 
-.like {
+.icon {
 	position: absolute;
-	top: 8px;
-	right: 16px;
+	top: 12px;
+	right: 48px;
 }

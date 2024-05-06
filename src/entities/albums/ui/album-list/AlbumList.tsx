@@ -47,6 +47,7 @@ export const Albums = (props: AlbumsProps) => {
 			<Group justify="space-between">
 				<SectionTitle boldText="Api" lightText="Albums" />
 				<Button
+					isLoading={isFetching}
 					disabled={isFetching}
 					onClick={() => {
 						refetch();
