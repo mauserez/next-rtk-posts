@@ -32,7 +32,7 @@ export const Album = (props: AlbumsProps) => {
 
 	let content;
 
-	if (1 === 1 || status === "pending") {
+	if (status === "pending") {
 		content = <Loader />;
 	} else if (status === "error") {
 		content = error.message;

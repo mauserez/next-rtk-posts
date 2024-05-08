@@ -9,13 +9,13 @@ import { fetchPosts } from "../api/fetchPosts";
 import { PostType } from "../model/types";
 import { PostItem } from "../../../entities/post-list/post-item/PostItem";
 import { PrimitiveType } from "@/shared/types";
-import { SearchContext } from "@/widgets/main-page/context/SearchContext";
+import { HomePageFilterContext } from "@/app/page";
 
 import s from "./PostList.module.css";
 
 export const Posts = () => {
 	const [userFilter, setUserFilter] = useState<PrimitiveType>(1);
-	const searchContext = useContext(SearchContext);
+	const context = useContext(HomePageFilterContext);
 
 	const buttons = [
 		{ value: 1, label: "Leanne Graham" },
@@ -23,7 +23,10 @@ export const Posts = () => {
 		{ value: 3, label: "Clementine Bauch" },
 	];
 
-	const options = { user: userFilter as number, title: searchContext.search };
+	const options = {
+		user: userFilter as number,
+		title: context.search,
+	};
 
 	const {
 		data: posts,

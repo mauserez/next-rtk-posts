@@ -23,7 +23,7 @@ export const AlbumPhotos = (props: AlbumPhotosProps) => {
 		data: photos,
 		status,
 		error,
-		fetchStatus,
+		isFetching,
 		hasNextPage,
 		fetchNextPage,
 	} = useInfiniteQuery({
@@ -56,8 +56,8 @@ export const AlbumPhotos = (props: AlbumPhotosProps) => {
 				{hasNextPage ? (
 					<Button
 						className={s.loadMore}
-						disabled={fetchStatus === "fetching"}
-						loading={fetchStatus === "fetching"}
+						disabled={isFetching}
+						loading={isFetching}
 						onClick={() => {
 							fetchNextPage();
 						}}

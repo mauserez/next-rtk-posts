@@ -33,6 +33,7 @@ body {
 	color: var(--color-primary);
 	padding: 48px 48px;
 	font-family: var(--font-montserrat);
+	overflow: hidden;
 }
 
 .custom-font-sans {
@@ -45,6 +46,8 @@ body {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr) 400px;
 	border-radius: 16px;
+	min-height: 100%;
+	grid-template-rows: 100vh;
 }
 
 /* @layer utilities {

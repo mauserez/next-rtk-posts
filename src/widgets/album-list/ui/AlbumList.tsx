@@ -1,7 +1,7 @@
 "use client";
 
 import { useContext } from "react";
-import { SearchContext } from "@/widgets/main-page/context/SearchContext";
+import { HomePageFilterContext } from "@/app/page";
 
 import { Group, Skeleton, Stack } from "@mantine/core";
 import {
@@ -22,8 +22,8 @@ import albumStyle from "@/entities/album-list/album-item/AlbumItem.module.css";
 import s from "./AlbumList.module.css";
 
 export const Albums = () => {
-	const searchContext = useContext(SearchContext);
-	const options = { title: searchContext.search };
+	const context = useContext(HomePageFilterContext);
+	const options = { title: context.search };
 
 	const {
 		data: albums,

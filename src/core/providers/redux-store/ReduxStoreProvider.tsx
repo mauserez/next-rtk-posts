@@ -2,7 +2,7 @@
 
 import { ReactNode } from "react";
 import { Provider } from "react-redux";
-import { persistor, store } from "../../shared/store/redux/store";
+import { persistor, store } from "../../../shared/store/redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 
 type ReduxStoreProviderProps = {
