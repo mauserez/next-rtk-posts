@@ -5,18 +5,28 @@ import clsx from "clsx";
 type TextClampProps = {
 	children: ReactNode | string;
 	lineCount?: number;
+	uppercase?: boolean;
 } & ComponentProps<"div">;
 
 export const TextClamp = (props: TextClampProps) => {
-	const { children, className = "", lineCount = 1, ...otherProps } = props;
-	
+	const {
+		children,
+		className = "",
+		uppercase = false,
+		lineCount = 1,
+		...otherProps
+	} = props;
+
 	return (
 		<div
 			style={{ WebkitLineClamp: lineCount }}
-			className={clsx(s.clamp, className)}
+			className={clsx({
+				[s.clamp]: true,
+				[className]: true,
+			})}
 			{...otherProps}
 		>
-			{children}
+			<p className={clsx({ [s.uppercase]: true })}>{children}</p>
 		</div>
 	);
 };

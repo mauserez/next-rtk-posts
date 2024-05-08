@@ -8,5 +8,5 @@
 }
 
 .back:hover {
-	background-color: var(--bg-purple) !important;
+	background-color: var(--bg-contrast) !important;
 }

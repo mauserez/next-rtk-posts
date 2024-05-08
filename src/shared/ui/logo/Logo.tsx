@@ -1,8 +1,9 @@
-import clsx from "clsx";
-import s from "./Logo.module.css";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { Group } from "@mantine/core";
 import Link from "next/link";
+
+import clsx from "clsx";
+import s from "./Logo.module.css";
 
 export const Logo = () => {
 	return (

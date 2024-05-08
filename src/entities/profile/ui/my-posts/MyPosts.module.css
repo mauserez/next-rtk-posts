@@ -42,9 +42,3 @@
 	color: var(--color-secondary);
 	font-size: 11px;
 }
-
-.icon {
-	position: absolute;
-	top: 12px;
-	right: 48px;
-}

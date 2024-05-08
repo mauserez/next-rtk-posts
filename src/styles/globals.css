@@ -31,7 +31,7 @@ body {
 	min-height: 100vh;
 	background-color: var(--bg-body);
 	color: var(--color-primary);
-	padding: 72px 88px;
+	padding: 48px 48px;
 	font-family: var(--font-montserrat);
 }
 

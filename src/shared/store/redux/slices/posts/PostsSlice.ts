@@ -1,4 +1,4 @@
-import { PostType } from "@/entities/posts/model/types";
+import { PostType } from "@/widgets/post-list/model/types";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { removeBy } from "@/shared/utils/array";
 
@@ -18,8 +18,6 @@ export const postsSlice = createSlice({
 			state.favoritePosts.push(action.payload);
 		},
 		removePost: (state, action: PayloadAction<PostType["id"]>) => {
-			console.log(state);
-			console.log(action.payload);
 			state.favoritePosts = removeBy(state.favoritePosts, "id", action.payload);
 		},
 	},

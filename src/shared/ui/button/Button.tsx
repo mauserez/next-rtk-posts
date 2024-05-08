@@ -4,24 +4,50 @@ import {
 	ButtonProps as MButtonProps,
 	PolymorphicComponentProps,
 } from "@mantine/core";
+import { ReactNode } from "react";
+
+import { LuLoader } from "react-icons/lu";
+import { IconBaseProps, IconType } from "react-icons/lib";
 
 import clsx from "clsx";
 import s from "./Button.module.css";
-import { LuLoader } from "react-icons/lu";
 
 export type ButtonProps = PolymorphicComponentProps<"button", MButtonProps> & {
 	isLoading?: boolean;
+	loader?: IconType;
 };
 
 export const Button = (props: ButtonProps) => {
-	const { children, isLoading = false, className, ...btnProps } = props;
+	const {
+		children,
+		isLoading = false,
+		className,
+		loader = null,
+		loaderProps,
+		...btnProps
+	} = props;
 
 	return (
 		<MButton className={clsx(s.button, className)} {...btnProps}>
 			<Group gap={8}>
-				{isLoading ? <LuLoader className="rotate-animation" size={16} /> : null}
+				{isLoading ? (
+					<Loader loader={loader} className="rotate-animation" size={16} />
+				) : null}
 				{children}
 			</Group>
 		</MButton>
+	);
+};
+
+type LoaderProps = {
+	loader?: IconType | null;
+} & IconBaseProps;
+
+const Loader = (props: LoaderProps) => {
+	const { loader: IconLoader = null, ...otherProps } = props;
+	return IconLoader === null ? (
+		<LuLoader {...otherProps} />
+	) : (
+		<IconLoader {...otherProps} />
 	);
 };

@@ -3,7 +3,7 @@
 import { SectionTitle, TextClamp, HorizontalScroller } from "@/shared/ui";
 import { randomGradient } from "@/shared/utils/element";
 import { Stack } from "@mantine/core";
-import { AlbumType } from "@/entities/albums/model/types";
+import { AlbumType } from "@/widgets/album-list/model/types";
 import { useRouter } from "next/navigation";
 import { LikeButton } from "@/shared/ui";
 

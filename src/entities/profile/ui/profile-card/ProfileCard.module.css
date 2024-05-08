@@ -1,7 +1,7 @@
 .card {
 	padding: 40px 46px;
 	background-color: var(--bg-profile);
-	max-height: calc(100vh - 144px);
+	max-height: calc(100vh - 96px);
 	overflow-x: hidden;
 	overflow-y: auto;
 }

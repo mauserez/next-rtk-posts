@@ -3,7 +3,7 @@
 import { Group, GroupProps } from "@mantine/core";
 import { ReactNode, useState } from "react";
 import { Button, ButtonProps } from "..";
-import { v4 as uuidv4 } from "uuid";
+import { uid } from "@/shared/utils/number";
 import { PrimitiveType } from "@/shared/types";
 import clsx from "clsx";
 
@@ -35,7 +35,7 @@ export const ButtonGroup = (props: ButtonGroupTypes) => {
 
 	const controls = buttons.map((item, index) => (
 		<Button
-			key={uuidv4()}
+			key={uid()}
 			className={clsx({
 				[activeClassName]: active === index,
 				[buttonProps?.className || ""]: true,

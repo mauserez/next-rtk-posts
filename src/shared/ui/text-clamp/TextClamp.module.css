@@ -5,3 +5,7 @@
 	text-overflow: ellipsis;
 	word-break: break-all;
 }
+
+.uppercase::first-letter {
+	text-transform: uppercase;
+}

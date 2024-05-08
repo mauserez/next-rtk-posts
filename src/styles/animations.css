@@ -21,8 +21,8 @@
 			rgba(255, 255, 255, 0) 54%
 		)
 		50% 50%;
-	-webkit-animation: plh-animation 0.8s linear infinite;
-	animation: plh-animation 0.8s linear infinite;
+	-webkit-animation: plh-animation 1s linear infinite;
+	animation: plh-animation 1s linear infinite;
 }
 
 @-webkit-keyframes plh-animation {
