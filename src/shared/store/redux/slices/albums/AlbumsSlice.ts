@@ -1,4 +1,4 @@
-import { AlbumType } from "@/widgets/album-list/types";
+import { AlbumType } from "@/entities/album/types";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { removeFromArrayByKeyValue } from "@/shared/utils/array";
 

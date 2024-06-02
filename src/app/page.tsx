@@ -2,8 +2,8 @@
 
 import { Input } from "@/shared/ui";
 import { Stack, Group } from "@mantine/core";
-import { Albums } from "@/widgets/album-list/ui/AlbumList";
-import { Posts } from "@/widgets/post-list/ui/PostList";
+import { Albums } from "@/widgets/album/album-list/ui/AlbumList";
+import { Posts } from "@/widgets/post/post-list/ui/PostList";
 import { useState, ChangeEvent } from "react";
 import { useDebounce } from "@/shared/hooks/useDebounce";
 

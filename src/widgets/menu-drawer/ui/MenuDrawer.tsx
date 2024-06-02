@@ -3,7 +3,7 @@
 import { useDisclosure } from "@mantine/hooks";
 import { Drawer, NavLink, Stack } from "@mantine/core";
 import { BsList } from "react-icons/bs";
-import { RouteMap, RouteMapItem } from "../model";
+import { menu, type MenuItem } from "../menu";
 import { uid } from "@/shared/utils/number";
 import { usePathname, useRouter } from "next/navigation";
 import s from "./MenuDrawer.module.css";
@@ -22,7 +22,7 @@ export const MenuDrawer = () => {
 				title=""
 			>
 				<Stack>
-					<DrawMenu handle={close} menu={RouteMap} />
+					<DrawMenu handle={close} menu={menu} />
 				</Stack>
 			</Drawer>
 
@@ -31,7 +31,8 @@ export const MenuDrawer = () => {
 	);
 };
 
-type DrawMenuProps = { menu: RouteMapItem[]; handle: () => void };
+type DrawMenuProps = { menu: MenuItem[]; handle: () => void };
+
 export const DrawMenu = (props: DrawMenuProps) => {
 	const { menu, handle } = props;
 	const path = usePathname();
@@ -67,7 +68,7 @@ export const DrawMenu = (props: DrawMenuProps) => {
 	});
 };
 
-const isChildActiveUrl = (path: string, menuItem: RouteMapItem) => {
+const isChildActiveUrl = (path: string, menuItem: MenuItem) => {
 	let result = 0;
 	result += path === menuItem.href ? 1 : 0;
 	const childs = menuItem.childs || [];

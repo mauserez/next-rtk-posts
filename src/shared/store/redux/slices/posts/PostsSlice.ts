@@ -1,4 +1,4 @@
-import { PostType } from "@/widgets/post-list/model/types";
+import { PostType } from "@/entities/post/types";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { removeFromArrayByKeyValue } from "@/shared/utils/array";
 
