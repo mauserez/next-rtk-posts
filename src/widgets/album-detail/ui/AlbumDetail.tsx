@@ -4,14 +4,14 @@ import { Stack, Skeleton } from "@mantine/core";
 import { SectionTitle, CardLoader } from "@/shared/ui";
 
 import { useQuery } from "@tanstack/react-query";
-import { fetchAlbum } from "../api/fetchAlbum";
+import { fetchAlbum } from "../api";
 
-import { AlbumType } from "@/widgets/album-list/model/types";
-import { AlbumPhotos } from "@/entities/album-detail/album-photos/ui/AlbumPhotos";
+import { AlbumType } from "@/widgets/album-list/types";
+import { AlbumDetailPhotos } from "@/entities/album-detail-photos/ui/AlbumDetailPhotos";
 import { uid } from "@/shared/utils/number";
 
 import clsx from "clsx";
-import photosStyle from "@/entities/album-detail/album-photos/ui/AlbumPhotos.module.css";
+import photosStyle from "@/entities/album-detail-photos/ui/AlbumDetailPhotos.module.css";
 import s from "./AlbumDetail.module.css";
 
 type AlbumsProps = {
@@ -70,7 +70,7 @@ const AlbumDetail = (props: AlbumDetailProps) => {
 	return (
 		<Stack>
 			<SectionTitle size="xs" uppercase boldText={album?.title} />
-			<AlbumPhotos albumId={album.id} />
+			<AlbumDetailPhotos albumId={album.id} />
 		</Stack>
 	);
 };

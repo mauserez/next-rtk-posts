@@ -1,6 +1,6 @@
 import { PostType } from "@/widgets/post-list/model/types";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { removeBy } from "@/shared/utils/array";
+import { removeFromArrayByKeyValue } from "@/shared/utils/array";
 
 export interface PostsState {
 	favoritePosts: PostType[];
@@ -18,7 +18,11 @@ export const postsSlice = createSlice({
 			state.favoritePosts.push(action.payload);
 		},
 		removePost: (state, action: PayloadAction<PostType["id"]>) => {
-			state.favoritePosts = removeBy(state.favoritePosts, "id", action.payload);
+			state.favoritePosts = removeFromArrayByKeyValue(
+				state.favoritePosts,
+				"id",
+				action.payload
+			);
 		},
 	},
 	selectors: {

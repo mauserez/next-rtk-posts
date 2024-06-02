@@ -1,6 +1,6 @@
-import { AlbumType } from "@/widgets/album-list/model/types";
+import { AlbumType } from "@/widgets/album-list/types";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { removeBy } from "@/shared/utils/array";
+import { removeFromArrayByKeyValue } from "@/shared/utils/array";
 
 export interface AlbumsState {
 	favoriteAlbums: AlbumType[];
@@ -19,7 +19,7 @@ export const albumsSlice = createSlice({
 			state.favoriteAlbums.push(action.payload);
 		},
 		removeAlbum: (state, action: PayloadAction<AlbumType["id"]>) => {
-			state.favoriteAlbums = removeBy(
+			state.favoriteAlbums = removeFromArrayByKeyValue(
 				state.favoriteAlbums,
 				"id",
 				action.payload

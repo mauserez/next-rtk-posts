@@ -1,0 +1,8 @@
+.drawer section {
+	border-top-left-radius: 16px;
+	border-bottom-left-radius: 16px;
+}
+
+.menuIcon {
+	cursor: pointer;
+}

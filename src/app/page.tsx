@@ -4,12 +4,8 @@ import { Input } from "@/shared/ui";
 import { Stack, Group } from "@mantine/core";
 import { Albums } from "@/widgets/album-list/ui/AlbumList";
 import { Posts } from "@/widgets/post-list/ui/PostList";
-import { useState, ChangeEvent, createContext } from "react";
+import { useState, ChangeEvent } from "react";
 import { useDebounce } from "@/shared/hooks/useDebounce";
-
-export const HomePageFilterContext = createContext({
-	search: "",
-});
 
 export default function Home() {
 	const [searchString, setSearchString] = useState("");
@@ -30,10 +26,8 @@ export default function Home() {
 				/>
 			</Group>
 
-			<HomePageFilterContext.Provider value={{ search: debouncedSearch }}>
-				<Albums />
-				<Posts />
-			</HomePageFilterContext.Provider>
+			<Albums title={debouncedSearch} />
+			<Posts title={debouncedSearch} />
 		</Stack>
 	);
 }

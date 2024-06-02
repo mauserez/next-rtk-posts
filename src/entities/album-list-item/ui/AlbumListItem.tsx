@@ -1,10 +1,9 @@
 import { memo } from "react";
 import { randomGradient } from "@/shared/utils/element";
-import { AlbumType } from "../../../widgets/album-list/model/types";
+import { AlbumType } from "../../../widgets/album-list/types";
 import { useRouter } from "next/navigation";
 import { LikeButton, TextClamp } from "@/shared/ui";
 
-import s from "./AlbumItem.module.css";
 import { useAppDispatch, useAppSelector } from "@/shared/store/redux/hooks";
 import {
 	addAlbum,
@@ -12,11 +11,15 @@ import {
 	isFavoriteAlbum,
 } from "@/shared/store/redux/slices/albums/AlbumsSlice";
 
-type AlbumItemProps = {
+import s from "./AlbumListItem.module.css";
+
+type AlbumListItemProps = {
 	album: AlbumType;
 };
 
-export const AlbumItem = memo(function AlbumItem(props: AlbumItemProps) {
+export const AlbumListItem = memo(function AlbumItem(
+	props: AlbumListItemProps
+) {
 	const { album } = props;
 	const dispatch = useAppDispatch();
 

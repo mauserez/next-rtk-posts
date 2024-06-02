@@ -1,5 +1,5 @@
 import { AssocArray } from "@/shared/types";
-import { AlbumType } from "../model/types";
+import { AlbumType } from "./types";
 import { mainApi } from "@/shared/axios/mainApi";
 import { randomInt } from "@/shared/utils/number";
 import queryString from "query-string";
@@ -21,5 +21,7 @@ export const fetchAlbums = async (
 	};
 
 	const searchUrl = queryString.stringify(searchParams);
-	return mainApi.get(`/albums?${searchUrl}`).then((response) => response.data);
+	return await mainApi
+		.get(`/albums?${searchUrl}`)
+		.then((response) => response.data);
 };

@@ -1,4 +1,4 @@
-import { PhotoType, AlbumType } from "@/widgets/album-list/model/types";
+import { PhotoType, AlbumType } from "@/widgets/album-list/types";
 import { mainApi } from "@/shared/axios/mainApi";
 
 type Options = {

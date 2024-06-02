@@ -26,7 +26,7 @@ export const TextClamp = (props: TextClampProps) => {
 			})}
 			{...otherProps}
 		>
-			<p className={clsx({ [s.uppercase]: true })}>{children}</p>
+			<div className={clsx({ [s.uppercase]: true })}>{children}</div>
 		</div>
 	);
 };

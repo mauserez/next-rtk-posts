@@ -31,7 +31,6 @@ body {
 	min-height: 100vh;
 	background-color: var(--bg-body);
 	color: var(--color-primary);
-	padding: 48px 48px;
 	font-family: var(--font-montserrat);
 	overflow: hidden;
 }
@@ -41,13 +40,19 @@ body {
 }
 
 .body__section {
-	max-width: 1440px;
+	//max-width: 1440px;
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: minmax(0, 1fr) 400px;
 	border-radius: 16px;
 	min-height: 100%;
 	grid-template-rows: 100vh;
+	margin: 48px;
+}
+
+.mantine-Drawer-close:focus,
+.mantine-Drawer-close:focus-visible {
+	outline: none;
 }
 
 /* @layer utilities {

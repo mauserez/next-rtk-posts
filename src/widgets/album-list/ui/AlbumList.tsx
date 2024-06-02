@@ -1,7 +1,6 @@
 "use client";
 
 import { useContext } from "react";
-import { HomePageFilterContext } from "@/app/page";
 
 import { Group, Skeleton, Stack } from "@mantine/core";
 import {
@@ -12,18 +11,22 @@ import {
 } from "@/shared/ui";
 
 import { useQuery } from "@tanstack/react-query";
-import { fetchAlbums } from "../api/fetchAlbums";
+import { fetchAlbums } from "../api";
 
-import { AlbumType } from "../model/types";
-import { AlbumItem } from "@/entities/album-list/album-item/AlbumItem";
+import { AlbumType } from "../types";
+import { AlbumListItem } from "@/entities/album-list-item/ui/AlbumListItem";
 
 import clsx from "clsx";
-import albumStyle from "@/entities/album-list/album-item/AlbumItem.module.css";
+import albumStyle from "@/entities/album-list-item/ui/AlbumListItem.module.css";
 import s from "./AlbumList.module.css";
 
-export const Albums = () => {
-	const context = useContext(HomePageFilterContext);
-	const options = { title: context.search };
+type AlbumsProps = {
+	title?: string;
+};
+
+export const Albums = (props: AlbumsProps) => {
+	const { title = "" } = props;
+	const options = { title: title };
 
 	const {
 		data: albums,
@@ -81,7 +84,7 @@ const AlbumList = (props: AlbumListProps) => {
 	return (
 		<>
 			{albums.map((album) => (
-				<AlbumItem key={album.id} album={album} />
+				<AlbumListItem key={album.id} album={album} />
 			))}
 		</>
 	);

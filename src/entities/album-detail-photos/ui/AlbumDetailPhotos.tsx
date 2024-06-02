@@ -3,18 +3,18 @@
 import { Stack } from "@mantine/core";
 import { Button } from "@/shared/ui";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { AlbumType, PhotoType } from "@/widgets/album-list/model/types";
+import { AlbumType, PhotoType } from "@/widgets/album-list/types";
 import { randomGradient } from "@/shared/utils/element";
-import { fetchPhotos } from "../api/fetchAlbumPhotos";
+import { fetchPhotos } from "../api";
 
 import { useRef } from "react";
-import s from "./AlbumPhotos.module.css";
+import s from "./AlbumDetailPhotos.module.css";
 
-type AlbumPhotosProps = {
+type AlbumDetailPhotosProps = {
 	albumId: AlbumType["id"];
 };
 
-export const AlbumPhotos = (props: AlbumPhotosProps) => {
+export const AlbumDetailPhotos = (props: AlbumDetailPhotosProps) => {
 	const { albumId } = props;
 	const page = useRef(1);
 	const options = { albumId: albumId, page: page.current };

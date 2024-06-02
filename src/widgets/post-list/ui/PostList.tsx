@@ -9,13 +9,16 @@ import { fetchPosts } from "../api/fetchPosts";
 import { PostType } from "../model/types";
 import { PostItem } from "../../../entities/post-list/post-item/PostItem";
 import { PrimitiveType } from "@/shared/types";
-import { HomePageFilterContext } from "@/app/page";
 
 import s from "./PostList.module.css";
 
-export const Posts = () => {
+type PostsProps = {
+	title?: string;
+};
+
+export const Posts = (props: PostsProps) => {
+	const { title = "" } = props;
 	const [userFilter, setUserFilter] = useState<PrimitiveType>(1);
-	const context = useContext(HomePageFilterContext);
 
 	const buttons = [
 		{ value: 1, label: "Leanne Graham" },
@@ -25,7 +28,7 @@ export const Posts = () => {
 
 	const options = {
 		user: userFilter as number,
-		title: context.search,
+		title: title,
 	};
 
 	const {
