@@ -29,15 +29,7 @@ export default function RootLayout({
 				/>
 			</head>
 			<body className={fontMontserrat.variable}>
-				<Providers>
-					<section className="body__section">
-						<Content>
-							<Header />
-							{children}
-						</Content>
-						<ProfileCard />
-					</section>
-				</Providers>
+				<Providers>{children}</Providers>
 			</body>
 		</html>
 	);

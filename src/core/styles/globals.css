@@ -39,15 +39,10 @@ body {
 	font-family: system-ui, Helvetica, Arial, sans-serif;
 }
 
-.body__section {
-	//max-width: 1440px;
+.app__section {
 	margin: 0 auto;
-	display: grid;
-	grid-template-columns: minmax(0, 1fr) 400px;
-	border-radius: 16px;
+	
 	min-height: 100%;
-	grid-template-rows: 100vh;
-	margin: 48px;
 }
 
 .mantine-Drawer-close:focus,

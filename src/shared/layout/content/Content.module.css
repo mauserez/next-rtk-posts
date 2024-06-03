@@ -4,6 +4,5 @@
 	padding: 0 46px 40px 46px;
 	gap: 36px;
 	background-color: var(--bg-content);
-	max-height: calc(100vh - 96px);
 	overflow: auto;
 }

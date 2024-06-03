@@ -3,7 +3,12 @@ type PostPageParams = {
 };
 
 import { Post } from "@/widgets/post/post-detail/ui/Post";
+import { PageLayout } from "@/core/layouts/page-layout/PageLayout";
 
 export default function PostPage({ params }: { params: PostPageParams }) {
-	return <Post id={Number(params.id)} />;
+	return (
+		<PageLayout>
+			<Post id={Number(params.id)} />
+		</PageLayout>
+	);
 }

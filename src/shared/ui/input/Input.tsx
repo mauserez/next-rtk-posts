@@ -20,6 +20,7 @@ type InputProps = TextInputProps & {
 	withLeftIcon?: boolean;
 	leftIcon?: ReactNode;
 };
+
 export const Input = (props: InputProps) => {
 	const {
 		className = "",
@@ -58,7 +59,7 @@ export const Input = (props: InputProps) => {
 					[s.input]: true,
 					[s.clearable]: clearable,
 					[s.withLeftIcon]: withLeftIcon,
-					[className]: true,
+					className,
 				})}
 				{...inputProps}
 			></TextInput>

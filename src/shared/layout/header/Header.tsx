@@ -17,7 +17,12 @@ export const Header = () => {
 		<header className={s.header}>
 			<Group justify="space-between">
 				<Logo />
-				<Button onClick={handleBack} className={s.back}>
+				<Button
+					onClick={handleBack}
+					className={clsx({
+						[s.back]: true,
+					})}
+				>
 					Back
 				</Button>
 			</Group>

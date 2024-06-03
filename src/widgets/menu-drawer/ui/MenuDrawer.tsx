@@ -13,14 +13,7 @@ export const MenuDrawer = () => {
 
 	return (
 		<>
-			<Drawer
-				className={s.drawer}
-				offset={48}
-				opened={opened}
-				onClose={close}
-				size={400}
-				title=""
-			>
+			<Drawer opened={opened} onClose={close} size={400} title="">
 				<Stack>
 					<DrawMenu handle={close} menu={menu} />
 				</Stack>

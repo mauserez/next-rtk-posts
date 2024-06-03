@@ -1,6 +1,13 @@
 "use client";
 import { MyAlbums, MyPosts } from "..";
-import { Group, Avatar, Stack } from "@mantine/core";
+import {
+	Group,
+	Avatar,
+	AvatarProps,
+	Stack,
+	PolymorphicComponentProps,
+} from "@mantine/core";
+import {} from "@mantine/core";
 
 import clsx from "clsx";
 import s from "./ProfileCard.module.css";
@@ -13,7 +20,7 @@ export const ProfileCard = () => {
 	const postCount = posts.length.toString();
 
 	return (
-		<Stack gap={48} className={clsx("rounded-r-2xl", s.card)}>
+		<Stack gap={48} className={clsx(s.card)}>
 			<Group gap="xl" className={s.info}>
 				<Group>
 					<Group gap="xs">
@@ -30,12 +37,28 @@ export const ProfileCard = () => {
 					</Group>
 				</Group>
 				<Avatar size={48} className={s.avatar} radius="lg">
-					О
+					O
 				</Avatar>
 			</Group>
 
 			<MyAlbums />
 			<MyPosts />
 		</Stack>
+	);
+};
+
+type ProfileCardAvatarProps = PolymorphicComponentProps<"div", AvatarProps>;
+export const ProfileCardAvatar = (props: ProfileCardAvatarProps) => {
+	const { className = "", radius = "lg", size = 48, ...otherProps } = props;
+
+	return (
+		<Avatar
+			size={size}
+			className={clsx(s.avatar, className)}
+			radius={radius}
+			{...otherProps}
+		>
+			O
+		</Avatar>
 	);
 };
