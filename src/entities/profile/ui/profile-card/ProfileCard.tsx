@@ -7,9 +7,8 @@ import {
 	Stack,
 	PolymorphicComponentProps,
 } from "@mantine/core";
-import {} from "@mantine/core";
 
-import clsx from "clsx";
+import { cn } from "@/shared/utils/cn";
 import s from "./ProfileCard.module.css";
 import { useAppSelector } from "@/shared/store/redux/hooks";
 
@@ -20,7 +19,7 @@ export const ProfileCard = () => {
 	const postCount = posts.length.toString();
 
 	return (
-		<Stack gap={48} className={clsx(s.card)}>
+		<Stack gap={48} className={cn(s.card)}>
 			<Group gap="xl" className={s.info}>
 				<Group>
 					<Group gap="xs">
@@ -54,7 +53,7 @@ export const ProfileCardAvatar = (props: ProfileCardAvatarProps) => {
 	return (
 		<Avatar
 			size={size}
-			className={clsx(s.avatar, className)}
+			className={cn(s.avatar, className)}
 			radius={radius}
 			{...otherProps}
 		>

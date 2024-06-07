@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+	--input-radius: 13px;
+
 	--color-primary: #3e445d;
 	--color-secondary: #9da1bb;
 
@@ -41,7 +43,6 @@ body {
 
 .app__section {
 	margin: 0 auto;
-	
 	min-height: 100%;
 }
 
@@ -49,7 +50,3 @@ body {
 .mantine-Drawer-close:focus-visible {
 	outline: none;
 }
-
-/* @layer utilities {
-
-} */

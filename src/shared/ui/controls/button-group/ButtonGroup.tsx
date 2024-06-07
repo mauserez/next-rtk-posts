@@ -2,7 +2,7 @@
 
 import { Group, GroupProps } from "@mantine/core";
 import { ReactNode, useState } from "react";
-import { Button, ButtonProps } from "..";
+import { Button, ButtonProps } from "@/shared/ui/controls";
 import { uid } from "@/shared/utils/number";
 import { PrimitiveType } from "@/shared/types";
 import clsx from "clsx";

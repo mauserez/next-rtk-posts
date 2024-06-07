@@ -1,0 +1,19 @@
+.wrap {
+	width: 100%;
+	position: relative;
+}
+
+.input input::placeholder {
+	color: var(--color-secondary);
+}
+
+.withPlaceholderIcon input::placeholder {
+	padding-left: 20px !important;
+}
+
+.placeholderIcon {
+	position: absolute;
+	top: 50%;
+	left: 13px;
+	transform: translateY(-50%);
+}

@@ -3,9 +3,9 @@ import {
 	MantineProvider as Provider,
 	MantineProviderProps,
 } from "@mantine/core";
-//import { theme } from "./theme";
+import { theme } from "./theme";
 
 export const MantineProvider = (props: MantineProviderProps) => {
 	const { children } = props;
-	return <Provider>{children}</Provider>;
+	return <Provider theme={theme}>{children}</Provider>;
 };

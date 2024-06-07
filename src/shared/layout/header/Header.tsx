@@ -1,10 +1,9 @@
 "use client";
-
-import { Logo, Button } from "@/shared/ui";
+import { Logo } from "@/shared/ui";
+import { Button } from "@/shared/ui/controls";
 import { Group } from "@mantine/core";
 import { useRouter } from "next/navigation";
-
-import clsx from "clsx";
+import { cn } from "@/shared/utils/cn";
 import s from "./Header.module.css";
 
 export const Header = () => {
@@ -17,12 +16,7 @@ export const Header = () => {
 		<header className={s.header}>
 			<Group justify="space-between">
 				<Logo />
-				<Button
-					onClick={handleBack}
-					className={clsx({
-						[s.back]: true,
-					})}
-				>
+				<Button onClick={handleBack} className={cn(s.back)}>
 					Back
 				</Button>
 			</Group>

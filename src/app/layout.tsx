@@ -1,17 +1,15 @@
 import type { Metadata } from "next";
 
 import { Providers } from "@/core/providers";
-import { Header, Content } from "@/shared/layout";
-import { ProfileCard } from "@/entities/profile/ui";
 import { ColorSchemeScript } from "@mantine/core";
 import { fontMontserrat } from "./fonts";
-
-import "../core/styles/styles.css";
 
 export const metadata: Metadata = {
 	title: "Posts",
 	description: "Posts and Albums app",
 };
+
+import "../core/styles/styles.css";
 
 export default function RootLayout({
 	children,

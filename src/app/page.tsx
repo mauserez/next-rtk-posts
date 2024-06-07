@@ -1,10 +1,10 @@
 "use client";
 
-import { Input } from "@/shared/ui";
+import { Input } from "@/shared/ui/controls";
 import { Stack, Group } from "@mantine/core";
 import { Albums } from "@/widgets/album/album-list/ui/AlbumList";
 import { Posts } from "@/widgets/post/post-list/ui/PostList";
-import { useState, ChangeEvent } from "react";
+import { useState } from "react";
 import { useDebounce } from "@/shared/hooks/useDebounce";
 import { ProfileLayout } from "@/core/layouts/profile-layout/ProfileLayout";
 
@@ -12,18 +12,15 @@ export default function Home() {
 	const [searchString, setSearchString] = useState("");
 	const debouncedSearch = useDebounce<string>(searchString, 1000);
 
-	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
-		setSearchString(e.target.value);
-	};
-
 	return (
 		<ProfileLayout>
 			<Stack gap={48}>
 				<Group>
 					<Input
-						onChange={handleSearch}
-						withLeftIcon
-						style={{ width: "225px" }}
+						withPlaceholderIcon
+						className="max-w-[320px]"
+						value={searchString}
+						onChange={(e) => setSearchString(e.target.value)}
 						placeholder="Search something"
 					/>
 				</Group>
