@@ -19,7 +19,7 @@ export const ProfileCardDrawer = () => {
 				<ProfileCard />
 			</Drawer>
 
-			<ProfileCardAvatar top={10} onClick={open} />
+			<ProfileCardAvatar top={12} onClick={open} />
 		</>
 	);
 };

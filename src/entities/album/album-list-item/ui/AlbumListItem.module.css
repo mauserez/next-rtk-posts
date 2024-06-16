@@ -7,7 +7,6 @@
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
-	//background-color: azure;
 	background-size: cover;
 	cursor: pointer;
 }

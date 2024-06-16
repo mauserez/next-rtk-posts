@@ -1,7 +1,7 @@
 import { Content, Header } from "@/shared/layout";
 import { ReactNode } from "react";
 import { ProfileCard } from "@/entities/profile/ui";
-import clsx from "clsx";
+import { cn } from "@/shared/utils/cn";
 
 import s from "./ProfileLayout.module.css";
 
@@ -13,7 +13,7 @@ export const ProfileLayout = (props: ProfileLayoutProps) => {
 	const { children } = props;
 
 	return (
-		<section className={clsx("app__section", s.appSection)}>
+		<section className={cn(s.appSection)}>
 			<Content>
 				<Header />
 				{children}

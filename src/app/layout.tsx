@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Providers } from "@/core/providers";
 import { ColorSchemeScript } from "@mantine/core";
 import { fontMontserrat } from "./fonts";
+import Script from "next/script";
 
 export const metadata: Metadata = {
 	title: "Posts",
@@ -17,7 +18,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html suppressHydrationWarning={true} lang="en">
 			<head>
 				<ColorSchemeScript />
 				<link rel="shortcut icon" href="/favicon.svg" />
