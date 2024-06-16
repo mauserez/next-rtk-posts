@@ -11,11 +11,6 @@ import * as yup from "yup";
 import s from "./LoginForm.module.css";
 import { cn } from "@/shared/utils/cn";
 
-type FormValuesType = {
-	username: string;
-	password: string;
-};
-
 const validationSchema = yup.object({
 	username: yup.string().required("Логин обязательный").min(4).email(),
 	password: yup.string().required("Логин обязательный").min(6),
@@ -24,10 +19,10 @@ const validationSchema = yup.object({
 export const LoginForm = () => {
 	const [loading, setLoading] = useState(false);
 	const [errorText, setErrorText] = useState("");
+	const [buttonText, setButtonText] = useState("Submit");
 	const router = useRouter();
 
 	const { control, formState } = useForm({
-		mode: "onSubmit",
 		reValidateMode: "onSubmit",
 		resolver: yupResolver(validationSchema),
 		defaultValues: {
@@ -40,6 +35,7 @@ export const LoginForm = () => {
 		<Form
 			className={s.loginForm}
 			control={control}
+			onChange={() => setErrorText("")}
 			onSubmit={async ({ data }) => {
 				setLoading(true);
 				const credentials = {
@@ -55,6 +51,7 @@ export const LoginForm = () => {
 				setLoading(false);
 
 				if (!res?.error) {
+					setButtonText("Success");
 					router.refresh();
 				} else {
 					setErrorText(res.error);
@@ -85,7 +82,7 @@ export const LoginForm = () => {
 				className={cn(s.submitBtn)}
 				type="submit"
 			>
-				Submit
+				{buttonText}
 			</Button>
 		</Form>
 	);

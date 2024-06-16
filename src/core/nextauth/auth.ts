@@ -9,3 +9,8 @@ export const sessionUser = async () => {
 	const session = await getServerSession(nextAuthOptions);
 	return session?.user;
 };
+
+export const isAuthenticated = async () => {
+	const session = await getServerSession(nextAuthOptions);
+	return !!session?.user.name;
+};

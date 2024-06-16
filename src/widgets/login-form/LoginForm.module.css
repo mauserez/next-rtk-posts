@@ -16,5 +16,5 @@
 }
 
 .submitBtn:hover:not(:disabled) {
-	@apply bg-indigo-400;
+	@apply bg-violet-500;
 }

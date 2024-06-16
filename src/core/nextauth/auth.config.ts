@@ -1,6 +1,9 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import { NextAuthOptions } from "next-auth";
-import { type SessionUserType } from "@/core/nextauth/token";
+import {
+	getAccessByCredentials,
+	type SessionUserType,
+} from "@/core/nextauth/token";
 import { User } from "next-auth";
 
 declare module "next-auth" {
@@ -16,16 +19,6 @@ declare module "next-auth/jwt" {
 		user: User;
 	}
 }
-
-const fakeData = async () => {
-	return await Promise.resolve().then(async () => {
-		return {
-			errorText: "123",
-			status: "123",
-			data: { name: "Oleg", role: "admin", email: "13123" } as User,
-		};
-	});
-};
 
 export const nextAuthOptions: NextAuthOptions = {
 	secret: process.env.NEXTAUTH_SECRET,
@@ -52,8 +45,7 @@ export const nextAuthOptions: NextAuthOptions = {
 					throw new Error("Please provide all credentials");
 				}
 
-				const empAuthResponse = await fakeData();
-				//await getAccess(credentials);
+				const empAuthResponse = await getAccessByCredentials(credentials);
 
 				if (empAuthResponse.errorText) {
 					throw new Error(empAuthResponse.errorText);
@@ -68,7 +60,6 @@ export const nextAuthOptions: NextAuthOptions = {
 			if (user) {
 				token.user = user;
 			} else {
-				console.log(555);
 				/* if (token.user) {
 					const now = Math.floor(Date.now() / 1000);
 

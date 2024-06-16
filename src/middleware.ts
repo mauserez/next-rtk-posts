@@ -1,21 +1,41 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { getToken } from "next-auth/jwt";
 
-export async function middleware(request: NextRequest) {
-	const requestHeaders = new Headers(request.headers);
+const protectedRoutes = ["/albums", "/posts"];
 
-	let cookie = request.cookies.get("nextjs");
-	const allCookies = request.cookies.getAll();
-	
-	if (!requestHeaders.get("x-url")) {
-		requestHeaders.set("x-url", request.url);
+export async function middleware(req: NextRequest) {
+	const reqHeaders = new Headers(req.headers);
+	const token = await getToken({ req });
+	const isAuthenticated = !!token;
+	const pathname = req.nextUrl.pathname;
+
+	console.log(isAuthenticated);
+	console.log(123);
+
+	if (
+		protectedRoutes.some((route) => pathname.startsWith(route)) &&
+		!isAuthenticated
+	) {
+		return NextResponse.redirect(new URL("/forbidden", req.url));
+	}
+
+	if (pathname.startsWith("/login") && isAuthenticated) {
+		return NextResponse.redirect(new URL("/", req.url));
+	}
+
+	/* let cookie = request.cookies.get("nextjs");
+	const allCookies = request.cookies.getAll(); */
+
+	if (!reqHeaders.get("x-url")) {
+		reqHeaders.set("x-url", req.url);
 	}
 
 	return NextResponse.next({
 		request: {
-			headers: requestHeaders,
+			headers: reqHeaders,
 		},
 	});
-}
+} //);
 
 export const config = {
 	matcher: [

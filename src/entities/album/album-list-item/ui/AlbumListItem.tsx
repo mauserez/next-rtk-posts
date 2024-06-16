@@ -2,7 +2,7 @@ import { memo } from "react";
 import { randomGradient } from "@/shared/utils/element";
 import { AlbumType } from "@/entities/album/types";
 import { useRouter } from "next/navigation";
-import { LikeButton, TextClamp } from "@/shared/ui";
+import { ButtonLike, TextClamp } from "@/shared/ui";
 
 import { useAppDispatch, useAppSelector } from "@/shared/store/redux/hooks";
 import {
@@ -41,7 +41,7 @@ export const AlbumListItem = memo(function AlbumItem(
 			style={{ background: `${gradient}` }}
 			className={s.album}
 		>
-			<LikeButton
+			<ButtonLike
 				size={32}
 				onClick={handleFavorite}
 				color="#fff"

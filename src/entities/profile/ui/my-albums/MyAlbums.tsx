@@ -5,7 +5,7 @@ import { randomGradient } from "@/shared/utils/element";
 import { Stack } from "@mantine/core";
 import { AlbumType } from "@/entities/album/types";
 import { useRouter } from "next/navigation";
-import { LikeButton } from "@/shared/ui";
+import { ButtonLike } from "@/shared/ui";
 
 import { useAppSelector, useAppDispatch } from "@/shared/store/redux/hooks";
 
@@ -50,7 +50,7 @@ const MyAlbum = (props: MyAlbumProps) => {
 			className={s.album}
 		>
 			<div style={{ background: randomGradient() }} className={s.albumImage}>
-				<LikeButton
+				<ButtonLike
 					onClick={() => {
 						dispatch(removeAlbum(album.id));
 					}}

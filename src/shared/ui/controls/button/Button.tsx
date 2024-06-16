@@ -14,6 +14,7 @@ import s from "./Button.module.css";
 export type ButtonProps = PolymorphicComponentProps<"button", MButtonProps> & {
 	isLoading?: boolean;
 	loader?: IconType;
+	cssVariant?: "violet" | "success" | "warning" | "danger";
 };
 
 export const Button = (props: ButtonProps) => {
@@ -23,11 +24,12 @@ export const Button = (props: ButtonProps) => {
 		className,
 		loader = null,
 		loaderProps,
+		cssVariant = "",
 		...btnProps
 	} = props;
 
 	return (
-		<MButton className={cn(s.button, className)} {...btnProps}>
+		<MButton className={cn(s.button, s[cssVariant], className)} {...btnProps}>
 			<Group gap={8}>
 				{isLoading ? (
 					<Loader loader={loader} className="rotate-animation" size={16} />

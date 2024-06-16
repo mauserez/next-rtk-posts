@@ -1,5 +1,5 @@
 import { AssocArray } from "@/shared/types";
-//import { accessApi, refreshApi } from "@/shared/axios/api";
+import { accessApi, backendApi, refreshApi } from "@/shared/axios/api";
 import { jwtDecode } from "jwt-decode";
 import { User } from "next-auth";
 
@@ -33,22 +33,25 @@ const parseAccessToken = (accessToken: string) => {
 };
 
 const prepareTokenData = (tokenData: SessionUserType) => {
-	/* const extra = parseAccessToken(tokenData.access_token);
+	/*  const extra = parseAccessToken(tokenData.access_token);
 	const prepareTokenData = { ...tokenData, ...extra };
 
-	return prepareTokenData; */
+	return prepareTokenData;  */
 };
-/*
-export const getAccess = async (credentials: AuthParams) => {
 
+export const getAccess = async (credentials: AuthParams) => {
 	return await accessApi<SessionUserType>({
 		method: "post",
 		data: credentials,
 		headers: { "Content-Type": "multipart/form-data" },
 	})
 		.then(function (response) {
-			const data = prepareTokenData(response.data);
-			return { data: data as User, status: response.status, errorText: "" };
+			//const data = prepareTokenData(response.data);
+			return {
+				data: response.data as User,
+				status: response.status,
+				errorText: "",
+			};
 		})
 		.catch(function (error) {
 			const response = error.response;
@@ -71,7 +74,11 @@ export const refreshAccess = async (refreshToken: string) => {
 	})
 		.then(function (response) {
 			const data = prepareTokenData(response.data);
-			return { data: data as User, status: response.status, errorText: "" };
+			return {
+				data: response.data as User,
+				status: response.status,
+				errorText: "",
+			};
 		})
 		.catch(function (error) {
 			return {
@@ -80,4 +87,28 @@ export const refreshAccess = async (refreshToken: string) => {
 				errorText: "Не удалось обновить токен",
 			};
 		});
-}; */
+};
+
+export const getAccessByCredentials = async (credentials: AuthParams) => {
+	return await backendApi<SessionUserType>({
+		url: "/users",
+		method: "get",
+		data: { login: credentials.username, password: credentials.password },
+		headers: { "Content-Type": "multipart/form-data" },
+	})
+		.then(function (response) {
+			const data = prepareTokenData(response.data);
+			return {
+				data: response.data as User,
+				status: response.status,
+				errorText: "",
+			};
+		})
+		.catch(function (error) {
+			return {
+				data: null,
+				status: "401",
+				errorText: "Неправильные логин или пароль",
+			};
+		});
+};

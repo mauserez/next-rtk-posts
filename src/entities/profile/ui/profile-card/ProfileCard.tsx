@@ -1,16 +1,21 @@
 "use client";
-import { MyAlbums, MyPosts } from "..";
+
+import { MyAlbums, MyPosts } from "@/entities/profile/ui";
+
 import {
 	Group,
 	Avatar,
 	AvatarProps,
 	Stack,
 	PolymorphicComponentProps,
+	Menu,
 } from "@mantine/core";
+
+import { useAppSelector } from "@/shared/store/redux/hooks";
+import { signOut } from "next-auth/react";
 
 import { cn } from "@/shared/utils/cn";
 import s from "./ProfileCard.module.css";
-import { useAppSelector } from "@/shared/store/redux/hooks";
 
 export const ProfileCard = () => {
 	const albums = useAppSelector((state) => state.albums.favoriteAlbums || []);
@@ -30,14 +35,13 @@ export const ProfileCard = () => {
 					</Group>
 					<Group gap="xs">
 						Posts
-						<Avatar radius={11} size={32} className={s.badge}>
+						<Avatar radius={11} size={32} className={cn(s.badge)}>
 							{postCount}
 						</Avatar>
 					</Group>
 				</Group>
-				<Avatar size={48} className={s.avatar} radius="lg">
-					O
-				</Avatar>
+
+				<ProfileCardAvatar />
 			</Group>
 
 			<MyAlbums />
@@ -51,13 +55,25 @@ export const ProfileCardAvatar = (props: ProfileCardAvatarProps) => {
 	const { className = "", radius = "lg", size = 48, ...otherProps } = props;
 
 	return (
-		<Avatar
-			size={size}
-			className={cn(s.avatar, className)}
-			radius={radius}
-			{...otherProps}
-		>
-			O
-		</Avatar>
+		<Menu trigger="hover">
+			<Menu.Target>
+				<Avatar
+					size={size}
+					className={cn(s.avatar, className)}
+					radius={radius}
+					{...otherProps}
+				>
+					O
+				</Avatar>
+			</Menu.Target>
+			<Menu.Dropdown>
+				<Menu.Item
+					onClick={() => signOut({ callbackUrl: "/" })}
+					leftSection={1}
+				>
+					Sign Out
+				</Menu.Item>
+			</Menu.Dropdown>
+		</Menu>
 	);
 };

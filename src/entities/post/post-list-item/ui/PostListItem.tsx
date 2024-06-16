@@ -1,5 +1,5 @@
 import { Group, Avatar, Stack } from "@mantine/core";
-import { LikeButton, TextClamp } from "@/shared/ui";
+import { ButtonLike, TextClamp } from "@/shared/ui";
 import { PostType } from "@/entities/post/types";
 import { useAppDispatch, useAppSelector } from "@/shared/store/redux/hooks";
 import { useRouter } from "next/navigation";
@@ -51,7 +51,7 @@ export const PostListItem = (props: PostListItemProps) => {
 					e.stopPropagation();
 				}}
 			>
-				<LikeButton onClick={handleFav} active={fav} />
+				<ButtonLike onClick={handleFav} active={fav} />
 			</Avatar>
 		</Group>
 	);

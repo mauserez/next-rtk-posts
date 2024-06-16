@@ -2,15 +2,15 @@ import { TiHeartFullOutline, TiHeartOutline } from "react-icons/ti";
 import { IconBaseProps } from "react-icons/lib";
 
 import clsx from "clsx";
-import s from "./LikeButton.module.css";
+import s from "./ButtonLike.module.css";
 
-type LikeButtonProps = {
+type ButtonLikeProps = {
 	active: boolean;
 	onClick?: () => void;
 } & IconBaseProps &
 	React.SVGAttributes<SVGElement>;
 
-export const LikeButton = (props: LikeButtonProps) => {
+export const ButtonLike = (props: ButtonLikeProps) => {
 	const { active, className = "", onClick, size = 24, ...otherProps } = props;
 	const cn = clsx(s.icon, className);
 

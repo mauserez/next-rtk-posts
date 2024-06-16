@@ -7,6 +7,3 @@
 	padding-bottom: 16px;
 }
 
-.back:hover {
-	background-color: var(--bg-contrast) !important;
-}

@@ -4,4 +4,6 @@ export { SectionTitle } from "./section-title/SectionTitle";
 export { TextClamp } from "./text-clamp/TextClamp";
 export { HorizontalScroller } from "./horizontal-scroller/HorizontalScroller";
 export { CardLoader } from "./card-loader/CardLoader";
-export { LikeButton } from "./like-button/LikeButton";
+export { ButtonLike } from "./button-like/ButtonLike";
+export { ButtonLink } from "./button-link/ButtonLink";
+export { ButtonBack } from "./button-back/ButtonBack";

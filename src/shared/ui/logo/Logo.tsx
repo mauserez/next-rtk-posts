@@ -2,7 +2,6 @@ import { Group } from "@mantine/core";
 import Link from "next/link";
 import { MenuDrawer } from "@/widgets/menu-drawer/ui/MenuDrawer";
 
-import clsx from "clsx";
 import s from "./Logo.module.css";
 
 export const Logo = () => {

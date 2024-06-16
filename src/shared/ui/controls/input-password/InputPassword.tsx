@@ -1,7 +1,13 @@
 "use client";
 
-import { ChangeEvent, ReactNode, useEffect, useRef } from "react";
-import { Group, PasswordInput, PasswordInputProps } from "@mantine/core";
+import { ChangeEvent, useRef } from "react";
+import {
+	Group,
+	PasswordInput,
+	PasswordInputProps,
+	ActionIcon,
+} from "@mantine/core";
+
 import { useDisclosure } from "@mantine/hooks";
 
 import { LuSearch } from "react-icons/lu";
