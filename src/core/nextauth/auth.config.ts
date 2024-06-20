@@ -3,7 +3,7 @@ import { NextAuthOptions } from "next-auth";
 import {
 	getAccessByCredentials,
 	type SessionUserType,
-} from "@/core/nextauth/token";
+} from "@/core/nextauth/api";
 import { User } from "next-auth";
 
 declare module "next-auth" {

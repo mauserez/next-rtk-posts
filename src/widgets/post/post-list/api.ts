@@ -4,7 +4,7 @@ import { randomInt } from "@/shared/utils/number";
 import queryString from "query-string";
 
 type Options = { user: number; title: string };
-export const fetchPosts = async (options: Options): Promise<PostType[]> => {
+export const getPosts = async (options: Options): Promise<PostType[]> => {
 	const { user, title = "" } = options;
 
 	const sortValue = ["userId", "id", "title", "body"][randomInt(0, 3)];

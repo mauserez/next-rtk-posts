@@ -3,9 +3,10 @@
 import { mainApi } from "@/shared/axios/mainApi";
 import { Group, Skeleton, Stack, Text } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
+import { POST_QUERY_KEY, POST_USER_QUERY_KEY } from "@/shared/query-keys/post";
 
 import { SectionTitle } from "@/shared/ui";
-import { fetchPost } from "../api";
+import { getPost } from "../api";
 import { PostType } from "@/entities/post/types";
 import { randomInt, uid } from "@/shared/utils/number";
 
@@ -15,7 +16,7 @@ type PostProps = {
 	id: PostType["id"];
 };
 
-type UserType = {
+type PostUserType = {
 	id: number;
 	name: string;
 	username: string;
@@ -47,13 +48,13 @@ export const Post = (props: PostProps) => {
 		status,
 		error,
 	} = useQuery({
-		queryKey: ["post", id],
-		queryFn: () => fetchPost(id),
+		queryKey: [POST_QUERY_KEY, id],
+		queryFn: () => getPost(id),
 	});
 
 	const { data: user } = useQuery({
-		queryKey: ["user", post?.userId],
-		queryFn: async (): Promise<UserType> => {
+		queryKey: [POST_USER_QUERY_KEY, post?.userId],
+		queryFn: async (): Promise<PostUserType> => {
 			return mainApi
 				.get(`/users?id=${post?.userId}`)
 				.then((response) => response.data[0]);

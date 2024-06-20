@@ -5,8 +5,9 @@ import { useQuery } from "@tanstack/react-query";
 import { SectionTitle } from "@/shared/ui";
 import { Button, ButtonGroup } from "@/shared/ui/controls";
 import { Grid, Group, Skeleton, Stack } from "@mantine/core";
+import { POSTS_QUERY_KEY } from "@/shared/query-keys/post";
 
-import { fetchPosts } from "../api";
+import { getPosts } from "../api";
 import { PostType } from "@/entities/post/types";
 import { PostListItem } from "@/entities/post/post-list-item/ui/PostListItem";
 import { PrimitiveType } from "@/shared/types";
@@ -38,8 +39,8 @@ export const Posts = (props: PostsProps) => {
 		refetch,
 		isFetching,
 	} = useQuery({
-		queryKey: ["posts", options],
-		queryFn: () => fetchPosts(options),
+		queryKey: [POSTS_QUERY_KEY, options],
+		queryFn: () => getPosts(options),
 		staleTime: Infinity,
 	});
 
