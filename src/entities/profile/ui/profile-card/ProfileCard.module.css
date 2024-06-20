@@ -5,17 +5,6 @@
 	overflow-y: auto;
 }
 
-.avatar {
-	margin-left: auto;
-	position: relative;
-	background-color: var(--bg-contrast);
-	cursor: pointer;
-}
-
-.avatar > span {
-	color: var(--color-gray);
-}
-
 .badge {
 	background-color: var(--bg-red);
 }

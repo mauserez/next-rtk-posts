@@ -51,6 +51,10 @@ export const nextAuthOptions: NextAuthOptions = {
 					throw new Error(empAuthResponse.errorText);
 				}
 
+				/* if (Array.isArray(empAuthResponse.data)) {
+					throw new Error("Неправильный логин");
+				} */
+
 				return empAuthResponse.data;
 			},
 		}),

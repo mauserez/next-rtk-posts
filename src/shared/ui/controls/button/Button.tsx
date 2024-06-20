@@ -25,11 +25,16 @@ export const Button = (props: ButtonProps) => {
 		loader = null,
 		loaderProps,
 		cssVariant = "",
+		radius = "sm",
 		...btnProps
 	} = props;
 
 	return (
-		<MButton className={cn(s.button, s[cssVariant], className)} {...btnProps}>
+		<MButton
+			radius={radius}
+			className={cn(s.button, s[cssVariant], className)}
+			{...btnProps}
+		>
 			<Group gap={8}>
 				{isLoading ? (
 					<Loader loader={loader} className="rotate-animation" size={16} />

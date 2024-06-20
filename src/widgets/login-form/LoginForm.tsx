@@ -12,8 +12,8 @@ import s from "./LoginForm.module.css";
 import { cn } from "@/shared/utils/cn";
 
 const validationSchema = yup.object({
-	username: yup.string().required("Логин обязательный").min(4).email(),
-	password: yup.string().required("Логин обязательный").min(6),
+	username: yup.string().required("Введите логин").min(4).email(),
+	password: yup.string().required("Введите пароль").min(6),
 });
 
 export const LoginForm = () => {
@@ -77,6 +77,7 @@ export const LoginForm = () => {
 			<div>{errorText}</div>
 
 			<Button
+				cssVariant="violet"
 				isLoading={loading}
 				disabled={!formState.isValid}
 				className={cn(s.submitBtn)}

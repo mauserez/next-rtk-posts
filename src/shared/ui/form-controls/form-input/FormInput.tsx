@@ -30,7 +30,6 @@ export function FormInput<T extends FieldValues>({
 		rules,
 		shouldUnregister,
 	});
-
 	return (
 		<Input
 			value={value}

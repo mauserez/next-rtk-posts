@@ -91,13 +91,14 @@ export const refreshAccess = async (refreshToken: string) => {
 
 export const getAccessByCredentials = async (credentials: AuthParams) => {
 	return await backendApi<SessionUserType>({
-		url: "/users",
-		method: "get",
+		url: `/users`,
 		data: { login: credentials.username, password: credentials.password },
+		method: "GET",
 		headers: { "Content-Type": "multipart/form-data" },
 	})
 		.then(function (response) {
 			const data = prepareTokenData(response.data);
+
 			return {
 				data: response.data as User,
 				status: response.status,

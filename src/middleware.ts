@@ -9,9 +9,6 @@ export async function middleware(req: NextRequest) {
 	const isAuthenticated = !!token;
 	const pathname = req.nextUrl.pathname;
 
-	console.log(isAuthenticated);
-	console.log(123);
-
 	if (
 		protectedRoutes.some((route) => pathname.startsWith(route)) &&
 		!isAuthenticated

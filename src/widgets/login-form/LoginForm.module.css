@@ -14,7 +14,3 @@
 	align-items: center;
 	gap: 16px;
 }
-
-.submitBtn:hover:not(:disabled) {
-	@apply bg-violet-500;
-}
