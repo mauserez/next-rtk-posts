@@ -1,5 +1,5 @@
 import axios from "axios";
-import { sessionUser } from "@/core/nextauth/auth";
+import { sessionUser } from "@/core/nextauth/server-session";
 
 export const instance = axios.create({
 	baseURL: process.env.NEXT_PUBLIC_BACKEND_API,

@@ -1,13 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { ComponentProps, useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
-import { Button } from "@/shared/ui/controls";
+
 import { Form, useForm } from "react-hook-form";
+
+import { Button } from "@/shared/ui/controls";
 import { FormInput, FormInputPassword } from "@/shared/ui/form-controls";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+
 import s from "./LoginForm.module.css";
 import { cn } from "@/shared/utils/cn";
 
@@ -16,7 +20,9 @@ const validationSchema = yup.object({
 	password: yup.string().required("Введите пароль").min(6),
 });
 
-export const LoginForm = () => {
+type LoginFormProps = ComponentProps<"form">;
+export const LoginForm = (props: LoginFormProps) => {
+	const { className } = props;
 	const [loading, setLoading] = useState(false);
 	const [errorText, setErrorText] = useState("");
 	const [buttonText, setButtonText] = useState("Submit");
@@ -33,7 +39,7 @@ export const LoginForm = () => {
 
 	return (
 		<Form
-			className={s.loginForm}
+			className={cn(s.loginForm, className)}
 			control={control}
 			onChange={() => setErrorText("")}
 			onSubmit={async ({ data }) => {
@@ -80,7 +86,6 @@ export const LoginForm = () => {
 				cssVariant="violet"
 				isLoading={loading}
 				disabled={!formState.isValid}
-				className={cn(s.submitBtn)}
 				type="submit"
 			>
 				{buttonText}

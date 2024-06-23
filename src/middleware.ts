@@ -9,12 +9,13 @@ export async function middleware(req: NextRequest) {
 	const isAuthenticated = !!token;
 	const pathname = req.nextUrl.pathname;
 
-	if (
+	/* if (
 		protectedRoutes.some((route) => pathname.startsWith(route)) &&
 		!isAuthenticated
 	) {
+		//Переводит на page/forbidden - widget page-403
 		return NextResponse.redirect(new URL("/forbidden", req.url));
-	}
+	} */
 
 	if (pathname.startsWith("/login") && isAuthenticated) {
 		return NextResponse.redirect(new URL("/", req.url));
@@ -23,9 +24,9 @@ export async function middleware(req: NextRequest) {
 	/* let cookie = request.cookies.get("nextjs");
 	const allCookies = request.cookies.getAll(); */
 
-	if (!reqHeaders.get("x-url")) {
-		reqHeaders.set("x-url", req.url);
-	}
+	//if (!reqHeaders.get("x-url")) {
+	reqHeaders.set("x-url", req.url);
+	//}
 
 	return NextResponse.next({
 		request: {

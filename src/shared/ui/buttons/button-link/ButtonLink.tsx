@@ -10,7 +10,7 @@ export const ButtonLink = (props: ButtonLinkProps) => {
 
 	return (
 		<Link href={href}>
-			<Button className={cn(className)} {...restProps}>
+			<Button cssVariant="success" className={cn(className)} {...restProps}>
 				{children}
 			</Button>
 		</Link>

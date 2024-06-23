@@ -5,7 +5,7 @@ export const useIsAuthenticated = () => {
 	return session.status !== "loading" && session.status === "authenticated";
 };
 
-export const useIsUnAuthenticated = () => {
+export const useIsNotAuthenticated = () => {
 	const session = useSession();
 	return session.status !== "loading" && session.status === "unauthenticated";
 };

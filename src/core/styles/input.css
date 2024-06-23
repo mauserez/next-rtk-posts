@@ -7,10 +7,13 @@ input,
 	font-weight: 500;
 	color: var(--color-primary);
 	font-size: 16px;
+	border: 1px solid #dddddd85;
 }
 
 input:focus,
-input:focus-visible {
+input:focus-visible,
+.mantine-Input-input:has(input:focus),
+.mantine-Input-input:has(input:focus) {
 	outline: none;
-	box-shadow: 0 0 7px #ddd;
+	box-shadow: 0 0 7px #ddd !important;
 }

@@ -13,3 +13,7 @@
 	font-size: 100px;
 	color: var(--mantine-color-orange-4);
 }
+
+.loginForm {
+	width: 400px;
+}

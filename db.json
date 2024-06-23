@@ -14,5 +14,57 @@
 			"role": "user",
 			"password": 654321
 		}
+	],
+	"countries": [
+		{
+			"id": "1",
+			"country": "Russia",
+			"lang": "ru"
+		},
+		{
+			"id": "2",
+			"country": "England",
+			"lang": "en"
+		},
+		{
+			"id": "3",
+			"country": "Germany",
+			"lang": "de"
+		},
+		{
+			"id": "4",
+			"country": "France",
+			"lang": "fr"
+		},
+		{
+			"id": "5",
+			"country": "USA",
+			"lang": "us"
+		},
+		{
+			"id": "6",
+			"country": "Spain",
+			"lang": "sp"
+		},
+		{
+			"id": "7",
+			"country": "Greece",
+			"lang": "gr"
+		},
+		{
+			"id": "8",
+			"country": "Canada",
+			"lang": "ca"
+		},
+		{
+			"id": "9",
+			"country": "China",
+			"lang": "cn"
+		},
+		{
+			"id": "10",
+			"country": "Kazakhstan",
+			"lang": "kz"
+		}
 	]
 }

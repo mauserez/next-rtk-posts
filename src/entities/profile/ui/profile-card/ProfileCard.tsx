@@ -4,12 +4,16 @@ import { Group, Avatar, Stack } from "@mantine/core";
 import { ButtonLink } from "@/shared/ui/buttons";
 
 import { useAppSelector } from "@/shared/store/redux/hooks";
-import { useSession } from "next-auth/react";
-
 import { MyAlbums, MyPosts, ProfileCardAvatar } from "@/entities/profile/ui";
 
 import { cn } from "@/shared/utils/cn";
 import s from "./ProfileCard.module.css";
+import {
+	useIsAuthenticated,
+	useIsNotAuthenticated,
+	useSessionUser,
+} from "@/core/nextauth/hooks";
+import { LoginForm } from "@/widgets/login-form/LoginForm";
 
 export const ProfileCard = () => {
 	const albums = useAppSelector((state) => state.albums.favoriteAlbums || []);
@@ -17,17 +21,22 @@ export const ProfileCard = () => {
 	const posts = useAppSelector((state) => state.posts.favoritePosts || []);
 	const postCount = posts.length.toString();
 
-	const { status } = useSession();
+	const isAuth = useIsAuthenticated();
+	const isNotAuth = useIsNotAuthenticated();
+
+	const user = useSessionUser();
+
+	{
+		/* <ButtonLink href="/login" cssVariant="violet">
+					Войти
+				</ButtonLink> */
+	}
 
 	return (
-		<Stack gap={48} className={cn(s.card)}>
-			{status !== "loading" && status === "unauthenticated" ? (
-				<ButtonLink href="/login" cssVariant="violet">
-					Войти
-				</ButtonLink>
-			) : null}
+		<Stack gap={24} className={cn(s.card)}>
+			{isNotAuth ? <LoginForm /> : null}
 
-			{status === "authenticated" ? (
+			{isAuth ? (
 				<>
 					<Group gap="xl" justify="space-between" className={s.info}>
 						<Group>
@@ -47,6 +56,11 @@ export const ProfileCard = () => {
 
 						<ProfileCardAvatar />
 					</Group>
+					<Stack>
+						<div>Id {user?.id}</div>
+						<div>Email {user?.username}</div>
+						<div>Role {user?.role}</div>
+					</Stack>
 
 					<MyAlbums />
 					<MyPosts />

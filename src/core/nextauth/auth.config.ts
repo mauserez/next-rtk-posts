@@ -1,5 +1,4 @@
 import CredentialsProvider from "next-auth/providers/credentials";
-import KeycloakProvider from "next-auth/providers/keycloak";
 
 import { NextAuthOptions } from "next-auth";
 import {
