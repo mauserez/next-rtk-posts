@@ -6,10 +6,7 @@ import { useEffect } from "react";
 
 import s from "./Header.module.css";
 
-
-
 export const Header = () => {
-
 	useEffect(() => {
 		const body = document.querySelector("body");
 

@@ -10,7 +10,7 @@ export type SessionUserType = {
 	expires_in: number; */
 	name: string;
 	role: string;
-	email: string;
+	username: string;
 	//authorities: string[];
 	//jti: string;
 	//exp: number;
@@ -90,17 +90,21 @@ export const refreshAccess = async (refreshToken: string) => {
 };
 
 export const getAccessByCredentials = async (credentials: AuthParams) => {
-	return await backendApi<SessionUserType>({
-		url: `/users`,
-		data: { login: credentials.username, password: credentials.password },
-		method: "GET",
-		headers: { "Content-Type": "multipart/form-data" },
-	})
+	//headers: { "Content-Type": "multipart/form-data" },
+	const { username, password } = credentials;
+
+	return await backendApi
+		.get<SessionUserType[]>("/users", {
+			params: {
+				username,
+				password,
+			},
+		})
 		.then(function (response) {
-			const data = prepareTokenData(response.data);
+			//const data = prepareTokenData(response.data[0]);
 
 			return {
-				data: response.data as User,
+				data: response.data[0] as User,
 				status: response.status,
 				errorText: "",
 			};

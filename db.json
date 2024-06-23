@@ -2,14 +2,16 @@
 	"users": [
 		{
 			"id": "1",
-			"login": "mauserez@mail.ru",
+			"username": "mauserez@mail.ru",
 			"name": "Oleg Baranchikov",
+			"role": "admin",
 			"password": 123456
 		},
 		{
 			"id": "2",
-			"login": "mari@mail.ru",
+			"username": "mari@mail.ru",
 			"name": "Mari Mamadova",
+			"role": "user",
 			"password": 654321
 		}
 	]

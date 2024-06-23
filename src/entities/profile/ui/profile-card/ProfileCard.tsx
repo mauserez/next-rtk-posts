@@ -1,7 +1,7 @@
 "use client";
 
 import { Group, Avatar, Stack } from "@mantine/core";
-import { ButtonLink } from "@/shared/ui";
+import { ButtonLink } from "@/shared/ui/buttons";
 
 import { useAppSelector } from "@/shared/store/redux/hooks";
 import { useSession } from "next-auth/react";
@@ -29,7 +29,7 @@ export const ProfileCard = () => {
 
 			{status === "authenticated" ? (
 				<>
-					<Group gap="xl" className={s.info}>
+					<Group gap="xl" justify="space-between" className={s.info}>
 						<Group>
 							<Group gap="xs">
 								Albums

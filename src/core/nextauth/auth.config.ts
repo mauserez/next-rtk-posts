@@ -1,4 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials";
+import KeycloakProvider from "next-auth/providers/keycloak";
+
 import { NextAuthOptions } from "next-auth";
 import {
 	getAccessByCredentials,
@@ -47,13 +49,13 @@ export const nextAuthOptions: NextAuthOptions = {
 
 				const empAuthResponse = await getAccessByCredentials(credentials);
 
-				if (empAuthResponse.errorText) {
+				/* if (empAuthResponse.errorText) {
 					throw new Error(empAuthResponse.errorText);
-				}
-
-				/* if (Array.isArray(empAuthResponse.data)) {
-					throw new Error("Неправильный логин");
 				} */
+
+				if (Array.isArray(empAuthResponse.data)) {
+					throw new Error("Неправильный логин");
+				}
 
 				return empAuthResponse.data;
 			},

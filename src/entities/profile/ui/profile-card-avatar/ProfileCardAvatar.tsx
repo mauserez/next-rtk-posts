@@ -1,30 +1,17 @@
-import {
-	Avatar,
-	AvatarProps,
-	PolymorphicComponentProps,
-	Menu,
-} from "@mantine/core";
+"use client";
+
+import { Menu } from "@mantine/core";
+import { UserAvatar } from "@/shared/ui";
 import { IoCloudUploadOutline, IoExitOutline } from "react-icons/io5";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 
-import { cn } from "@/shared/utils/cn";
-import s from "./ProfileCardAvatar.module.css";
-
-type ProfileCardAvatarProps = PolymorphicComponentProps<"div", AvatarProps>;
-export const ProfileCardAvatar = (props: ProfileCardAvatarProps) => {
-	const { className = "", radius = "lg", size = 48, ...otherProps } = props;
-
+export const ProfileCardAvatar = () => {
 	return (
 		<Menu trigger="click" radius="sm">
 			<Menu.Target>
-				<Avatar
-					size={size}
-					className={cn(s.avatar, className)}
-					radius={radius}
-					{...otherProps}
-				>
-					O
-				</Avatar>
+				<div>
+					<UserAvatar />
+				</div>
 			</Menu.Target>
 			<Menu.Dropdown className="flex flex-col gap-2 px-3 pb-3 [&>*]:font-medium">
 				<Menu.Item leftSection={<IoCloudUploadOutline />}>

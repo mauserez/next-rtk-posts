@@ -5,7 +5,7 @@ import { randomGradient } from "@/shared/utils/element";
 import { Stack } from "@mantine/core";
 import { AlbumType } from "@/entities/album/types";
 import { useRouter } from "next/navigation";
-import { ButtonLike } from "@/shared/ui";
+import { ButtonLike } from "@/shared/ui/buttons";
 
 import { useAppSelector, useAppDispatch } from "@/shared/store/redux/hooks";
 

@@ -1,6 +1,7 @@
 "use client";
 
-import { ProfileCard, ProfileCardAvatar } from "@/entities/profile/ui/index";
+import { ProfileCard } from "@/entities/profile/ui/index";
+import { UserAvatar } from "@/shared/ui";
 import { Drawer } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
@@ -19,7 +20,7 @@ export const ProfileCardDrawer = () => {
 				<ProfileCard />
 			</Drawer>
 
-			<ProfileCardAvatar top={12} onClick={open} />
+			<UserAvatar top={12} onClick={open} />
 		</>
 	);
 };
