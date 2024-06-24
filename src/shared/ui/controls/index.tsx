@@ -11,3 +11,5 @@ export {
 	InputPassword,
 	type InputPasswordProps,
 } from "./input-password/InputPassword";
+
+export { Select,type SelectProps} from "./select/Select";

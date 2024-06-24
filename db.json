@@ -65,6 +65,56 @@
 			"id": "10",
 			"country": "Kazakhstan",
 			"lang": "kz"
+		},
+		{
+			"id": "11",
+			"country": "Tailand",
+			"lang": "tld"
+		},
+		{
+			"id": "12",
+			"country": "Turkey",
+			"lang": "tu"
+		},
+		{
+			"id": "13",
+			"country": "Portugal",
+			"lang": "por"
+		},
+		{
+			"id": "14",
+			"country": "Poland",
+			"lang": "pl"
+		},
+		{
+			"id": "15",
+			"country": "UAE",
+			"lang": "uae"
+		},
+		{
+			"id": "16",
+			"country": "India",
+			"lang": "ind"
+		},
+		{
+			"id": "17",
+			"country": "Slovakia",
+			"lang": "slo"
+		},
+		{
+			"id": "18",
+			"country": "Iraq",
+			"lang": "irq"
+		},
+		{
+			"id": "19",
+			"country": "Iran",
+			"lang": "irn"
+		},
+		{
+			"id": "20",
+			"country": "Japan",
+			"lang": "jpn"
 		}
 	]
 }

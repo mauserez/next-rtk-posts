@@ -24,9 +24,9 @@ export async function middleware(req: NextRequest) {
 	/* let cookie = request.cookies.get("nextjs");
 	const allCookies = request.cookies.getAll(); */
 
-	//if (!reqHeaders.get("x-url")) {
-	reqHeaders.set("x-url", req.url);
-	//}
+	if (!reqHeaders.get("x-url")) {
+		reqHeaders.set("x-url", req.url);
+	}
 
 	return NextResponse.next({
 		request: {
