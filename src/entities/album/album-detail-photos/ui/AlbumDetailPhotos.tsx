@@ -3,10 +3,11 @@
 import { Stack } from "@mantine/core";
 import { Button } from "@/shared/ui/controls";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { AlbumType, PhotoType } from "@/entities/album/types";
+import { AlbumType, AlbumPhotoType } from "@/entities/album/types";
 import { randomGradient } from "@/shared/utils/element";
-import { fetchPhotos } from "@/entities/album/album-detail-photos/api";
+import { getPhotos } from "@/api/album-photos";
 
+import { ALBUM_PHOTOS_QUERY_KEY } from "@/api/album-photos";
 import { useRef } from "react";
 import s from "./AlbumDetailPhotos.module.css";
 
@@ -27,8 +28,8 @@ export const AlbumDetailPhotos = (props: AlbumDetailPhotosProps) => {
 		hasNextPage,
 		fetchNextPage,
 	} = useInfiniteQuery({
-		queryKey: ["photos", albumId],
-		queryFn: () => fetchPhotos(options),
+		queryKey: [ALBUM_PHOTOS_QUERY_KEY, albumId],
+		queryFn: () => getPhotos(options),
 		enabled: !!albumId,
 		initialPageParam: 1,
 		getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
@@ -44,7 +45,7 @@ export const AlbumDetailPhotos = (props: AlbumDetailPhotosProps) => {
 	} else if (status === "error") {
 		content = error.message;
 	} else {
-		const albumPhotos: PhotoType[] = [];
+		const albumPhotos: AlbumPhotoType[] = [];
 
 		photos.pages.map((pageArray) => {
 			albumPhotos.push(...pageArray);
@@ -73,7 +74,7 @@ export const AlbumDetailPhotos = (props: AlbumDetailPhotosProps) => {
 };
 
 type PhotoGalleryProps = {
-	photos: PhotoType[];
+	photos: AlbumPhotoType[];
 };
 
 const PhotoGallery = (props: PhotoGalleryProps) => {

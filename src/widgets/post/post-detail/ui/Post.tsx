@@ -3,41 +3,21 @@
 import { mainApi } from "@/shared/axios/mainApi";
 import { Group, Skeleton, Stack, Text } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
-import { POST_QUERY_KEY, POST_USER_QUERY_KEY } from "@/shared/query-keys/post";
+import {
+	POST_QUERY_KEY,
+	POST_USER_QUERY_KEY,
+	getPost,
+	getPostUser,
+} from "api/post";
 
 import { SectionTitle } from "@/shared/ui";
-import { getPost } from "../api";
-import { PostType } from "@/entities/post/types";
+import { PostType, PostUserType } from "@/entities/post/types";
 import { randomInt, uid } from "@/shared/utils/number";
 
 import s from "./Post.module.css";
 
 type PostProps = {
 	id: PostType["id"];
-};
-
-type PostUserType = {
-	id: number;
-	name: string;
-	username: string;
-	email: string;
-	address: {
-		street: string;
-		suite: string;
-		city: string;
-		zipcode: number;
-		geo: {
-			lat: number;
-			lng: number;
-		};
-	};
-	phone: string;
-	website: string;
-	company: {
-		name: string;
-		catchPhrase: string;
-		bs: string;
-	};
 };
 
 export const Post = (props: PostProps) => {
@@ -54,11 +34,7 @@ export const Post = (props: PostProps) => {
 
 	const { data: user } = useQuery({
 		queryKey: [POST_USER_QUERY_KEY, post?.userId],
-		queryFn: async (): Promise<PostUserType> => {
-			return mainApi
-				.get(`/users?id=${post?.userId}`)
-				.then((response) => response.data[0]);
-		},
+		queryFn: () => getPostUser(Number(post?.userId)),
 		enabled: !!post?.userId,
 	});
 

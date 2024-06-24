@@ -19,7 +19,7 @@
 		],
 		"paths": {
 			"@/*": ["./src/*"],
-			"actions/*": ["./src/actions/*"],
+			"api/*": ["./src/api/*"],
 			"entities/*": ["./src/entities/*"],
 			"features/*": ["./src/features/*"],
 			"layouts/*": ["./src/layouts/*"],

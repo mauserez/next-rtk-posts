@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
 
-const protectedRoutes = ["/albums", "/posts"];
+//const protectedRoutes = ["/albums", "/posts"];
 
 export async function middleware(req: NextRequest) {
 	const reqHeaders = new Headers(req.headers);

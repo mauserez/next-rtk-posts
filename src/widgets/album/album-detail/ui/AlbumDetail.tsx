@@ -4,8 +4,7 @@ import { Stack, Skeleton } from "@mantine/core";
 import { SectionTitle, CardLoader } from "@/shared/ui";
 
 import { useQuery } from "@tanstack/react-query";
-import { fetchAlbum } from "@/widgets/album/album-detail/api";
-import { ALBUM_QUERY_KEY } from "@/shared/query-keys/album";
+import { getAlbum, ALBUM_QUERY_KEY } from "api/album";
 
 import { AlbumType } from "@/entities/album/types";
 import { AlbumDetailPhotos } from "@/entities/album/album-detail-photos/ui/AlbumDetailPhotos";
@@ -27,7 +26,7 @@ export const Album = (props: AlbumsProps) => {
 		error,
 	} = useQuery({
 		queryKey: [ALBUM_QUERY_KEY, id],
-		queryFn: () => fetchAlbum(id),
+		queryFn: () => getAlbum(id),
 	});
 
 	let content;

@@ -5,8 +5,7 @@ import { HorizontalScroller, SectionTitle, CardLoader } from "@/shared/ui";
 import { Button } from "@/shared/ui/controls";
 
 import { useQuery } from "@tanstack/react-query";
-import { fetchAlbums } from "@/widgets/album/album-list/api";
-import { ALBUMS_QUERY_KEY } from "@/shared/query-keys/album";
+import { ALBUMS_QUERY_KEY, getAlbums } from "api/album/index";
 
 import { AlbumType } from "@/entities/album/types";
 import { AlbumListItem } from "@/entities/album/album-list-item/ui/AlbumListItem";
@@ -31,7 +30,7 @@ export const Albums = (props: AlbumsProps) => {
 		refetch,
 	} = useQuery({
 		queryKey: [ALBUMS_QUERY_KEY, options],
-		queryFn: () => fetchAlbums(options),
+		queryFn: () => getAlbums(options),
 		staleTime: Infinity,
 	});
 

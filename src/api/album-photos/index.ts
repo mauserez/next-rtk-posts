@@ -1,15 +1,17 @@
-import { PhotoType } from "@/entities/album/types";
+import { AlbumPhotoType } from "@/entities/album/types";
 import { mainApi } from "@/shared/axios/mainApi";
 
-type FetchPhotosOptions = {
+export const ALBUM_PHOTOS_QUERY_KEY = "album-photos";
+
+type GetPhotosOptions = {
 	albumId: number;
 	limit?: number;
 	page?: number;
 };
 
-export const fetchPhotos = async (
-	options: FetchPhotosOptions
-): Promise<PhotoType[]> => {
+export const getPhotos = async (
+	options: GetPhotosOptions
+): Promise<AlbumPhotoType[]> => {
 	const { albumId, limit = 10, page = 1 } = options;
 
 	return await mainApi

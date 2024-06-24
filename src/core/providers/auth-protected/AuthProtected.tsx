@@ -10,6 +10,7 @@ import { ButtonLink } from "@/shared/ui/buttons";
 
 import { cn } from "@/shared/utils/cn";
 import s from "./AuthProtected.module.css";
+import { useSession } from "next-auth/react";
 
 const protectedRoutes = ["/albums", "/posts"];
 
@@ -19,12 +20,17 @@ export const AuthProtected = (props: AuthProtectedProps) => {
 	const { children } = props;
 	const pathName = usePathname();
 
+	const session = useSession();
 	const isAuth = useIsAuthenticated();
 	const isNotAllowed =
 		protectedRoutes.some((route) => pathName.startsWith(route)) && !isAuth;
 
+	if (session.status === "loading") {
+		return null;
+	}
+
 	if (!isNotAllowed) {
-		return <>{children}</>;
+		return children;
 	}
 
 	const text = isAuth

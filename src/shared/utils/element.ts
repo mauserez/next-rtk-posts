@@ -1,4 +1,4 @@
-export const createHex = () => {
+export const randomHex = () => {
 	let hex = "";
 	const hexValues = "0123456789abcdef";
 
@@ -10,8 +10,8 @@ export const createHex = () => {
 
 export const randomGradient = (degree: number | null = null) => {
 	const deg = !degree ? Math.floor(Math.random() * 360) : degree;
-	const firstColor = createHex();
-	const secondColor = createHex();
+	const firstColor = randomHex();
+	const secondColor = randomHex();
 
 	const gradient = `linear-gradient(${deg}deg,#${firstColor},#${secondColor})`;
 

@@ -4,9 +4,16 @@ import { mainApi } from "@/shared/axios/mainApi";
 import { randomInt } from "@/shared/utils/number";
 import queryString from "query-string";
 
-export const fetchAlbums = async (
-	options: AssocArray
-): Promise<AlbumType[]> => {
+export const ALBUM_QUERY_KEY = "album";
+export const ALBUMS_QUERY_KEY = "albums";
+
+export const getAlbum = async (id: AlbumType["id"]): Promise<AlbumType> => {
+	return await mainApi
+		.get(`/albums?id=${id}&_embed=photos`)
+		.then((response) => response.data[0]);
+};
+
+export const getAlbums = async (options: AssocArray): Promise<AlbumType[]> => {
 	const { title = "" } = options;
 
 	const sortValue = ["userId", "id", "title", "url"][randomInt(0, 3)];
