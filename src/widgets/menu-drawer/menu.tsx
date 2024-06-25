@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { BiHomeAlt2 } from "react-icons/bi";
+import { BiHomeAlt2, BiTable } from "react-icons/bi";
 import { IconType } from "react-icons/lib";
 import { LuLayoutDashboard } from "react-icons/lu";
 
@@ -14,6 +14,11 @@ export type MenuItem = PolymorphicComponentProps<"a", NavLinkProps> & {
 
 export const menu: MenuItem[] = [
 	{ href: "/", label: "Home", leftSection: <BiHomeAlt2 /> },
+	{
+		href: "/country/list",
+		label: "Country Table",
+		leftSection: <BiTable />,
+	},
 	{
 		href: "",
 		label: "Kanban",

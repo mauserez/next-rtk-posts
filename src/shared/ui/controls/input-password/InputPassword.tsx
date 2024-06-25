@@ -25,12 +25,14 @@ export const InputPassword = (props: InputPasswordProps) => {
 		clearIcon,
 		onChange,
 		value,
+		size = "md",
+		leftSection,
 		rightSection,
 		rightSectionWidth = "61px",
 		...restProps
 	} = props;
 
-	const icon = withPlaceholderIcon ? <LuSearch /> : placeholderIcon;
+	const plcIcon = withPlaceholderIcon ? <LuSearch /> : placeholderIcon;
 	const clIcon = !clearIcon ? <MdClear /> : clearIcon;
 	const inputRef = useRef<HTMLInputElement>(null);
 
@@ -45,6 +47,15 @@ export const InputPassword = (props: InputPasswordProps) => {
 	const clearIconContent = value?.trim() ? (
 		<div className="cursor-pointer" onClick={clearValue}>
 			{clIcon}
+		</div>
+	) : null;
+
+	const plcIconContent = !value?.trim() ? (
+		<div
+			onClick={() => inputRef.current?.focus()}
+			className={s.placeholderIcon}
+		>
+			{plcIcon}
 		</div>
 	) : null;
 
@@ -71,24 +82,24 @@ export const InputPassword = (props: InputPasswordProps) => {
 	const rightSectionPadding = `${rightSectionWidth}`;
 
 	return (
-		<div className={s.wrap}>
-			<PasswordInput
-				styles={{ "input": { paddingRight: rightSectionPadding } }}
-				visible={visible}
-				ref={inputRef}
-				spellCheck={false}
-				value={value}
-				onChange={valueChange}
-				rightSectionWidth={rightSectionWidth}
-				rightSection={rightSectionContent}
-				className={cn(
-					s.input,
-					{ [s.withPlaceholderIcon]: withPlaceholderIcon },
-					className
-				)}
-				{...restProps}
-			/>
-			{!value?.trim() ? <div className={s.placeholderIcon}>{icon}</div> : null}
-		</div>
+		<PasswordInput
+			size={size}
+			styles={{ "input": { paddingRight: rightSectionPadding } }}
+			visible={visible}
+			ref={inputRef}
+			spellCheck={false}
+			value={value}
+			onChange={valueChange}
+			leftSection={plcIcon ? plcIconContent : leftSection}
+			rightSectionWidth={rightSectionWidth}
+			rightSection={rightSectionContent}
+			className={cn(
+				{ [s.withPlaceholderIcon]: withPlaceholderIcon },
+				"w-full",
+				className
+			)}
+			{...restProps}
+		/>
+		//{!value?.trim() ? <div className={s.placeholderIcon}>{plcIcon}</div> : null}
 	);
 };

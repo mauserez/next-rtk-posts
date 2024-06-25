@@ -1,10 +1,5 @@
 .wrap {
-	width: 100%;
 	position: relative;
-}
-
-.input input::placeholder {
-	color: var(--color-secondary);
 }
 
 .withPlaceholderIcon input::placeholder {

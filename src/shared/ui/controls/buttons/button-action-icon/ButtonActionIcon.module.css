@@ -1,0 +1,7 @@
+.btn {
+	border: 1px solid var(--border-color);
+}
+
+.btn:not([data-disabled="true"]):hover {
+	box-shadow: 0 0 7px #ddd !important;
+}

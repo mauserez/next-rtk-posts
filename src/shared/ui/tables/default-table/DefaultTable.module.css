@@ -1,0 +1,19 @@
+.table thead tr th,
+.table tbody tr td {
+	border-top: 1px solid var(--border-color);
+	border-bottom: 1px solid var(--border-color);
+}
+
+.table thead tr th:nth-child(1),
+.table tbody tr td:nth-child(1) {
+	padding-left: 24px;
+}
+
+.table thead tr th:nth-last-child,
+.table tbody tr td:nth-last-child {
+	padding-right: 24px;
+}
+
+.table thead tr:nth-child(1) th {
+	padding-top: 16px;
+}

@@ -2,7 +2,7 @@
 import { Group, Skeleton, Stack } from "@mantine/core";
 
 import { HorizontalScroller, SectionTitle, CardLoader } from "@/shared/ui";
-import { Button } from "@/shared/ui/controls";
+import { Button } from "@/shared/ui/controls/buttons";
 
 import { useQuery } from "@tanstack/react-query";
 import { ALBUMS_QUERY_KEY, getAlbums } from "api/album/index";

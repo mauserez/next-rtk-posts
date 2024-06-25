@@ -2,9 +2,9 @@
 
 import { Group, GroupProps } from "@mantine/core";
 import { ReactNode, useState } from "react";
-import { Button, ButtonProps } from "@/shared/ui/controls";
-import { uid } from "@/shared/utils/number";
-import { PrimitiveType } from "@/shared/types";
+import { Button, ButtonProps } from "shared/ui/controls/buttons";
+import { uid } from "shared/utils/number";
+import { PrimitiveType } from "shared/types";
 import clsx from "clsx";
 
 import s from "./ButtonGroup.module.css";

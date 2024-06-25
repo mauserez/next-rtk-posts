@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { SectionTitle } from "@/shared/ui";
-import { Button, ButtonGroup } from "@/shared/ui/controls";
+import { Button, ButtonGroup } from "@/shared/ui/controls/buttons";
 import { Grid, Group, Skeleton, Stack } from "@mantine/core";
 
 import { POSTS_QUERY_KEY, getPosts } from "api/post";

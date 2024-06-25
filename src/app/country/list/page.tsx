@@ -1,4 +1,10 @@
 import { CountryTable } from "@/widgets/country/country-table/ui/CountryTable";
+import { PageLayout } from "@/core/layouts/page-layout/PageLayout";
+
 export default function CountryList() {
-	return <CountryTable />;
+	return (
+		<PageLayout>
+			<CountryTable />
+		</PageLayout>
+	);
 }

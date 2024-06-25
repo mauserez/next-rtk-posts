@@ -28,12 +28,14 @@ export const Input = (props: InputProps) => {
 		clearIcon,
 		onChange,
 		value,
+		size = "md",
+		leftSection,
 		rightSection,
 		rightSectionWidth = "40px",
-		...inputProps
+		...restProps
 	} = props;
 
-	const icon = withPlaceholderIcon ? <LuSearch /> : placeholderIcon;
+	const plcIcon = withPlaceholderIcon ? <LuSearch /> : placeholderIcon;
 	const clIcon = !clearIcon ? <MdClear /> : clearIcon;
 	const inputRef = useRef<HTMLInputElement>(null);
 
@@ -48,6 +50,15 @@ export const Input = (props: InputProps) => {
 	const clearIconContent = value?.trim() ? (
 		<div className="cursor-pointer" onClick={clearValue}>
 			{clIcon}
+		</div>
+	) : null;
+
+	const plcIconContent = !value?.trim() ? (
+		<div
+			onClick={() => inputRef.current?.focus()}
+			className={s.placeholderIcon}
+		>
+			{plcIcon}
 		</div>
 	) : null;
 
@@ -67,25 +78,24 @@ export const Input = (props: InputProps) => {
 	const rightSectionPadding = `${rightSectionWidth}`;
 
 	return (
-		<div className={s.wrap}>
-			<TextInput
-				styles={{ "input": { paddingRight: rightSectionPadding } }}
-				ref={inputRef}
-				spellCheck={false}
-				value={value}
-				onChange={valueChange}
-				rightSectionWidth={rightSectionWidth}
-				rightSection={rightSectionContent}
-				className={cn(
-					s.input,
-					{
-						[s.withPlaceholderIcon]: withPlaceholderIcon,
-					},
-					className
-				)}
-				{...inputProps}
-			/>
-			{!value?.trim() ? <div className={s.placeholderIcon}>{icon}</div> : null}
-		</div>
+		<TextInput
+			size={size}
+			styles={{ "input": { paddingRight: rightSectionPadding } }}
+			ref={inputRef}
+			spellCheck={false}
+			value={value}
+			onChange={valueChange}
+			leftSection={plcIcon ? plcIconContent : leftSection}
+			rightSectionWidth={rightSectionWidth}
+			rightSection={rightSectionContent}
+			className={cn(
+				{
+					[s.withPlaceholderIcon]: withPlaceholderIcon,
+				},
+				"w-full",
+				className
+			)}
+			{...restProps}
+		/>
 	);
 };

@@ -23,14 +23,11 @@ export const CountryTable = () => {
 		placeholderData: keepPreviousData,
 	});
 
-	console.log(countries);
-
 	return (
 		<DefaultTable
 			isLoading={isLoading}
 			data={countries ?? []}
 			columns={columns}
-			tableProps={{ stickyHeader: true }}
 		/>
 	);
 };

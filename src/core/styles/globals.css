@@ -3,11 +3,8 @@
 @tailwind utilities;
 
 :root {
-	--input-radius: 13px;
-
 	--color-primary: #3e445d;
 	--color-secondary: #9da1bb;
-
 	--color-white: #fff;
 	--color-gray: #cccbd3;
 	--color-purple: #8b4ddc;
@@ -17,11 +14,15 @@
 	--bg-content: #ecf1ff;
 	--bg-profile: #fff;
 	--bg-contrast: #303650;
+
+	--bg-card: #ffffff;
 	--bg-button: #e0e9ff;
 
 	--bg-star: #ffc431;
 	--bg-purple: #8847da;
 	--bg-red: #f25768;
+
+	--border-color: #dddddd85;
 }
 
 * {

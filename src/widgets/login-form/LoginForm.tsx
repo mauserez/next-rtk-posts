@@ -6,7 +6,7 @@ import { signIn } from "next-auth/react";
 
 import { Form, useForm } from "react-hook-form";
 
-import { Button } from "@/shared/ui/controls";
+import { Button } from "@/shared/ui/controls/buttons";
 import { FormInput, FormInputPassword } from "@/shared/ui/form-controls";
 
 import { yupResolver } from "@hookform/resolvers/yup";

@@ -1,6 +1,5 @@
-import { Button } from "../../controls";
+import { Button, ButtonProps } from "shared/ui/controls/buttons";
 import Link from "next/link";
-import { ButtonProps } from "../../controls";
 import { cn } from "@/shared/utils/cn";
 
 type ButtonLinkProps = ButtonProps & { href: string };

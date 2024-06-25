@@ -1,0 +1,11 @@
+.mantine-Pagination-root {
+	--pagination-control-size-xs: calc(24px * var(--mantine-scale));
+	--pagination-control-size-sm: calc(32px * var(--mantine-scale));
+	--pagination-control-size-md: calc(40px * var(--mantine-scale));
+	--pagination-control-size-lg: calc(48px * var(--mantine-scale));
+	--pagination-control-size-xl: calc(56px * var(--mantine-scale));
+}
+
+.mantine-Pagination-control:where([data-mantine-color-scheme="light"]) {
+	border-color: var(--border-color);
+}

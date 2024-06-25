@@ -1,19 +1,31 @@
 input,
 .mantine-Input-input {
-	border-radius: 13px;
-	border: 1px transparent;
 	padding: 13px;
-	min-height: 40px;
 	font-weight: 500;
 	color: var(--color-primary);
 	font-size: 16px;
-	border: 1px solid #dddddd85;
+	border: 1px solid var(--border-color);
 }
 
+input::placeholder {
+	color: var(--color-secondary);
+}
+
+input:hover,
 input:focus,
 input:focus-visible,
-.mantine-Input-input:has(input:focus),
+.mantine-Input-input:hover,
+.mantine-Input-wrapper:has(.mantine-Input-section:hover) > .mantine-Input-input,
+.mantine-Input-input:has(input:hover),
 .mantine-Input-input:has(input:focus) {
 	outline: none;
 	box-shadow: 0 0 7px #ddd !important;
+}
+
+.mantine-Input-wrapper {
+	--input-height-xs: calc(24px * var(--mantine-scale));
+	--input-height-sm: calc(32px * var(--mantine-scale));
+	--input-height-md: calc(40px * var(--mantine-scale));
+	--input-height-lg: calc(48px * var(--mantine-scale));
+	--input-height-xl: calc(56px * var(--mantine-scale));
 }

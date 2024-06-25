@@ -1,6 +1,9 @@
-import { createTheme, DEFAULT_THEME } from "@mantine/core";
+import { createTheme } from "@mantine/core";
+
 export const theme = createTheme({
 	autoContrast: true,
+	white: "#ffffff",
+	black: "#222222",
 	radius: {
 		xs: "7px",
 		sm: "11px",
@@ -8,4 +11,7 @@ export const theme = createTheme({
 		lg: "16px",
 		xl: "19px",
 	},
+	cursorType: "pointer",
+	defaultRadius: "md",
+	focusRing: "auto",
 });

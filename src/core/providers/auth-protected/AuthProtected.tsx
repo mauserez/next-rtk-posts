@@ -6,7 +6,7 @@ import { LoginForm } from "widgets/login-form/LoginForm";
 
 import { usePathname } from "next/navigation";
 import { useIsAuthenticated } from "@/core/nextauth/hooks";
-import { ButtonLink } from "@/shared/ui/buttons";
+import { ButtonLink } from "@/shared/ui/controls/buttons";
 
 import { cn } from "@/shared/utils/cn";
 import s from "./AuthProtected.module.css";
