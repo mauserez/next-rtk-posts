@@ -1,3 +1,19 @@
+.tableWrap {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.tableControlsWrap {
+	margin-top: -2px;
+	border-top: 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.table thead tr:first-child th {
+	border-top: 0;
+}
+
 .table thead tr th,
 .table tbody tr td {
 	border-top: 1px solid var(--border-color);
@@ -9,8 +25,8 @@
 	padding-left: 24px;
 }
 
-.table thead tr th:nth-last-child,
-.table tbody tr td:nth-last-child {
+.table thead tr th:last-child,
+.table tbody tr td:last-child {
 	padding-right: 24px;
 }
 

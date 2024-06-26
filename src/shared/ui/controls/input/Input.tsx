@@ -54,12 +54,7 @@ export const Input = (props: InputProps) => {
 	) : null;
 
 	const plcIconContent = !value?.trim() ? (
-		<div
-			onClick={() => inputRef.current?.focus()}
-			className={s.placeholderIcon}
-		>
-			{plcIcon}
-		</div>
+		<div onClick={() => inputRef.current?.focus()}>{plcIcon}</div>
 	) : null;
 
 	const rightSectionContent = (
@@ -68,7 +63,7 @@ export const Input = (props: InputProps) => {
 			className={cn("w-full h-full pr-[13px]")}
 			justify="flex-end"
 			wrap="nowrap"
-			gap={6}
+			gap="6px"
 		>
 			{clearIconContent}
 			{rightSection}

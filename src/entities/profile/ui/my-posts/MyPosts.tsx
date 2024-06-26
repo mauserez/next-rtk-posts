@@ -6,6 +6,7 @@ import { Stack, Group, Avatar } from "@mantine/core";
 import { useAppSelector, useAppDispatch } from "@/shared/store/redux/hooks";
 import { removePost } from "@/shared/store/redux/slices/posts/PostsSlice";
 import { FaRegTrashCan } from "react-icons/fa6";
+import { ButtonLike } from "@/shared/ui/controls/buttons";
 
 import s from "./MyPosts.module.css";
 
@@ -17,30 +18,29 @@ export const MyPosts = () => {
 		<Stack>
 			<SectionTitle size="sm" boldText="Posts" />
 			{posts.length ? (
-				posts.map((post) => (
-					<Stack key={post.id} gap="sm" className={s.posts}>
-						<Group className={s.post} wrap="nowrap" justify="space-between">
+				<Stack className={s.posts}>
+					{posts.map((post) => (
+						<Group key={post.id} className={s.post}>
 							<Link href={`/posts/${post.id}`}>
 								<Group className={s.postBody} wrap="nowrap">
-									<Avatar color="#fff" bg="#666" size={48} radius="lg">
+									<Avatar color="#fff" bg="#666" size="48px" radius="lg">
 										{post.id}
 									</Avatar>
-									<Stack gap={4}>
+									<Stack gap={"4px"}>
 										<TextClamp
-											uppercase={true}
+											firstLetterUppercase={true}
 											lineCount={2}
 											className={s.title}
 										>
 											{post.title}
 										</TextClamp>
-										{/* <div className={s.text}>{post.body}</div> */}
 									</Stack>
 								</Group>
 							</Link>
 
 							<Avatar className="mr-4">
-								<FaRegTrashCan
-									color="#f25768"
+								<ButtonLike
+									active={true}
 									onClick={(e) => {
 										e.stopPropagation();
 										dispatch(removePost(post.id));
@@ -48,8 +48,8 @@ export const MyPosts = () => {
 								/>
 							</Avatar>
 						</Group>
-					</Stack>
-				))
+					))}
+				</Stack>
 			) : (
 				<NoPosts />
 			)}

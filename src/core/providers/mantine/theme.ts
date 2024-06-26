@@ -3,7 +3,7 @@ import { createTheme } from "@mantine/core";
 export const theme = createTheme({
 	autoContrast: true,
 	white: "#ffffff",
-	black: "#222222",
+	black: "#333333",
 	radius: {
 		xs: "7px",
 		sm: "11px",

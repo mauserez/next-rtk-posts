@@ -1,17 +1,18 @@
 import { TiHeartFullOutline, TiHeartOutline } from "react-icons/ti";
 import { IconBaseProps } from "react-icons/lib";
+import { MouseEvent } from "react";
 
 import clsx from "clsx";
 import s from "./ButtonLike.module.css";
 
 type ButtonLikeProps = {
 	active: boolean;
-	onClick?: () => void;
+	onClick?: (e: MouseEvent<HTMLDivElement>) => void;
 } & IconBaseProps &
 	React.SVGAttributes<SVGElement>;
 
 export const ButtonLike = (props: ButtonLikeProps) => {
-	const { active, className = "", onClick, size = 24, ...otherProps } = props;
+	const { active, className = "", onClick, size = 24, ...restProps } = props;
 	const cn = clsx(s.icon, className);
 
 	return (
@@ -19,15 +20,13 @@ export const ButtonLike = (props: ButtonLikeProps) => {
 			className={cn}
 			onClick={(e) => {
 				e.stopPropagation();
-				if (onClick) {
-					onClick();
-				}
+				onClick?.(e);
 			}}
 		>
 			{active ? (
-				<TiHeartFullOutline size={size} {...otherProps} />
+				<TiHeartFullOutline size={size} {...restProps} />
 			) : (
-				<TiHeartOutline size={size} {...otherProps} />
+				<TiHeartOutline size={size} {...restProps} />
 			)}
 		</div>
 	);

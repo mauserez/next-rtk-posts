@@ -4,6 +4,7 @@ import { Logo } from "@/shared/ui";
 import { Group } from "@mantine/core";
 import { useEffect } from "react";
 
+import { cn } from "@/shared/utils/cn";
 import s from "./Header.module.css";
 
 export const Header = () => {
@@ -27,7 +28,7 @@ export const Header = () => {
 	}, []);
 
 	return (
-		<header className={s.header}>
+		<header className={cn(s.header)}>
 			<Group justify="space-between">
 				<Logo />
 			</Group>

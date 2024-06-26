@@ -51,12 +51,7 @@ export const InputPassword = (props: InputPasswordProps) => {
 	) : null;
 
 	const plcIconContent = !value?.trim() ? (
-		<div
-			onClick={() => inputRef.current?.focus()}
-			className={s.placeholderIcon}
-		>
-			{plcIcon}
-		</div>
+		<div onClick={() => inputRef.current?.focus()}>{plcIcon}</div>
 	) : null;
 
 	const visibilityIconContent = (
@@ -71,7 +66,7 @@ export const InputPassword = (props: InputPasswordProps) => {
 			className={cn("w-full h-full pr-[13px]")}
 			justify="flex-end"
 			wrap="nowrap"
-			gap={6}
+			gap="6px"
 		>
 			{rightSection}
 			{clearIconContent}
@@ -100,6 +95,5 @@ export const InputPassword = (props: InputPasswordProps) => {
 			)}
 			{...restProps}
 		/>
-		//{!value?.trim() ? <div className={s.placeholderIcon}>{plcIcon}</div> : null}
 	);
 };

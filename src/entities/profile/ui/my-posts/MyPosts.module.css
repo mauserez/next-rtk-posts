@@ -11,6 +11,8 @@
 	margin-left: -12px;
 	margin-right: -48px;
 	transition: background-color 0.1s, margin 0.4s;
+	flex-wrap: nowrap;
+	justify-content: space-between;
 }
 
 .post:hover {

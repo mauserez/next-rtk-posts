@@ -60,8 +60,8 @@ const MyAlbum = (props: MyAlbumProps) => {
 				/>
 			</div>
 			<div>
-				<TextClamp className={clsx(s.title)}>
-					<p className="first-letter:uppercase">{album.title}</p>
+				<TextClamp firstLetterUppercase={true} className={clsx(s.title)}>
+					{album.title}
 				</TextClamp>
 				<TextClamp className={s.subtitle}>{album.photos[0].title}</TextClamp>
 			</div>

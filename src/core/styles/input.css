@@ -2,7 +2,6 @@ input,
 .mantine-Input-input {
 	padding: 13px;
 	font-weight: 500;
-	color: var(--color-primary);
 	font-size: 16px;
 	border: 1px solid var(--border-color);
 }
@@ -23,6 +22,7 @@ input:focus-visible,
 }
 
 .mantine-Input-wrapper {
+	position: relative;
 	--input-height-xs: calc(24px * var(--mantine-scale));
 	--input-height-sm: calc(32px * var(--mantine-scale));
 	--input-height-md: calc(40px * var(--mantine-scale));

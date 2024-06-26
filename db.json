@@ -115,6 +115,56 @@
 			"id": "20",
 			"country": "Japan",
 			"lang": "jpn"
+		},
+		{
+			"id": "21",
+			"country": "Tailand",
+			"lang": "tld"
+		},
+		{
+			"id": "22",
+			"country": "Turkey",
+			"lang": "tu"
+		},
+		{
+			"id": "23",
+			"country": "Portugal",
+			"lang": "por"
+		},
+		{
+			"id": "24",
+			"country": "Poland",
+			"lang": "pl"
+		},
+		{
+			"id": "25",
+			"country": "UAE",
+			"lang": "uae"
+		},
+		{
+			"id": "26",
+			"country": "India",
+			"lang": "ind"
+		},
+		{
+			"id": "27",
+			"country": "Slovakia",
+			"lang": "slo"
+		},
+		{
+			"id": "28",
+			"country": "Iraq",
+			"lang": "irq"
+		},
+		{
+			"id": "29",
+			"country": "Iran",
+			"lang": "irn"
+		},
+		{
+			"id": "30",
+			"country": "Japan",
+			"lang": "jpn"
 		}
 	]
 }

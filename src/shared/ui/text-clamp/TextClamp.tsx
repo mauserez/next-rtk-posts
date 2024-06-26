@@ -5,16 +5,16 @@ import clsx from "clsx";
 type TextClampProps = {
 	children: ReactNode | string;
 	lineCount?: number;
-	uppercase?: boolean;
+	firstLetterUppercase?: boolean;
 } & ComponentProps<"div">;
 
 export const TextClamp = (props: TextClampProps) => {
 	const {
 		children,
 		className = "",
-		uppercase = false,
+		firstLetterUppercase = false,
 		lineCount = 1,
-		...otherProps
+		...restProps
 	} = props;
 
 	return (
@@ -24,9 +24,11 @@ export const TextClamp = (props: TextClampProps) => {
 				[s.clamp]: true,
 				[className]: true,
 			})}
-			{...otherProps}
+			{...restProps}
 		>
-			<div className={clsx({ [s.uppercase]: true })}>{children}</div>
+			<div className={clsx({ [s.uppercase]: firstLetterUppercase })}>
+				{children}
+			</div>
 		</div>
 	);
 };
