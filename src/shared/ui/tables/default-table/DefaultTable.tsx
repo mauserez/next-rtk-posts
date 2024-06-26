@@ -2,17 +2,9 @@
 
 import { Group, Paper, Stack } from "@mantine/core";
 import { Table, TableProps, Tbody, Thead, Tr, Th, Td } from "shared/ui/table";
-import { Input, Select } from "shared/ui/controls";
+import { Input, MemoInput, Select, MultiSelect } from "shared/ui/controls";
 import { ButtonActionIcon } from "shared/ui/controls/buttons";
 import { BiSortAlt2, BiSortDown, BiSortUp } from "react-icons/bi";
-
-import { RowData } from "@tanstack/react-table";
-
-declare module "@tanstack/react-table" {
-	interface ColumnMeta<TData extends RowData, TValue> {
-		filter: "select" | "multiple" | "input" | "checkbox";
-	}
-}
 
 import {
 	FiChevronsLeft,
@@ -21,32 +13,57 @@ import {
 	FiChevronRight,
 } from "react-icons/fi";
 
-import { useState } from "react";
+import { useState, memo } from "react";
 import {
+	Column,
 	getCoreRowModel,
+	getFacetedRowModel,
+	getFilteredRowModel,
 	getSortedRowModel,
 	getPaginationRowModel,
 	flexRender,
 	useReactTable,
 	ColumnDef,
+	ColumnFiltersState,
 	SortingState,
 	PaginationState,
 } from "@tanstack/react-table";
 
+import { uid } from "@/shared/utils/number";
 import { cn } from "@/shared/utils/cn";
 import s from "./DefaultTable.module.css";
+
+type TableFilterType = "select" | "multiselect" | "input" | "checkbox";
+type TableFilterOptionsType = {
+	filter: TableFilterType;
+	filterClassName?: string;
+	placeholder?: string;
+	list?: { value: string; label: string }[] | string[];
+};
 
 type DefaultTableProps<T> = {
 	data: T[];
 	columns: ColumnDef<T>[];
 	isLoading?: boolean;
 	pageSize?: number;
+	filters?: Partial<Record<keyof T, TableFilterOptionsType>>;
+	withGlobalFilter: boolean;
 } & TableProps;
 
 export const DefaultTable = <T,>(props: DefaultTableProps<T>) => {
-	const { data, columns, isLoading = false, pageSize = 10, className } = props;
+	const {
+		data,
+		columns,
+		isLoading = false,
+		pageSize = 10,
+		className,
+		filters,
+		withGlobalFilter = true,
+	} = props;
 
+	const [globalSearch, setGlobalSearch] = useState("");
 	const [sorting, setSorting] = useState<SortingState>([]);
+	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 	const [pagination, setPagination] = useState<PaginationState>({
 		pageIndex: 0,
 		pageSize: pageSize,
@@ -56,15 +73,24 @@ export const DefaultTable = <T,>(props: DefaultTableProps<T>) => {
 		data,
 		columns,
 		getCoreRowModel: getCoreRowModel(),
+		getFilteredRowModel: getFilteredRowModel(),
+		getFacetedRowModel: getFacetedRowModel(),
 		getSortedRowModel: getSortedRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
+		onColumnFiltersChange: setColumnFilters,
 		onSortingChange: setSorting,
 		onPaginationChange: setPagination,
+		onGlobalFilterChange: setGlobalSearch,
+		globalFilterFn: "includesString",
 		state: {
+			globalFilter: globalSearch,
+			columnFilters,
 			sorting,
 			pagination,
 		},
 	});
+
+	const headerGroups = table.getHeaderGroups();
 
 	if (isLoading) {
 		return "loading";
@@ -72,7 +98,26 @@ export const DefaultTable = <T,>(props: DefaultTableProps<T>) => {
 
 	return (
 		<Stack gap={0} className={cn("max-h-[600px]", className)}>
+			{/* {filters ? (
+				<MemoFilters<T> filters={filters} headerGroups={headerGroups} />
+			) : null} */}
+
 			<Paper className={cn(s.tableWrap, "overflow-auto")}>
+				<Group>
+					{withGlobalFilter ? (
+						<MemoInput
+							size="sm"
+							data-no-border
+							data-no-shadow
+							onChange={(e) => setGlobalSearch(e.target.value)}
+							value={globalSearch}
+							className="max-w-[200px] m-4"
+							placeholder="Search"
+							withPlaceholderIcon
+						/>
+					) : null}
+				</Group>
+
 				<Table
 					horizontalSpacing={"md"}
 					verticalSpacing={"10px"}
@@ -81,19 +126,22 @@ export const DefaultTable = <T,>(props: DefaultTableProps<T>) => {
 					className={cn(s.table)}
 				>
 					<Thead>
-						{table.getHeaderGroups().map((headerGroup) => (
+						{headerGroups.map((headerGroup) => (
 							<Tr key={headerGroup.id}>
 								{headerGroup.headers.map((header) => {
+									const id = header.column.id as keyof T;
+
 									return (
-										<Th key={header.id} colSpan={header.colSpan}>
+										<Th
+											style={{ verticalAlign: "baseline" }}
+											key={header.id}
+											colSpan={header.colSpan}
+										>
 											{header.isPlaceholder ? null : (
 												<div
 													className={
-														header.column.getCanSort()
-															? "cursor-pointer select-none"
-															: ""
+														header.column.getCanSort() ? "select-none" : ""
 													}
-													onClick={header.column.getToggleSortingHandler()}
 													title={
 														header.column.getCanSort()
 															? header.column.getNextSortingOrder() === "asc"
@@ -104,19 +152,34 @@ export const DefaultTable = <T,>(props: DefaultTableProps<T>) => {
 															: undefined
 													}
 												>
-													<Group justify="space-between">
-														{flexRender(
-															header.column.columnDef.header,
-															header.getContext()
-														)}
-
-														{{
-															asc: <BiSortUp size={"20px"} />,
-															desc: <BiSortDown size={"20px"} />,
-														}[header.column.getIsSorted() as string] ?? (
-															<BiSortAlt2 size={"20px"} />
-														)}
-													</Group>
+													<Stack gap={"4px"} justify="flex-start">
+														<Group justify="space-between">
+															<div
+																className="cursor-pointer"
+																onClick={header.column.getToggleSortingHandler()}
+															>
+																{flexRender(
+																	header.column.columnDef.header,
+																	header.getContext()
+																)}
+															</div>
+															<div
+																className="cursor-pointer"
+																onClick={header.column.getToggleSortingHandler()}
+															>
+																{{
+																	asc: <BiSortUp size={"20px"} />,
+																	desc: <BiSortDown size={"20px"} />,
+																}[header.column.getIsSorted() as string] ?? (
+																	<BiSortAlt2 size={"20px"} />
+																)}
+															</div>
+														</Group>
+														<MemoFilter
+															column={header.column}
+															filterOptions={filters?.[id]}
+														/>
+													</Stack>
 												</div>
 											)}
 										</Th>
@@ -233,3 +296,139 @@ export const DefaultTable = <T,>(props: DefaultTableProps<T>) => {
 		</Stack>
 	);
 };
+
+type FilterProps<T> = {
+	column: Column<any, unknown>;
+	filterOptions?: TableFilterOptionsType;
+	withLabel?: boolean;
+};
+
+function Filter<T>(props: FilterProps<T>) {
+	const { column, filterOptions, withLabel = false } = props;
+
+	if (!filterOptions) {
+		return null;
+	}
+
+	const { filter, filterClassName, placeholder, list = [] } = filterOptions;
+
+	const columnFilterValue = column.getFilterValue();
+
+	let label = !column.columnDef.header
+		? ""
+		: column.columnDef.header.toString();
+	label = withLabel ? label : "";
+
+	if (filter === "input") {
+		const colVal = !columnFilterValue ? "" : columnFilterValue.toString();
+
+		return (
+			<Input
+				data-no-border
+				data-no-shadow
+				size="sm"
+				radius="sm"
+				defaultValue={colVal}
+				className={cn("w-auto p-0=max-w-[300px]", filterClassName)}
+				classNames={{ input: cn("p-0") }}
+				label={label}
+				onChange={(e) => column.setFilterValue(e.target.value)}
+				placeholder={placeholder ?? "Search"}
+			/>
+		);
+	}
+
+	if (filter === "select") {
+		return (
+			<Select
+				data-no-border
+				data-no-shadow
+				size="sm"
+				radius="sm"
+				className={cn("w-auto max-w-[300px]", filterClassName)}
+				classNames={{ input: cn("p-0") }}
+				onChange={(value) => column.setFilterValue(value)}
+				label={label}
+				data={list}
+				placeholder={placeholder}
+			/>
+		);
+	}
+
+	if (filter === "multiselect") {
+		let ls = [];
+		for (const l of list) {
+			if (typeof l === "string") {
+				ls.push(l);
+			} else {
+				ls.push(l.label);
+			}
+		}
+
+		return (
+			<MultiSelect
+				data-no-border
+				data-no-shadow
+				size="sm"
+				radius="sm"
+				className={cn("w-auto max-w-[300px]", filterClassName)}
+				classNames={{ input: "p-0" }}
+				onChange={(value) => {
+					console.log(value);
+					column.setFilterValue(value);
+				}}
+				label={label}
+				data={ls}
+				placeholder={placeholder}
+			/>
+		);
+	}
+}
+
+const MemoFilter = memo(Filter) as typeof Filter;
+
+/*
+type FiltersProps<T> = {
+	headerGroups: HeaderGroup<T>[];
+	filters: DefaultTableProps<T>["filters"];
+};
+
+function Filters<T>(props: FiltersProps<T>) {
+	const { headerGroups, filters } = props;
+
+	return (
+		<Group className="mb-4">
+			{headerGroups.map((headerGroup) =>
+				headerGroup.headers.map((header) => {
+					const id = header.column.id as keyof T;
+
+					if (!filters) {
+						return null;
+					}
+
+					const filterKeys = Object.keys(filters);
+
+					if (!filterKeys) {
+						return null;
+					}
+
+					if (!filterKeys.includes(id.toString())) {
+						return null;
+					}
+
+					const filterOptions = filters[id] as TableFilterOptionsType;
+
+					return header.column.getCanFilter() ? (
+						<MemoFilter<T>
+							filterOptions={filterOptions}
+							key={uid()}
+							column={header.column}
+						/>
+					) : null;
+				})
+			)}
+		</Group>
+	);
+}
+
+const MemoFilters = memo(Filters) as typeof Filters; */

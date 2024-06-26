@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, ReactNode, useRef } from "react";
+import { ChangeEvent, ReactNode, memo, useRef } from "react";
 import { Group, TextInput, TextInputProps } from "@mantine/core";
 
 import { LuSearch } from "react-icons/lu";
@@ -26,12 +26,14 @@ export const Input = (props: InputProps) => {
 		withPlaceholderIcon = false,
 		placeholderIcon,
 		clearIcon,
+		clearable,
 		onChange,
 		value,
+		defaultValue,
 		size = "md",
 		leftSection,
 		rightSection,
-		rightSectionWidth = "40px",
+		rightSectionWidth = "13px",
 		...restProps
 	} = props;
 
@@ -46,6 +48,9 @@ export const Input = (props: InputProps) => {
 	const clearValue = () => {
 		clearInput(inputRef);
 	};
+
+	console.log(value);
+	console.log(defaultValue);
 
 	const clearIconContent = value?.trim() ? (
 		<div className="cursor-pointer" onClick={clearValue}>
@@ -78,6 +83,7 @@ export const Input = (props: InputProps) => {
 			styles={{ "input": { paddingRight: rightSectionPadding } }}
 			ref={inputRef}
 			spellCheck={false}
+			defaultValue={defaultValue}
 			value={value}
 			onChange={valueChange}
 			leftSection={plcIcon ? plcIconContent : leftSection}
@@ -94,3 +100,5 @@ export const Input = (props: InputProps) => {
 		/>
 	);
 };
+
+export const MemoInput = memo(Input) as typeof Input;

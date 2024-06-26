@@ -1,4 +1,5 @@
 export {
+	MemoInput,
 	Input,
 	type InputProps,
 	type ExtraInputProps,
@@ -10,3 +11,4 @@ export {
 } from "./input-password/InputPassword";
 
 export { Select, type SelectProps } from "./select/Select";
+export { MultiSelect, type MultiSelectProps } from "./multi-select/MultiSelect";

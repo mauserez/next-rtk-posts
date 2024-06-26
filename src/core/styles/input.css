@@ -18,7 +18,18 @@ input:focus-visible,
 .mantine-Input-input:has(input:hover),
 .mantine-Input-input:has(input:focus) {
 	outline: none;
-	box-shadow: 0 0 7px #ddd !important;
+	box-shadow: 0 0 7px #ddd;
+}
+
+.mantine-Input-input:has(input[data-no-border]),
+input[data-no-border] {
+	border: none !important;
+}
+
+.mantine-Input-input:has(input[data-no-shadow]),
+input[data-no-shadow],
+input[data-no-shadow]:hover {
+	box-shadow: none !important;
 }
 
 .mantine-Input-wrapper {

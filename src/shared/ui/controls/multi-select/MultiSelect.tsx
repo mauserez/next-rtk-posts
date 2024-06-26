@@ -1,7 +1,10 @@
-import { Select as MSelect, SelectProps as MSelectProps } from "@mantine/core";
+import {
+	MultiSelect as MSelect,
+	MultiSelectProps as MSelectProps,
+} from "@mantine/core";
 
-export type SelectProps = MSelectProps;
-export const Select = (props: SelectProps) => {
+export type MultiSelectProps = MSelectProps;
+export const MultiSelect = (props: MultiSelectProps) => {
 	const {
 		withCheckIcon,
 		checkIconPosition = "right",

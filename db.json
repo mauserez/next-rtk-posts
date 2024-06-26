@@ -15,6 +15,13 @@
 			"password": 654321
 		}
 	],
+	"countryList": [
+		{ "value": "1", "label": "Russia" },
+		{ "value": "2", "label": "England" },
+		{ "value": "3", "label": "Germany" },
+		{ "value": "4", "label": "France" },
+		{ "value": "5", "label": "USA" }
+	],
 	"countries": [
 		{
 			"id": "1",

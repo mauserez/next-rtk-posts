@@ -3,3 +3,8 @@ export type CountryType = {
 	country: string;
 	lang: string;
 };
+
+export type CountryListType = {
+	value: string;
+	label: string;
+}[];

@@ -1,11 +1,13 @@
-import { CountryType } from "@/entities/country/types";
+import { CountryType, CountryListType } from "@/entities/country/types";
 import { backendApi } from "@/shared/axios/api";
 
 export const COUNTRIES_QUERY_KEY = "countries";
+export const COUNTRY_LIST_QUERY_KEY = "country-list";
 
-type GetPhotosOptions = {
-	limit?: number;
-	page?: number;
+export const getCountryList = async (): Promise<CountryListType> => {
+	return await backendApi.get("/countryList").then((response) => {
+		return response.data;
+	});
 };
 
 export const getAllCountries = async (): Promise<CountryType[]> => {
@@ -14,8 +16,13 @@ export const getAllCountries = async (): Promise<CountryType[]> => {
 	});
 };
 
+type GetPhotosOtions = {
+	limit?: number;
+	page?: number;
+};
+
 export const getPaginatedCountries = async (
-	options: GetPhotosOptions
+	options: GetPhotosOtions
 ): Promise<CountryType[]> => {
 	const { limit = 10, page = 1 } = options;
 
