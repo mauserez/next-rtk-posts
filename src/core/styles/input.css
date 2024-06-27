@@ -1,9 +1,9 @@
 input,
 .mantine-Input-input {
-	padding: 13px;
 	font-weight: 500;
 	font-size: 16px;
-	border: 1px solid var(--border-color);
+	--input-bd: var(--border-color);
+	--input-bd-focus: var(--border-color);
 }
 
 input::placeholder {
@@ -13,6 +13,7 @@ input::placeholder {
 input:hover,
 input:focus,
 input:focus-visible,
+input:focus-within,
 .mantine-Input-input:hover,
 .mantine-Input-wrapper:has(.mantine-Input-section:hover) > .mantine-Input-input,
 .mantine-Input-input:has(input:hover),
@@ -21,15 +22,15 @@ input:focus-visible,
 	box-shadow: 0 0 7px #ddd;
 }
 
-.mantine-Input-input:has(input[data-no-border]),
-input[data-no-border] {
-	border: none !important;
+.mantine-Input-input:has(input[data-no-border="true"]),
+input[data-no-border="true"] {
+	border: 1px solid transparent;
 }
 
-.mantine-Input-input:has(input[data-no-shadow]),
-input[data-no-shadow],
-input[data-no-shadow]:hover {
-	box-shadow: none !important;
+.mantine-Input-input:has(input[data-no-shadow="true"]),
+input[data-no-shadow="true"],
+input[data-no-shadow="true"]:hover {
+	box-shadow: none;
 }
 
 .mantine-Input-wrapper {

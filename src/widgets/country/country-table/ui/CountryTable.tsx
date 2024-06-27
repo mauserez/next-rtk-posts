@@ -34,13 +34,11 @@ export const CountryTable = () => {
 		placeholderData: keepPreviousData,
 	});
 
-	const { data: countryList, isLoading: isListLoading } = useQuery({
+	const { data: countryList } = useQuery({
 		queryKey: [COUNTRY_LIST_QUERY_KEY],
 		queryFn: async () => await getCountryList(),
 		placeholderData: keepPreviousData,
 	});
-
-	console.log(countryList);
 
 	return (
 		<DefaultTable<CountryType>

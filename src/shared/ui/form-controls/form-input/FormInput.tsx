@@ -6,7 +6,7 @@ import {
 	type FieldValues,
 } from "react-hook-form";
 
-import { Input, type InputProps } from "../../controls";
+import { Input, type InputProps } from "shared/ui/controls/inputs";
 
 export type FormInputProps<T extends FieldValues> = UseControllerProps<T> &
 	Omit<InputProps, "value" | "defaultValue">;

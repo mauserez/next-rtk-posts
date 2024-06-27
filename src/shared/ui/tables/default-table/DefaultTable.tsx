@@ -2,9 +2,11 @@
 
 import { Group, Paper, Stack } from "@mantine/core";
 import { Table, TableProps, Tbody, Thead, Tr, Th, Td } from "shared/ui/table";
-import { Input, MemoInput, Select, MultiSelect } from "shared/ui/controls";
+import { MemoInput } from "shared/ui/controls/inputs";
+import { MemoSelect, MemoMultiSelect } from "shared/ui/controls/selects";
 import { ButtonActionIcon } from "shared/ui/controls/buttons";
 import { BiSortAlt2, BiSortDown, BiSortUp } from "react-icons/bi";
+import { LuSearch } from "react-icons/lu";
 
 import {
 	FiChevronsLeft,
@@ -29,7 +31,6 @@ import {
 	PaginationState,
 } from "@tanstack/react-table";
 
-import { uid } from "@/shared/utils/number";
 import { cn } from "@/shared/utils/cn";
 import s from "./DefaultTable.module.css";
 
@@ -47,7 +48,7 @@ type DefaultTableProps<T> = {
 	isLoading?: boolean;
 	pageSize?: number;
 	filters?: Partial<Record<keyof T, TableFilterOptionsType>>;
-	withGlobalFilter: boolean;
+	withGlobalFilter?: boolean;
 } & TableProps;
 
 export const DefaultTable = <T,>(props: DefaultTableProps<T>) => {
@@ -106,14 +107,11 @@ export const DefaultTable = <T,>(props: DefaultTableProps<T>) => {
 				<Group>
 					{withGlobalFilter ? (
 						<MemoInput
-							size="sm"
-							data-no-border
-							data-no-shadow
+							leftSection={<LuSearch />}
 							onChange={(e) => setGlobalSearch(e.target.value)}
 							value={globalSearch}
 							className="max-w-[200px] m-4"
 							placeholder="Search"
-							withPlaceholderIcon
 						/>
 					) : null}
 				</Group>
@@ -145,10 +143,10 @@ export const DefaultTable = <T,>(props: DefaultTableProps<T>) => {
 													title={
 														header.column.getCanSort()
 															? header.column.getNextSortingOrder() === "asc"
-																? "От меньшего к большему"
+																? "Сортировка"
 																: header.column.getNextSortingOrder() === "desc"
-																? "От большего к меньшему"
-																: "Сброс сортировки"
+																? "От меньшего к большему"
+																: "От большего к меньшему"
 															: undefined
 													}
 												>
@@ -199,41 +197,12 @@ export const DefaultTable = <T,>(props: DefaultTableProps<T>) => {
 							</Tr>
 						))}
 					</Tbody>
-					{/* <MTable.Tfoot>
-					{table.getFooterGroups().map((footerGroup) => (
-						<MTable.Tr key={footerGroup.id}>
-							{footerGroup.headers.map((header) => (
-								<MTable.Th key={header.id} colSpan={header.colSpan}>
-									{header.isPlaceholder
-										? null
-										: flexRender(
-												header.column.columnDef.footer,
-												header.getContext()
-										  )}
-								</MTable.Th>
-							))}
-						</MTable.Tr>
-					))}
-				</MTable.Tfoot> */}
 				</Table>
 			</Paper>
 			<Paper className={cn(s.tableControlsWrap)}>
 				<Group className="p-8 pb-6" align="flex-end" justify="flex-end">
 					<Group gap="xs" align="flex-end">
-						{/* <Input
-							radius="sm"
-							size="sm"
-							className="w-[120px]"
-							label="К странице"
-							defaultValue={table.getState().pagination.pageIndex + 1}
-							onChange={(e) => {
-								const page = e.target.value ? Number(e.target.value) - 1 : 0;
-								table.setPageIndex(page);
-							}}
-							type="number"
-						/> */}
-
-						<Select
+						<MemoSelect
 							radius="sm"
 							size="sm"
 							className="w-[120px]"
@@ -323,9 +292,7 @@ function Filter<T>(props: FilterProps<T>) {
 		const colVal = !columnFilterValue ? "" : columnFilterValue.toString();
 
 		return (
-			<Input
-				data-no-border
-				data-no-shadow
+			<MemoInput
 				size="sm"
 				radius="sm"
 				defaultValue={colVal}
@@ -334,23 +301,27 @@ function Filter<T>(props: FilterProps<T>) {
 				label={label}
 				onChange={(e) => column.setFilterValue(e.target.value)}
 				placeholder={placeholder ?? "Search"}
+				noBorder
+				noShadow
 			/>
 		);
 	}
 
 	if (filter === "select") {
 		return (
-			<Select
-				data-no-border
-				data-no-shadow
+			<MemoSelect
 				size="sm"
 				radius="sm"
+				searchable
+				clearable
 				className={cn("w-auto max-w-[300px]", filterClassName)}
-				classNames={{ input: cn("p-0") }}
+				classNames={{ input: "flex items-center p-0" }}
 				onChange={(value) => column.setFilterValue(value)}
 				label={label}
 				data={list}
 				placeholder={placeholder}
+				noBorder
+				noShadow
 			/>
 		);
 	}
@@ -366,20 +337,21 @@ function Filter<T>(props: FilterProps<T>) {
 		}
 
 		return (
-			<MultiSelect
-				data-no-border
-				data-no-shadow
-				size="sm"
-				radius="sm"
-				className={cn("w-auto max-w-[300px]", filterClassName)}
-				classNames={{ input: "p-0" }}
+			<MemoMultiSelect
 				onChange={(value) => {
-					console.log(value);
 					column.setFilterValue(value);
 				}}
 				label={label}
+				size="sm"
+				radius="sm"
+				comboboxProps={{ offset: 10 }}
+				className={cn("w-auto max-w-[300px]", filterClassName)}
+				classNames={{ input: "flex items-center p-0" }}
+				searchable
 				data={ls}
 				placeholder={placeholder}
+				noBorder
+				noShadow
 			/>
 		);
 	}

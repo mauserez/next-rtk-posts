@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, useRef } from "react";
+import { memo, useRef } from "react";
 import { Group, PasswordInput, PasswordInputProps } from "@mantine/core";
 
 import { useDisclosure } from "@mantine/hooks";
@@ -8,10 +8,9 @@ import { useDisclosure } from "@mantine/hooks";
 import { LuSearch } from "react-icons/lu";
 import { MdClear, MdVisibility, MdVisibilityOff } from "react-icons/md";
 
-import { ExtraInputProps } from "@/shared/ui/controls";
+import { ExtraInputProps } from "@/shared/ui/controls/inputs";
 import { clearInput } from "@/shared/utils/input";
 import { cn } from "@/shared/utils/cn";
-import s from "@/shared/ui/controls/input/Input.module.css";
 
 export type InputPasswordProps = PasswordInputProps & ExtraInputProps;
 
@@ -23,36 +22,43 @@ export const InputPassword = (props: InputPasswordProps) => {
 		withPlaceholderIcon = false,
 		placeholderIcon,
 		clearIcon,
-		onChange,
+		clearable = true,
+		isSearch = false,
 		value,
 		size = "md",
 		leftSection,
+		leftSectionWidth,
 		rightSection,
-		rightSectionWidth = "61px",
+		rightSectionWidth,
 		...restProps
 	} = props;
 
-	const plcIcon = withPlaceholderIcon ? <LuSearch /> : placeholderIcon;
 	const clIcon = !clearIcon ? <MdClear /> : clearIcon;
 	const inputRef = useRef<HTMLInputElement>(null);
-
-	const valueChange = (e: ChangeEvent<HTMLInputElement>) => {
-		onChange?.(e);
-	};
 
 	const clearValue = () => {
 		clearInput(inputRef);
 	};
 
-	const clearIconContent = value?.trim() ? (
-		<div className="cursor-pointer" onClick={clearValue}>
-			{clIcon}
-		</div>
-	) : null;
+	const leftSectionContent =
+		isSearch || leftSection ? (
+			<Group
+				onClick={() => inputRef.current?.focus()}
+				justify="flex-start"
+				wrap="nowrap"
+				gap="6px"
+			>
+				{isSearch ? <LuSearch /> : null}
+				{leftSection}
+			</Group>
+		) : null;
 
-	const plcIconContent = !value?.trim() ? (
-		<div onClick={() => inputRef.current?.focus()}>{plcIcon}</div>
-	) : null;
+	const clearIconContent =
+		value?.toString().trim() && clearable ? (
+			<div className="cursor-pointer" onClick={clearValue}>
+				{clIcon}
+			</div>
+		) : null;
 
 	const visibilityIconContent = (
 		<div className="cursor-pointer" onClick={toggle}>
@@ -63,8 +69,7 @@ export const InputPassword = (props: InputPasswordProps) => {
 	const rightSectionContent = (
 		<Group
 			onClick={() => inputRef.current?.focus()}
-			className={cn("w-full h-full pr-[13px]")}
-			justify="flex-end"
+			justify="center"
 			wrap="nowrap"
 			gap="6px"
 		>
@@ -74,26 +79,21 @@ export const InputPassword = (props: InputPasswordProps) => {
 		</Group>
 	);
 
-	const rightSectionPadding = `${rightSectionWidth}`;
-
 	return (
 		<PasswordInput
+			value={value}
 			size={size}
-			styles={{ "input": { paddingRight: rightSectionPadding } }}
-			visible={visible}
 			ref={inputRef}
 			spellCheck={false}
-			value={value}
-			onChange={valueChange}
-			leftSection={plcIcon ? plcIconContent : leftSection}
-			rightSectionWidth={rightSectionWidth}
+			leftSectionWidth={leftSectionContent ? leftSectionWidth : 0}
+			leftSection={leftSectionContent}
+			rightSectionWidth={rightSectionContent ? rightSectionWidth : 0}
 			rightSection={rightSectionContent}
-			className={cn(
-				{ [s.withPlaceholderIcon]: withPlaceholderIcon },
-				"w-full",
-				className
-			)}
+			className={cn("w-full", className)}
+			visible={visible}
 			{...restProps}
 		/>
 	);
 };
+
+export const MemoInputPassword = memo(InputPassword) as typeof InputPassword;
