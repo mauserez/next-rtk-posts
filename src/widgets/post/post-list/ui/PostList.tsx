@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { SectionTitle } from "@/shared/ui";
-import { Button, ButtonGroup } from "@/shared/ui/controls/buttons";
+import { SectionTitle } from "shared/ui";
+import { Button } from "shared/ui/controls/buttons";
+import { ButtonGroup } from "shared/ui/controls/button-group/ButtonGroup";
 import { Grid, Group, Skeleton, Stack } from "@mantine/core";
 
 import { POSTS_QUERY_KEY, getPosts } from "api/post";

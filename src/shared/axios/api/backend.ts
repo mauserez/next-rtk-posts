@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getServerSession } from "next-auth";
 import { getSession } from "next-auth/react";
 
 export const instance = axios.create({
@@ -7,7 +8,7 @@ export const instance = axios.create({
 });
 
 instance.interceptors.request.use(async (request) => {
-	const session = await getSession();
+	const session = await getServerSession();
 
 	if (!session?.user) {
 		return request;

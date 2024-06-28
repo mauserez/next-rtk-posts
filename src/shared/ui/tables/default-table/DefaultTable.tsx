@@ -65,6 +65,7 @@ export const DefaultTable = <T,>(props: DefaultTableProps<T>) => {
 		withGlobalFilter = true,
 	} = props;
 
+	const [columnVisibility, setColumnVisibility] = useState({});
 	const [globalSearch, setGlobalSearch] = useState("");
 	const [sorting, setSorting] = useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -86,16 +87,20 @@ export const DefaultTable = <T,>(props: DefaultTableProps<T>) => {
 		onSortingChange: setSorting,
 		onPaginationChange: setPagination,
 		onGlobalFilterChange: setGlobalSearch,
+		onColumnVisibilityChange: setColumnVisibility,
 		globalFilterFn: "includesString",
 		state: {
-			globalFilter: globalSearch,
+			columnVisibility,
 			columnFilters,
+			globalFilter: globalSearch,
 			sorting,
 			pagination,
 		},
 	});
 
 	const headerGroups = table.getHeaderGroups();
+
+	console.log(table.getAllLeafColumns());
 
 	if (isLoading) {
 		return "loading";
@@ -273,9 +278,9 @@ export const DefaultTable = <T,>(props: DefaultTableProps<T>) => {
 
 type FilterProps<T> = {
 	column: Column<any, unknown>;
+	withDefaultFilters: boolean;
 	filterOptions?: TableFilterOptionsType;
 	withLabel?: boolean;
-	withDefaultFilters: boolean;
 };
 
 function Filter<T>(props: FilterProps<T>) {
