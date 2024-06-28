@@ -9,28 +9,22 @@ input,
 input::placeholder {
 	color: var(--color-secondary);
 }
-
-input:hover,
-input:focus,
-input:focus-visible,
-input:focus-within,
-.mantine-Input-input:hover,
 .mantine-Input-wrapper:has(.mantine-Input-section:hover) > .mantine-Input-input,
-.mantine-Input-input:has(input:hover),
-.mantine-Input-input:has(input:focus) {
+.mantine-Input-wrapper:has(input:hover) > .mantine-Input-input,
+.mantine-Input-wrapper:has(input:focus) > .mantine-Input-input {
 	outline: none;
 	box-shadow: 0 0 7px #ddd;
 }
 
 .mantine-Input-input:has(input[data-no-border="true"]),
 input[data-no-border="true"] {
-	border: 1px solid transparent;
+	border: 1px solid transparent !important;
 }
 
 .mantine-Input-input:has(input[data-no-shadow="true"]),
 input[data-no-shadow="true"],
 input[data-no-shadow="true"]:hover {
-	box-shadow: none;
+	box-shadow: none !important;
 }
 
 .mantine-Input-wrapper {

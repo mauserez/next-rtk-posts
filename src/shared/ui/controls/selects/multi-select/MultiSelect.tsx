@@ -18,14 +18,14 @@ export const MultiSelect = (props: MultiSelectProps) => {
 		data = [],
 		onChange,
 		classNames,
-		comboboxProps = { shadow: "lg" },
 		noBorder = false,
 		noShadow = false,
 		...restProps
 	} = props;
 
 	const [currentValue, setCurrentValue] = useState<string[]>([]);
-	const hiddenClass = currentValue.length > 0 ? "hidden" : "";
+	const hiddenClass =
+		currentValue.length > 0 ? "min-w-0 w-0 placeholder:invisible" : "";
 
 	return (
 		<MSelect
@@ -38,7 +38,6 @@ export const MultiSelect = (props: MultiSelectProps) => {
 			classNames={{ ...classNames, inputField: `${hiddenClass}` }}
 			withCheckIcon={withCheckIcon}
 			checkIconPosition={checkIconPosition}
-			comboboxProps={comboboxProps}
 			data-no-border={noBorder}
 			data-no-shadow={noShadow}
 			{...restProps}

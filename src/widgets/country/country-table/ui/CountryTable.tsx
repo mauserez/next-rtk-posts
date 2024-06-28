@@ -42,20 +42,21 @@ export const CountryTable = () => {
 
 	return (
 		<DefaultTable<CountryType>
-			filters={{
+			colFilters={{
 				lang: {
-					filter: "input",
+					filter: "select",
 				},
 				country: {
 					filter: "multiselect",
-					placeholder: "All countries",
-					list: countryList,
+					placeholder: "Choose country",
+					//list: countryList,
 				},
 			}}
 			className="max-h-[600px]"
 			isLoading={isLoading}
 			data={countries ?? []}
 			columns={columns}
+			withDefaultFilters
 		/>
 	);
 };

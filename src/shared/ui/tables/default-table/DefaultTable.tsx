@@ -15,11 +15,12 @@ import {
 	FiChevronRight,
 } from "react-icons/fi";
 
-import { useState, memo } from "react";
+import { memo, useMemo, useState } from "react";
 import {
 	Column,
 	getCoreRowModel,
 	getFacetedRowModel,
+	getFacetedUniqueValues,
 	getFilteredRowModel,
 	getSortedRowModel,
 	getPaginationRowModel,
@@ -47,7 +48,8 @@ type DefaultTableProps<T> = {
 	columns: ColumnDef<T>[];
 	isLoading?: boolean;
 	pageSize?: number;
-	filters?: Partial<Record<keyof T, TableFilterOptionsType>>;
+	colFilters?: Partial<Record<keyof T, TableFilterOptionsType>>;
+	withDefaultFilters?: boolean;
 	withGlobalFilter?: boolean;
 } & TableProps;
 
@@ -58,7 +60,8 @@ export const DefaultTable = <T,>(props: DefaultTableProps<T>) => {
 		isLoading = false,
 		pageSize = 10,
 		className,
-		filters,
+		colFilters,
+		withDefaultFilters = true,
 		withGlobalFilter = true,
 	} = props;
 
@@ -76,6 +79,7 @@ export const DefaultTable = <T,>(props: DefaultTableProps<T>) => {
 		getCoreRowModel: getCoreRowModel(),
 		getFilteredRowModel: getFilteredRowModel(),
 		getFacetedRowModel: getFacetedRowModel(),
+		getFacetedUniqueValues: getFacetedUniqueValues(),
 		getSortedRowModel: getSortedRowModel(),
 		getPaginationRowModel: getPaginationRowModel(),
 		onColumnFiltersChange: setColumnFilters,
@@ -110,7 +114,7 @@ export const DefaultTable = <T,>(props: DefaultTableProps<T>) => {
 							leftSection={<LuSearch />}
 							onChange={(e) => setGlobalSearch(e.target.value)}
 							value={globalSearch}
-							className="max-w-[200px] m-4"
+							className="max-w-[200px] m-6 mb-2"
 							placeholder="Search"
 						/>
 					) : null}
@@ -174,8 +178,9 @@ export const DefaultTable = <T,>(props: DefaultTableProps<T>) => {
 															</div>
 														</Group>
 														<MemoFilter
+															withDefaultFilters={withDefaultFilters}
 															column={header.column}
-															filterOptions={filters?.[id]}
+															filterOptions={colFilters?.[id]}
 														/>
 													</Stack>
 												</div>
@@ -270,16 +275,17 @@ type FilterProps<T> = {
 	column: Column<any, unknown>;
 	filterOptions?: TableFilterOptionsType;
 	withLabel?: boolean;
+	withDefaultFilters: boolean;
 };
 
 function Filter<T>(props: FilterProps<T>) {
-	const { column, filterOptions, withLabel = false } = props;
-
-	if (!filterOptions) {
-		return null;
-	}
-
-	const { filter, filterClassName, placeholder, list = [] } = filterOptions;
+	console.log("rerender");
+	const {
+		column,
+		filterOptions,
+		withLabel = false,
+		withDefaultFilters = false,
+	} = props;
 
 	const columnFilterValue = column.getFilterValue();
 
@@ -287,6 +293,38 @@ function Filter<T>(props: FilterProps<T>) {
 		? ""
 		: column.columnDef.header.toString();
 	label = withLabel ? label : "";
+
+	const sortedUniqueValues = useMemo(() => {
+		const uniqueValues = withDefaultFilters
+			? column.getFacetedUniqueValues()
+			: [];
+		return Array.from(uniqueValues.keys()).sort().slice(0, 5000);
+	}, [withDefaultFilters, column]);
+
+	if (!filterOptions && withDefaultFilters) {
+		const colVal = !columnFilterValue ? "" : columnFilterValue.toString();
+
+		return (
+			<MemoInput
+				size="sm"
+				radius="sm"
+				defaultValue={colVal}
+				className={cn("w-auto p-0")}
+				classNames={{ input: cn("p-0") }}
+				label={label}
+				onChange={(e) => column.setFilterValue(e.target.value)}
+				placeholder={"Search"}
+				noBorder
+				noShadow
+			/>
+		);
+	}
+
+	if (!filterOptions) {
+		return null;
+	}
+
+	const { filter, filterClassName, placeholder, list = [] } = filterOptions;
 
 	if (filter === "input") {
 		const colVal = !columnFilterValue ? "" : columnFilterValue.toString();
@@ -296,7 +334,7 @@ function Filter<T>(props: FilterProps<T>) {
 				size="sm"
 				radius="sm"
 				defaultValue={colVal}
-				className={cn("w-auto p-0=max-w-[300px]", filterClassName)}
+				className={cn("w-full p-0", filterClassName)}
 				classNames={{ input: cn("p-0") }}
 				label={label}
 				onChange={(e) => column.setFilterValue(e.target.value)}
@@ -307,27 +345,13 @@ function Filter<T>(props: FilterProps<T>) {
 		);
 	}
 
-	if (filter === "select") {
-		return (
-			<MemoSelect
-				size="sm"
-				radius="sm"
-				searchable
-				clearable
-				className={cn("w-auto max-w-[300px]", filterClassName)}
-				classNames={{ input: "flex items-center p-0" }}
-				onChange={(value) => column.setFilterValue(value)}
-				label={label}
-				data={list}
-				placeholder={placeholder}
-				noBorder
-				noShadow
-			/>
-		);
+	let ls = [];
+
+	if (withDefaultFilters && list.length === 0) {
+		ls = sortedUniqueValues;
 	}
 
-	if (filter === "multiselect") {
-		let ls = [];
+	if (withDefaultFilters && list.length > 0) {
 		for (const l of list) {
 			if (typeof l === "string") {
 				ls.push(l);
@@ -335,7 +359,28 @@ function Filter<T>(props: FilterProps<T>) {
 				ls.push(l.label);
 			}
 		}
+	}
 
+	if (filter === "select") {
+		return (
+			<MemoSelect
+				size="sm"
+				radius="sm"
+				searchable
+				clearable
+				className={cn("w-full", filterClassName)}
+				classNames={{ input: "flex items-center p-0" }}
+				onChange={(value) => column.setFilterValue(value)}
+				label={label}
+				data={ls}
+				placeholder={placeholder ?? "Choose"}
+				noBorder
+				noShadow
+			/>
+		);
+	}
+
+	if (filter === "multiselect") {
 		return (
 			<MemoMultiSelect
 				onChange={(value) => {
@@ -345,11 +390,12 @@ function Filter<T>(props: FilterProps<T>) {
 				size="sm"
 				radius="sm"
 				comboboxProps={{ offset: 10 }}
-				className={cn("w-auto max-w-[300px]", filterClassName)}
+				className={cn("w-full", filterClassName)}
 				classNames={{ input: "flex items-center p-0" }}
 				searchable
+				clearable
 				data={ls}
-				placeholder={placeholder}
+				placeholder={placeholder ?? "Choose"}
 				noBorder
 				noShadow
 			/>
