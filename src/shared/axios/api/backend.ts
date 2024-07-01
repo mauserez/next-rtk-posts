@@ -10,9 +10,11 @@ export const instance = axios.create({
 instance.interceptors.request.use(async (request) => {
 	const session = await getServerSession();
 
+	console.log(session);
 	if (!session?.user) {
 		return request;
 	}
+
 	//request.headers["Authorization"] = `Bearer ${session.user.name}`;
 	//request.headers["cache"] = `force-cache`;
 

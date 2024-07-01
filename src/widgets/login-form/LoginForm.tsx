@@ -7,7 +7,12 @@ import { signIn } from "next-auth/react";
 import { Form, useForm } from "react-hook-form";
 
 import { Button } from "@/shared/ui/controls/buttons";
-import { FormInput, FormInputPassword } from "@/shared/ui/form-controls";
+import {
+	FormInput,
+	FormInputPassword,
+	FormMultiSelect,
+	FormCheckbox,
+} from "@/shared/ui/form-controls";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -18,6 +23,8 @@ import { cn } from "@/shared/utils/cn";
 const validationSchema = yup.object({
 	username: yup.string().required("Введите логин").min(4).email(),
 	password: yup.string().required("Введите пароль").min(6),
+	test: yup.array(),
+	accepted: yup.boolean(),
 });
 
 type LoginFormProps = ComponentProps<"form">;
@@ -34,6 +41,8 @@ export const LoginForm = (props: LoginFormProps) => {
 		defaultValues: {
 			username: "",
 			password: "",
+			test: [],
+			accepted: false,
 		},
 	});
 
@@ -43,6 +52,8 @@ export const LoginForm = (props: LoginFormProps) => {
 			control={control}
 			onChange={() => setErrorText("")}
 			onSubmit={async ({ data }) => {
+				console.log(data);
+
 				setLoading(true);
 				const credentials = {
 					username: data.username,
@@ -77,6 +88,22 @@ export const LoginForm = (props: LoginFormProps) => {
 				type="password"
 				placeholder="Введите пароль"
 				name="password"
+				control={control}
+			/>
+			<FormMultiSelect
+				control={control}
+				data={[
+					{ value: "1", label: "React" },
+					{ value: "2", label: "Vue" },
+				]}
+				name="test"
+				label="Мультиселект"
+			/>
+
+			<FormCheckbox
+				className="justify-center"
+				label="Согласен со всем"
+				name="accepted"
 				control={control}
 			/>
 

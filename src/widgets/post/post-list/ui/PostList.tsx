@@ -29,7 +29,7 @@ export const Posts = (props: PostsProps) => {
 	];
 
 	const options = {
-		user: userFilter as number,
+		user: Number(userFilter),
 		title: title,
 	};
 

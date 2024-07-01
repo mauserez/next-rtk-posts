@@ -33,7 +33,7 @@ import {
 } from "@tanstack/react-table";
 
 import { cn } from "@/shared/utils/cn";
-import s from "./DefaultTable.module.css";
+import s from "./DataTable.module.css";
 
 type TableFilterType = "select" | "multiselect" | "input" | "checkbox";
 type TableFilterOptionsType = {
@@ -43,7 +43,7 @@ type TableFilterOptionsType = {
 	list?: { value: string; label: string }[] | string[];
 };
 
-type DefaultTableProps<T> = {
+type DataTableProps<T> = {
 	data: T[];
 	columns: ColumnDef<T>[];
 	isLoading?: boolean;
@@ -53,7 +53,7 @@ type DefaultTableProps<T> = {
 	withGlobalFilter?: boolean;
 } & TableProps;
 
-export const DefaultTable = <T,>(props: DefaultTableProps<T>) => {
+export const DataTable = <T,>(props: DataTableProps<T>) => {
 	const {
 		data,
 		columns,

@@ -4,6 +4,8 @@ import {
 	MultiSelectProps as MSelectProps,
 } from "@mantine/core";
 
+import { cn } from "@/shared/utils/cn";
+
 export type MultiSelectExtraProps = {
 	noBorder?: boolean;
 	noShadow?: boolean;
@@ -14,6 +16,7 @@ export const MultiSelect = (props: MultiSelectProps) => {
 	const {
 		withCheckIcon,
 		checkIconPosition = "right",
+		className,
 		size = "md",
 		data = [],
 		onChange,
@@ -25,7 +28,7 @@ export const MultiSelect = (props: MultiSelectProps) => {
 
 	const [currentValue, setCurrentValue] = useState<string[]>([]);
 	const hiddenClass =
-		currentValue.length > 0 ? "min-w-0 w-0 placeholder:invisible" : "";
+		currentValue.length > 0 ? "/* min-w-0 w-0 placeholder:invisible */" : "";
 
 	return (
 		<MSelect
@@ -35,6 +38,7 @@ export const MultiSelect = (props: MultiSelectProps) => {
 				onChange?.(value);
 				setCurrentValue(value);
 			}}
+			className={cn("w-full", className)}
 			classNames={{ ...classNames, inputField: `${hiddenClass}` }}
 			withCheckIcon={withCheckIcon}
 			checkIconPosition={checkIconPosition}

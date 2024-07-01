@@ -6,12 +6,12 @@ import {
 	type FieldValues,
 } from "react-hook-form";
 
-import { MultiSelect, type MultiSelectProps } from "shared/ui/controls/selects";
+import { Checkbox, type CheckboxProps } from "shared/ui/controls/checkboxes";
 
-export type FormMultiSelectProps<T extends FieldValues> =
-	UseControllerProps<T> & Omit<MultiSelectProps, "value" | "defaultValue">;
+export type FormCheckboxProps<T extends FieldValues> = UseControllerProps<T> &
+	Omit<CheckboxProps, "value" | "defaultValue">;
 
-export function FormMultiSelect<T extends FieldValues>({
+export function FormCheckbox<T extends FieldValues>({
 	name,
 	control,
 	defaultValue,
@@ -19,7 +19,7 @@ export function FormMultiSelect<T extends FieldValues>({
 	shouldUnregister,
 	onChange,
 	...props
-}: FormMultiSelectProps<T>) {
+}: FormCheckboxProps<T>) {
 	const {
 		field: { value, onChange: fieldOnChange, ref, ...field },
 		fieldState,
@@ -32,11 +32,11 @@ export function FormMultiSelect<T extends FieldValues>({
 	});
 
 	return (
-		<MultiSelect
+		<Checkbox
 			value={value}
-			onChange={(value) => {
-				fieldOnChange(value);
-				onChange?.(value);
+			onChange={(e) => {
+				fieldOnChange(e);
+				onChange?.(e);
 			}}
 			error={fieldState.error?.message}
 			{...field}

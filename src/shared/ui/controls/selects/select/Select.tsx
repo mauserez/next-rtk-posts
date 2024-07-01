@@ -1,5 +1,6 @@
-import { memo, useState } from "react";
+import { memo } from "react";
 import { Select as MSelect, SelectProps as MSelectProps } from "@mantine/core";
+import { cn } from "@/shared/utils/cn";
 
 export type SelectExtraProps = {
 	noBorder?: boolean;
@@ -13,6 +14,7 @@ export const Select = (props: SelectProps) => {
 		noShadow = false,
 		withCheckIcon,
 		checkIconPosition = "right",
+		className,
 		onChange,
 		size = "md",
 		data = [],
@@ -26,6 +28,7 @@ export const Select = (props: SelectProps) => {
 			onChange={(value, option) => {
 				onChange?.(value, option);
 			}}
+			className={cn("w-full", className)}
 			withCheckIcon={withCheckIcon}
 			checkIconPosition={checkIconPosition}
 			data-no-border={noBorder}

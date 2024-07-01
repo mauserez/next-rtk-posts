@@ -1,0 +1,5 @@
+.mantine-Checkbox-body {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
