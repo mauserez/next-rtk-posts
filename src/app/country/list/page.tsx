@@ -11,8 +11,6 @@ export default async function CountryList() {
 		queryFn: getAllCountries,
 	});
 
-	console.log(queryClient);
-
 	return (
 		<HydrationBoundary state={dehydrate(queryClient)}>
 			<PageLayout>

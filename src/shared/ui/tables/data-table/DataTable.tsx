@@ -2,7 +2,7 @@
 
 import { Group, Paper, Stack } from "@mantine/core";
 import { Table, TableProps, Tbody, Thead, Tr, Th, Td } from "shared/ui/table";
-import { MemoInput } from "shared/ui/controls/inputs";
+import { MemoTextInput } from "shared/ui/controls/inputs";
 import { MemoSelect, MemoMultiSelect } from "shared/ui/controls/selects";
 import { ButtonActionIcon } from "shared/ui/controls/buttons";
 import { BiSortAlt2, BiSortDown, BiSortUp } from "react-icons/bi";
@@ -100,8 +100,6 @@ export const DataTable = <T,>(props: DataTableProps<T>) => {
 
 	const headerGroups = table.getHeaderGroups();
 
-	console.log(table.getAllLeafColumns());
-
 	if (isLoading) {
 		return "loading";
 	}
@@ -115,7 +113,7 @@ export const DataTable = <T,>(props: DataTableProps<T>) => {
 			<Paper className={cn(s.tableWrap, "overflow-auto")}>
 				<Group>
 					{withGlobalFilter ? (
-						<MemoInput
+						<MemoTextInput
 							leftSection={<LuSearch />}
 							onChange={(e) => setGlobalSearch(e.target.value)}
 							value={globalSearch}
@@ -284,7 +282,6 @@ type FilterProps<T> = {
 };
 
 function Filter<T>(props: FilterProps<T>) {
-	console.log("rerender");
 	const {
 		column,
 		filterOptions,
@@ -310,7 +307,7 @@ function Filter<T>(props: FilterProps<T>) {
 		const colVal = !columnFilterValue ? "" : columnFilterValue.toString();
 
 		return (
-			<MemoInput
+			<MemoTextInput
 				size="sm"
 				radius="sm"
 				defaultValue={colVal}
@@ -319,8 +316,7 @@ function Filter<T>(props: FilterProps<T>) {
 				label={label}
 				onChange={(e) => column.setFilterValue(e.target.value)}
 				placeholder={"Search"}
-				noBorder
-				noShadow
+				variant="unstyled"
 			/>
 		);
 	}
@@ -335,7 +331,7 @@ function Filter<T>(props: FilterProps<T>) {
 		const colVal = !columnFilterValue ? "" : columnFilterValue.toString();
 
 		return (
-			<MemoInput
+			<MemoTextInput
 				size="sm"
 				radius="sm"
 				defaultValue={colVal}
@@ -344,8 +340,7 @@ function Filter<T>(props: FilterProps<T>) {
 				label={label}
 				onChange={(e) => column.setFilterValue(e.target.value)}
 				placeholder={placeholder ?? "Search"}
-				noBorder
-				noShadow
+				variant="unstyled"
 			/>
 		);
 	}
@@ -379,8 +374,7 @@ function Filter<T>(props: FilterProps<T>) {
 				label={label}
 				data={ls}
 				placeholder={placeholder ?? "Choose"}
-				noBorder
-				noShadow
+				variant="unstyled"
 			/>
 		);
 	}
@@ -401,8 +395,7 @@ function Filter<T>(props: FilterProps<T>) {
 				clearable
 				data={ls}
 				placeholder={placeholder ?? "Choose"}
-				noBorder
-				noShadow
+				variant="unstyled"
 			/>
 		);
 	}

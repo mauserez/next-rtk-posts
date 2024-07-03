@@ -7,14 +7,14 @@ import {
 } from "react-hook-form";
 
 import {
-	InputPassword,
-	type InputPasswordProps,
+	PasswordInput,
+	type PasswordInputProps,
 } from "@/shared/ui/controls/inputs";
 
 export type FormInputProps<T extends FieldValues> = UseControllerProps<T> &
-	Omit<InputPasswordProps, "value" | "defaultValue">;
+	Omit<PasswordInputProps, "value" | "defaultValue">;
 
-export function FormInputPassword<T extends FieldValues>({
+export function FormPasswordInput<T extends FieldValues>({
 	name,
 	control,
 	defaultValue,
@@ -35,7 +35,7 @@ export function FormInputPassword<T extends FieldValues>({
 	});
 
 	return (
-		<InputPassword
+		<PasswordInput
 			value={value}
 			onChange={(e) => {
 				fieldOnChange(e);

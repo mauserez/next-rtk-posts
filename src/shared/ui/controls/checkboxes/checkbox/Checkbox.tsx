@@ -1,4 +1,3 @@
-import { cn } from "@/shared/utils/cn";
 import {
 	InputLabel,
 	Checkbox as MCheckbox,
@@ -6,8 +5,12 @@ import {
 	type CheckboxProps as MCheckboxProps,
 } from "@mantine/core";
 
+import { cn } from "@/shared/utils/cn";
+
 export type CheckboxProps = MCheckboxProps & {
 	verticalLabel?: boolean;
+	bodyClassName?: string;
+	labelClassName?: string;
 };
 
 export const Checkbox = (props: CheckboxProps) => {
@@ -17,6 +20,8 @@ export const Checkbox = (props: CheckboxProps) => {
 		verticalLabel = false,
 		label,
 		className,
+		bodyClassName,
+		labelClassName,
 		...restProps
 	} = props;
 
@@ -24,7 +29,11 @@ export const Checkbox = (props: CheckboxProps) => {
 
 	const checkbox = (
 		<MCheckbox
-			className={cn("w-full")}
+			classNames={{
+				body: cn("flex gap-3", bodyClassName),
+				label: cn("pl-0", labelClassName),
+			}}
+			className={cn(`w-full flex`, className)}
 			color="violet"
 			label={horizontalLabel}
 			size={size}

@@ -2,9 +2,10 @@
 
 import { Group } from "@mantine/core";
 import { Checkbox } from "@/shared/ui/controls/checkboxes";
-import { Input } from "@/shared/ui/controls/inputs";
+import { TextInput } from "@/shared/ui/controls/inputs";
 import { DataTable } from "shared/ui/tables";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useState, ChangeEvent } from "react";
 
 import {
 	getAllCountries,
@@ -30,11 +31,6 @@ export const CountryTable = () => {
 
 	return (
 		<>
-			<Group>
-				<Checkbox verticalLabel className="flex-1" label="Yes/No" />
-				<Input className="flex-1 max-w-[200px]" label="Hello" />
-			</Group>
-
 			<DataTable<CountryType>
 				colFilters={{
 					lang: {

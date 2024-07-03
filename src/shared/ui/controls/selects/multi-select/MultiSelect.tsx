@@ -27,8 +27,7 @@ export const MultiSelect = (props: MultiSelectProps) => {
 	} = props;
 
 	const [currentValue, setCurrentValue] = useState<string[]>([]);
-	const hiddenClass =
-		currentValue.length > 0 ? "/* min-w-0 w-0 placeholder:invisible */" : "";
+	const hiddenClass = currentValue.length > 0 ? "" : "";
 
 	return (
 		<MSelect

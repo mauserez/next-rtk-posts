@@ -1,30 +1,27 @@
 "use client";
 
-import { mergeRefs } from "@mantine/hooks";
-import { forwardRef, type Ref } from "react";
 import {
 	useController,
 	type UseControllerProps,
 	type FieldValues,
 } from "react-hook-form";
 
-import { Input, type InputProps } from "shared/ui/controls/inputs";
+import { TextInput, type TextInputProps } from "shared/ui/controls/inputs";
 
-export type FormInputProps<T extends FieldValues> = UseControllerProps<T> &
-	Omit<InputProps, "value" | "defaultValue"> & { myRef?: Ref<unknown> };
+export type FormTextInputProps<T extends FieldValues> = UseControllerProps<T> &
+	Omit<TextInputProps, "value" | "defaultValue">;
 
-export function FormInput<T extends FieldValues>({
+export function FormTextInput<T extends FieldValues>({
 	name,
 	control,
 	defaultValue,
 	rules,
 	shouldUnregister,
-	myRef,
 	onChange,
 	...props
-}: FormInputProps<T>) {
+}: FormTextInputProps<T>) {
 	const {
-		field: { value, onChange: fieldOnChange, ref: hookRef, ...field },
+		field: { value, onChange: fieldOnChange, ref, ...field },
 		fieldState,
 	} = useController<T>({
 		name,
@@ -35,8 +32,7 @@ export function FormInput<T extends FieldValues>({
 	});
 
 	return (
-		<Input
-			ref={myRef}
+		<TextInput
 			value={value}
 			onChange={(e) => {
 				fieldOnChange(e);

@@ -1,6 +1,6 @@
 "use client";
 
-import { Input } from "@/shared/ui/controls/inputs";
+import { TextInput } from "@/shared/ui/controls/inputs";
 import { Stack, Group } from "@mantine/core";
 import { Albums } from "@/widgets/album/album-list/ui/AlbumList";
 import { Posts } from "@/widgets/post/post-list/ui/PostList";
@@ -16,7 +16,7 @@ export default function Home() {
 		<ProfileLayout>
 			<Stack gap={48}>
 				<Group>
-					<Input
+					<TextInput
 						isSearch
 						className="max-w-[320px]"
 						value={searchString}
