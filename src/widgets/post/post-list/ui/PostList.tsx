@@ -8,9 +8,9 @@ import { ButtonGroup } from "shared/ui/controls/button-group/ButtonGroup";
 import { Grid, Group, Skeleton, Stack } from "@mantine/core";
 
 import { POSTS_QUERY_KEY, getPosts } from "api/post";
-import { PostType } from "@/entities/post/types";
-import { PostListItem } from "@/entities/post/post-list-item/ui/PostListItem";
-import { PrimitiveType } from "@/shared/types";
+import { PostType } from "entities/post/types";
+import { PostListItem } from "entities/post/post-list-item/ui/PostListItem";
+import { PrimitiveType } from "shared/types";
 
 import s from "./PostList.module.css";
 

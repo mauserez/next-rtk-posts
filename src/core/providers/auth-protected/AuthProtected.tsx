@@ -12,7 +12,7 @@ import { cn } from "@/shared/utils/cn";
 import s from "./AuthProtected.module.css";
 import { useSession } from "next-auth/react";
 
-const protectedRoutes = ["/albums", "/posts"];
+const protectedRoutes = ["/albums", "/posts", "/country"];
 
 type AuthProtectedProps = { children: ReactNode };
 

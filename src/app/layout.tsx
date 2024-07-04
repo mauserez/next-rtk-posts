@@ -19,7 +19,7 @@ export default function RootLayout({
 	return (
 		<html suppressHydrationWarning={true} lang="en">
 			<head>
-				<ColorSchemeScript />
+				{/* <ColorSchemeScript /> */}
 				<link rel="shortcut icon" href="/favicon.svg" />
 				<meta
 					name="viewport"

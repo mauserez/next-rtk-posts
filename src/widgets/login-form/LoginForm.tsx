@@ -137,13 +137,13 @@ export const LoginForm = (props: LoginFormProps) => {
 				}
 			}}
 		>
-			<FormInput
-				myRef={phoneMaskRef}
+			{/* <FormInput
+				inputRef={phoneMaskRef}
 				label="Label"
 				name="phone"
 				control={control}
 			/>
-
+ */}
 			<Input
 				label="Phone"
 				type="tel"

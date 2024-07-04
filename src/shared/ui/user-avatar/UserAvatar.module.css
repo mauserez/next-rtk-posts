@@ -8,3 +8,7 @@
 .avatar > span {
 	color: var(--color-gray);
 }
+
+.avatarBtn > span {
+	color: var(--color-white);
+}

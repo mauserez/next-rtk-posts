@@ -117,7 +117,7 @@ export const DataTable = <T,>(props: DataTableProps<T>) => {
 							leftSection={<LuSearch />}
 							onChange={(e) => setGlobalSearch(e.target.value)}
 							value={globalSearch}
-							className="max-w-[200px] m-6 mb-2"
+							className="max-w-[240px] m-6 mb-2"
 							placeholder="Search"
 						/>
 					) : null}
@@ -135,18 +135,24 @@ export const DataTable = <T,>(props: DataTableProps<T>) => {
 							<Tr key={headerGroup.id}>
 								{headerGroup.headers.map((header) => {
 									const id = header.column.id as keyof T;
-
 									return (
 										<Th
-											style={{ verticalAlign: "baseline" }}
+											className="align-baseline"
 											key={header.id}
 											colSpan={header.colSpan}
+											style={{
+												width: header.column.getSize(),
+											}}
 										>
 											{header.isPlaceholder ? null : (
 												<div
-													className={
+													style={{
+														minWidth: header.column.getSize(),
+													}}
+													className={cn(
+														"w-full",
 														header.column.getCanSort() ? "select-none" : ""
-													}
+													)}
 													title={
 														header.column.getCanSort()
 															? header.column.getNextSortingOrder() === "asc"
@@ -158,7 +164,7 @@ export const DataTable = <T,>(props: DataTableProps<T>) => {
 													}
 												>
 													<Stack gap={"4px"} justify="flex-start">
-														<Group justify="space-between">
+														<Group justify="space-between" wrap="nowrap">
 															<div
 																className="cursor-pointer"
 																onClick={header.column.getToggleSortingHandler()}
@@ -180,6 +186,7 @@ export const DataTable = <T,>(props: DataTableProps<T>) => {
 																)}
 															</div>
 														</Group>
+
 														<MemoFilter
 															withDefaultFilters={withDefaultFilters}
 															column={header.column}
@@ -198,7 +205,7 @@ export const DataTable = <T,>(props: DataTableProps<T>) => {
 						{table.getRowModel().rows.map((row) => (
 							<Tr key={row.id}>
 								{row.getVisibleCells().map((cell) => (
-									<Td key={cell.id}>
+									<Td style={{ width: cell.column.getSize() }} key={cell.id}>
 										{flexRender(cell.column.columnDef.cell, cell.getContext())}
 									</Td>
 								))}

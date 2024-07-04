@@ -1,11 +1,7 @@
 "use client";
 
-import { Group } from "@mantine/core";
-import { Checkbox } from "@/shared/ui/controls/checkboxes";
-import { TextInput } from "@/shared/ui/controls/inputs";
 import { DataTable } from "shared/ui/tables";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import { useState, ChangeEvent } from "react";
 
 import {
 	getAllCountries,

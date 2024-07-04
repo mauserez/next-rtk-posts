@@ -2,24 +2,19 @@ import { memo } from "react";
 import { Select as MSelect, SelectProps as MSelectProps } from "@mantine/core";
 import { cn } from "@/shared/utils/cn";
 
-export type SelectExtraProps = {
-	noBorder?: boolean;
-	noShadow?: boolean;
-};
-
-export type SelectProps = MSelectProps & SelectExtraProps;
+export type SelectProps = MSelectProps;
 export const Select = (props: SelectProps) => {
 	const {
-		noBorder = false,
-		noShadow = false,
-		withCheckIcon,
 		checkIconPosition = "right",
 		className,
 		onChange,
 		size = "md",
 		data = [],
+		variant,
 		...restProps
 	} = props;
+
+	const unstyled = variant === "unstyled";
 
 	return (
 		<MSelect
@@ -29,10 +24,10 @@ export const Select = (props: SelectProps) => {
 				onChange?.(value, option);
 			}}
 			className={cn("w-full", className)}
-			withCheckIcon={withCheckIcon}
 			checkIconPosition={checkIconPosition}
-			data-no-border={noBorder}
-			data-no-shadow={noShadow}
+			variant={variant}
+			data-no-border={unstyled}
+			data-no-shadow={unstyled}
 			{...restProps}
 		/>
 	);
