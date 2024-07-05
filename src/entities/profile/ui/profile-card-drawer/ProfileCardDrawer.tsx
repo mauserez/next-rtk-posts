@@ -1,7 +1,7 @@
 "use client";
 
-import { ProfileCard } from "@/entities/profile/ui/index";
-import { UserAvatar } from "@/shared/ui";
+import { ProfileCard } from "entities/profile/ui/index";
+import { UserAvatar } from "shared/ui";
 import { Drawer } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 

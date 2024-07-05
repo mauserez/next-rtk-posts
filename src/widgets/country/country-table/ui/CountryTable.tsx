@@ -9,6 +9,7 @@ import {
 	COUNTRIES_QUERY_KEY,
 	COUNTRY_LIST_QUERY_KEY,
 } from "api/country";
+
 import { CountryType } from "entities/country/types";
 import { countryTableColumns } from "../lib";
 
@@ -38,7 +39,7 @@ export const CountryTable = () => {
 						list: countryList,
 					},
 				}}
-				className="max-h-[600px]"
+				className="max-h-[700px]"
 				isLoading={isLoading}
 				data={countries ?? []}
 				columns={countryTableColumns}

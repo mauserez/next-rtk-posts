@@ -46,7 +46,13 @@ export const InputRightSection = (props: CreateRightSectionType) => {
 
 	const clearIconContent =
 		value?.toString().trim() && clearable ? (
-			<div className="cursor-pointer" onClick={clearValue}>
+			<div
+				className="cursor-pointer"
+				onClick={(e) => {
+					e.stopPropagation();
+					clearValue();
+				}}
+			>
 				{clIcon}
 			</div>
 		) : null;

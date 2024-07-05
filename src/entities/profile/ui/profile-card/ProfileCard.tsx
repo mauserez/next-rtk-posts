@@ -1,19 +1,18 @@
 "use client";
 
 import { Group, Avatar, Stack } from "@mantine/core";
-import { ButtonLink } from "@/shared/ui/controls/buttons";
-
-import { useAppSelector } from "@/shared/store/redux/hooks";
-import { MyAlbums, MyPosts, ProfileCardAvatar } from "@/entities/profile/ui";
+import { useAppSelector } from "shared/store/redux/hooks";
+import { MyAlbums, MyPosts, ProfileCardAvatar } from "entities/profile/ui";
 
 import { cn } from "@/shared/utils/cn";
-import s from "./ProfileCard.module.css";
 import {
 	useIsAuthenticated,
 	useIsNotAuthenticated,
 	useSessionUser,
 } from "@/core/nextauth/hooks";
-import { LoginForm } from "@/widgets/login-form/LoginForm";
+import { LoginForm } from "widgets/login-form/LoginForm";
+
+import s from "./ProfileCard.module.css";
 
 export const ProfileCard = () => {
 	const albums = useAppSelector((state) => state.albums.favoriteAlbums || []);
@@ -25,12 +24,6 @@ export const ProfileCard = () => {
 	const isNotAuth = useIsNotAuthenticated();
 
 	const user = useSessionUser();
-
-	{
-		/* <ButtonLink href="/login" cssVariant="violet">
-					Войти
-				</ButtonLink> */
-	}
 
 	return (
 		<Stack gap={24} className={cn(s.card)}>

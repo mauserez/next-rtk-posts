@@ -111,7 +111,10 @@ export const DataTable = <T,>(props: DataTableProps<T>) => {
 			) : null} */}
 
 			<Paper className={cn(s.tableWrap, "overflow-auto")}>
-				<Group>
+				<Group
+					style={{ backgroundColor: "var(--mantine-color-body)" }}
+					className="sticky top-0"
+				>
 					{withGlobalFilter ? (
 						<MemoTextInput
 							leftSection={<LuSearch />}
@@ -127,6 +130,7 @@ export const DataTable = <T,>(props: DataTableProps<T>) => {
 					horizontalSpacing={"md"}
 					verticalSpacing={"10px"}
 					stickyHeader
+					stickyHeaderOffset={withGlobalFilter ? "72px" : "0"}
 					striped
 					className={cn(s.table)}
 				>
@@ -141,7 +145,7 @@ export const DataTable = <T,>(props: DataTableProps<T>) => {
 											key={header.id}
 											colSpan={header.colSpan}
 											style={{
-												width: header.column.getSize(),
+												maxWidth: header.column.getSize(),
 											}}
 										>
 											{header.isPlaceholder ? null : (
@@ -339,6 +343,7 @@ function Filter<T>(props: FilterProps<T>) {
 
 		return (
 			<MemoTextInput
+				clearable={false}
 				size="sm"
 				radius="sm"
 				defaultValue={colVal}
@@ -397,8 +402,10 @@ function Filter<T>(props: FilterProps<T>) {
 				radius="sm"
 				comboboxProps={{ offset: 10 }}
 				className={cn("w-full", filterClassName)}
-				classNames={{ input: "flex items-center p-0" }}
-				searchable
+				classNames={{
+					pillsList: "max-w-[93%]",
+					input: "flex items-center p-0",
+				}}
 				clearable
 				data={ls}
 				placeholder={placeholder ?? "Choose"}

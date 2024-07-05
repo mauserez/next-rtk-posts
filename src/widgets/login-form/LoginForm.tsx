@@ -7,6 +7,7 @@ import { Form, useForm } from "react-hook-form";
 
 import { Button } from "@/shared/ui/controls/buttons";
 import { MdPhone } from "react-icons/md";
+
 import {
 	FormInput,
 	FormTextInput,
@@ -19,6 +20,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useMaskito } from "@maskito/react";
 import { MaskitoOptions, maskitoUpdateElement } from "@maskito/core";
+import { unMaskPhone } from "shared/utils/mask";
 
 import {
 	maskitoWithPlaceholder,
@@ -73,14 +75,13 @@ const phoneMask: MaskitoOptions = {
 
 import s from "./LoginForm.module.css";
 import { cn } from "@/shared/utils/cn";
-import { Input } from "@/shared/ui/controls/inputs";
 
 const validationSchema = yup.object({
 	username: yup.string().required("Введите логин").min(4).email(),
 	password: yup.string().required("Введите пароль").min(6),
-	phone: yup.string(),
-	mselect: yup.array(),
-	accepted: yup.boolean(),
+	phone: yup.string().required(),
+	library: yup.array().min(1),
+	accepted: yup.boolean().oneOf([true]),
 });
 
 type LoginFormProps = ComponentProps<"form">;
@@ -99,7 +100,7 @@ export const LoginForm = (props: LoginFormProps) => {
 		defaultValues: {
 			username: "",
 			password: "",
-			mselect: [],
+			library: [],
 			accepted: false,
 			phone: "",
 		},
@@ -113,6 +114,8 @@ export const LoginForm = (props: LoginFormProps) => {
 				setErrorText("");
 			}}
 			onSubmit={async ({ data }) => {
+				const modifiedData = { ...data, phone: unMaskPhone(data.phone) };
+				console.log(modifiedData);
 				setLoading(true);
 				const credentials = {
 					username: data.username,
@@ -136,6 +139,7 @@ export const LoginForm = (props: LoginFormProps) => {
 		>
 			<FormInput
 				ref={phoneMaskRef}
+				leftSection={<MdPhone />}
 				label="Label"
 				name="phone"
 				control={control}
@@ -158,12 +162,15 @@ export const LoginForm = (props: LoginFormProps) => {
 			/>
 
 			<FormMultiSelect
+				placeholder="Select Library"
 				control={control}
 				data={[
 					{ value: "1", label: "React" },
 					{ value: "2", label: "Vue" },
+					{ value: "3", label: "Angular" },
+					{ value: "4", label: "Vanilla" },
 				]}
-				name="mselect"
+				name="library"
 				label="Мультиселект"
 			/>
 
