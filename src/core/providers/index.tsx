@@ -16,9 +16,9 @@ export const Providers = (props: ProvidersProps) => {
 		<MantineProvider>
 			<NextAuthProvider>
 				<AuthProtected>
-					<ReduxStoreProvider>
-						<TanstackQueryProvider>{children}</TanstackQueryProvider>
-					</ReduxStoreProvider>
+					<TanstackQueryProvider>
+						<ReduxStoreProvider>{children}</ReduxStoreProvider>
+					</TanstackQueryProvider>
 				</AuthProtected>
 			</NextAuthProvider>
 		</MantineProvider>

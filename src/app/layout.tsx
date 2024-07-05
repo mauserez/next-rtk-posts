@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { Providers } from "@/core/providers";
-import { ColorSchemeScript } from "@mantine/core";
+//import { ColorSchemeScript } from "@mantine/core";
 import { fontMontserrat } from "./fonts";
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export default function RootLayout({
 		<html suppressHydrationWarning={true} lang="en">
 			<head>
 				{/* <ColorSchemeScript /> */}
-				<link rel="shortcut icon" href="/favicon.svg" />
+				<link rel="shortcut icon" href="/favicon.ico" />
 				<meta
 					name="viewport"
 					content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"

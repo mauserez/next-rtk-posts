@@ -48,7 +48,6 @@ const phoneMask: MaskitoOptions = {
 		}),
 		maskitoEventHandler("blur", (element) => {
 			const cleanValue = removePlaceholder(element.value);
-			console.log(cleanValue);
 			maskitoUpdateElement(element, cleanValue === "+7(9" ? "" : cleanValue);
 		}),
 	],
