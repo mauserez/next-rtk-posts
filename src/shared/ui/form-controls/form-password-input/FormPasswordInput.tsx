@@ -24,7 +24,7 @@ export function FormPasswordInput<T extends FieldValues>({
 	...props
 }: FormInputProps<T>) {
 	const {
-		field: { value, onChange: fieldOnChange, ref, ...field },
+		field: { value, onChange: fieldOnChange, ref: fieldRef, ...field },
 		fieldState,
 	} = useController<T>({
 		name,

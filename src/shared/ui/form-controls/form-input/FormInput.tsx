@@ -27,7 +27,7 @@ function FormInputInit<T extends FieldValues>(
 	ref: ForwardedRef<HTMLInputElement>
 ) {
 	const {
-		field: { value, onChange: fieldOnChange, ref: hookRef, ...field },
+		field: { value, onChange: fieldOnChange, ref: fieldRef, ...field },
 		fieldState,
 	} = useController<T>({
 		name,

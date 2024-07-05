@@ -21,7 +21,7 @@ export function FormMultiSelect<T extends FieldValues>({
 	...props
 }: FormMultiSelectProps<T>) {
 	const {
-		field: { value, onChange: fieldOnChange, ref, ...field },
+		field: { value, onChange: fieldOnChange, ref: fieldRef, ...field },
 		fieldState,
 	} = useController<T>({
 		name,

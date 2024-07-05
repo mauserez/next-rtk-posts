@@ -21,7 +21,7 @@ export function FormCheckbox<T extends FieldValues>({
 	...props
 }: FormCheckboxProps<T>) {
 	const {
-		field: { value, onChange: fieldOnChange, ref, ...field },
+		field: { value, onChange: fieldOnChange, ref:fieldRef, ...field },
 		fieldState,
 	} = useController<T>({
 		name,
