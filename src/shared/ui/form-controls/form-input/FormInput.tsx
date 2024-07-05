@@ -1,7 +1,7 @@
 "use client";
 
-import { mergeRefs } from "@mantine/hooks";
-import { ForwardedRef, forwardRef, type Ref } from "react";
+import { typedForwardRef } from "@/shared/utils/typedForwardRef";
+import { ForwardedRef } from "react";
 import {
 	useController,
 	type UseControllerProps,
@@ -11,21 +11,20 @@ import {
 import { Input, type InputProps } from "shared/ui/controls/inputs";
 
 export type FormInputProps<T extends FieldValues> = UseControllerProps<T> &
-	Omit<InputProps, "value" | "defaultValue"> & { inputRef?: Ref<unknown> };
+	Omit<InputProps, "value" | "defaultValue">;
 
-export const FormInput = forwardRef(function FormInput<T extends FieldValues>(
+function FormInputInit<T extends FieldValues>(
 	{
 		name,
 		control,
 		defaultValue,
 		rules,
 		shouldUnregister,
-		inputRef,
 		onChange,
 		onInput,
 		...props
 	}: FormInputProps<T>,
-	ref: ForwardedRef<unknown>
+	ref: ForwardedRef<HTMLInputElement>
 ) {
 	const {
 		field: { value, onChange: fieldOnChange, ref: hookRef, ...field },
@@ -38,56 +37,9 @@ export const FormInput = forwardRef(function FormInput<T extends FieldValues>(
 		shouldUnregister,
 	});
 
-	const mergedRef = mergeRefs(ref, hookRef);
-
 	return (
 		<Input
-			ref={mergedRef}
-			value={value}
-			onInput={(e) => {
-				fieldOnChange(e);
-				onInput?.(e);
-			}}
-			onChange={(e) => {
-				fieldOnChange(e);
-				onChange?.(e);
-			}}
-			error={fieldState.error?.message}
-			{...field}
-			{...props}
-		/>
-	);
-});
-/*
-
-
-export function FormInput<T extends FieldValues>({
-	name,
-	control,
-	defaultValue,
-	rules,
-	shouldUnregister,
-	inputRef,
-	onChange,
-	onInput,
-	...props
-}: FormInputProps<T>) {
-	const {
-		field: { value, onChange: fieldOnChange, ref: hookRef, ...field },
-		fieldState,
-	} = useController<T>({
-		name,
-		control,
-		defaultValue,
-		rules,
-		shouldUnregister,
-	});
-
-	const mergedRef = mergeRefs(inputRef, hookRef);
-
-	return (
-		<Input
-			ref={mergedRef}
+			ref={ref}
 			value={value}
 			onInput={(e) => {
 				fieldOnChange(e);
@@ -103,4 +55,5 @@ export function FormInput<T extends FieldValues>({
 		/>
 	);
 }
- */
+
+export const FormInput = typedForwardRef(FormInputInit);

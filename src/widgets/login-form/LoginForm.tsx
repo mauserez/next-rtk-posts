@@ -78,9 +78,9 @@ import { Input } from "@/shared/ui/controls/inputs";
 const validationSchema = yup.object({
 	username: yup.string().required("Введите логин").min(4).email(),
 	password: yup.string().required("Введите пароль").min(6),
-	test: yup.array(),
-	accepted: yup.boolean(),
 	phone: yup.string(),
+	mselect: yup.array(),
+	accepted: yup.boolean(),
 });
 
 type LoginFormProps = ComponentProps<"form">;
@@ -99,13 +99,11 @@ export const LoginForm = (props: LoginFormProps) => {
 		defaultValues: {
 			username: "",
 			password: "",
-			test: [],
+			mselect: [],
 			accepted: false,
 			phone: "",
 		},
 	});
-
-	const [inpV, setInpv] = useState("");
 
 	return (
 		<Form
@@ -136,25 +134,12 @@ export const LoginForm = (props: LoginFormProps) => {
 				}
 			}}
 		>
-			{/* <FormInput
-				inputRef={phoneMaskRef}
+			<FormInput
+				ref={phoneMaskRef}
 				label="Label"
 				name="phone"
 				control={control}
-			/>
- */}
-			<Input
-				label="Phone"
-				type="tel"
-				value={inpV}
-				onInput={(e) => {
-					console.log(e);
-					setInpv(e.currentTarget.value);
-				}}
-				leftSection={<MdPhone />}
-				name="lol"
 				placeholder={PLACEHOLDER}
-				ref={phoneMaskRef}
 			/>
 
 			<FormTextInput
@@ -178,7 +163,7 @@ export const LoginForm = (props: LoginFormProps) => {
 					{ value: "1", label: "React" },
 					{ value: "2", label: "Vue" },
 				]}
-				name="test"
+				name="mselect"
 				label="Мультиселект"
 			/>
 

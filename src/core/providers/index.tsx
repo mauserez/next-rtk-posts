@@ -13,14 +13,14 @@ export const Providers = (props: ProvidersProps) => {
 	const { children } = props;
 
 	return (
-		<MantineProvider>
-			<NextAuthProvider>
+		<NextAuthProvider>
+			<MantineProvider>
 				<AuthProtected>
 					<TanstackQueryProvider>
 						<ReduxStoreProvider>{children}</ReduxStoreProvider>
 					</TanstackQueryProvider>
 				</AuthProtected>
-			</NextAuthProvider>
-		</MantineProvider>
+			</MantineProvider>
+		</NextAuthProvider>
 	);
 };
