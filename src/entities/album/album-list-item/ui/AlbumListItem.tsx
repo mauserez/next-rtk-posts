@@ -5,12 +5,12 @@ import { useRouter } from "next/navigation";
 import { TextClamp } from "@/shared/ui";
 import { ButtonLike } from "@/shared/ui/controls/buttons";
 
-import { useAppDispatch, useAppSelector } from "@/shared/store/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/shared/redux/hooks";
 import {
 	addAlbum,
 	removeAlbum,
 	isFavoriteAlbum,
-} from "@/shared/store/redux/slices/albums/AlbumsSlice";
+} from "@/shared/redux/slices/albums/AlbumsSlice";
 
 import s from "./AlbumListItem.module.css";
 

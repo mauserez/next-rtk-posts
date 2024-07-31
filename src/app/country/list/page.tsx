@@ -1,19 +1,26 @@
-import { CountryTable } from "@/widgets/country/country-table/ui/CountryTable";
 import { PageLayout } from "@/core/layouts/page-layout/PageLayout";
-import { COUNTRIES_QUERY_KEY, getAllCountries } from "@/api/country";
+import { CountryTable } from "@/widgets/country/country-table/ui/CountryTable";
+import {
+	COUNTRIES_PAGINATED_QUERY_KEY,
+	getPaginatedCountries,
+} from "@/api/country";
 import { getQueryClient } from "@/core/providers/tanstack-query/utils/getQueryClient";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import { getUrlParamsServer } from "@/shared/utils/urlServer";
 
 export default async function CountryList() {
-	const queryClient = getQueryClient();
-	const params = getUrlParamsServer();
-	const limit = Number(params["limit"]);
-	const page = !params["page"] ? [] : (params["page"] as string[]);
+	/* const params = getUrlParamsServer();
+	const page = params["page"] ?? "1";
+	const limit = params["limit"] ?? "10"; */
 
+	const params = { page: "1", limit: "10" };
+
+	const queryClient = getQueryClient();
 	await queryClient.prefetchQuery({
-		queryKey: [COUNTRIES_QUERY_KEY],
-		queryFn: getAllCountries,
+		queryKey: [COUNTRIES_PAGINATED_QUERY_KEY, params],
+		queryFn: async () => {
+			return await getPaginatedCountries(params);
+		},
 	});
 
 	return (

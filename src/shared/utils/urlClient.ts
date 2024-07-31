@@ -9,7 +9,7 @@ export const getPathName = () => {
 };
 
 export const getUrlParams = () => {
-	return queryString.parseUrl(getUrl());
+	return queryString.parseUrl(getUrl()).query;
 };
 
 export const getUrlParamsString = () => {

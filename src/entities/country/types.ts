@@ -4,7 +4,16 @@ export type CountryType = {
 	lang: string;
 };
 
-export type CountryListType = {
+export type CountryListItemType = {
 	value: string;
 	label: string;
-}[];
+};
+
+export type CountryListType = CountryListItemType[];
+
+export type LangListItemType = {
+	value: string;
+	label: string;
+};
+
+export type LangListType = LangListItemType[];

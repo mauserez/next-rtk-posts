@@ -48,10 +48,10 @@ type DataTableProps<T> = {
 	columns: ColumnDef<T>[];
 	isLoading?: boolean;
 	pageSize?: number;
-	colFilters?: Partial<Record<keyof T, TableFilterOptionsType>>;
+	filterableColumns?: Partial<Record<keyof T, TableFilterOptionsType>>;
 	withDefaultFilters?: boolean;
 	withGlobalFilter?: boolean;
-} & TableProps;
+} & Omit<TableProps, "data">;
 
 export const DataTable = <T,>(props: DataTableProps<T>) => {
 	const {
@@ -60,7 +60,7 @@ export const DataTable = <T,>(props: DataTableProps<T>) => {
 		isLoading = false,
 		pageSize = 10,
 		className,
-		colFilters,
+		filterableColumns: colFilters,
 		withDefaultFilters = true,
 		withGlobalFilter = true,
 	} = props;
@@ -305,14 +305,16 @@ function Filter<T>(props: FilterProps<T>) {
 	let label = !column.columnDef.header
 		? ""
 		: column.columnDef.header.toString();
+
 	label = withLabel ? label : "";
 
-	const sortedUniqueValues = useMemo(() => {
-		const uniqueValues = withDefaultFilters
-			? column.getFacetedUniqueValues()
-			: [];
-		return Array.from(uniqueValues.keys()).sort().slice(0, 5000);
-	}, [withDefaultFilters, column]);
+	const uniqueValues = withDefaultFilters
+		? column.getFacetedUniqueValues()
+		: [];
+
+	const sortedUniqueValues = Array.from(uniqueValues.keys())
+		.sort()
+		.slice(0, 5000);
 
 	if (!filterOptions && withDefaultFilters) {
 		const colVal = !columnFilterValue ? "" : columnFilterValue.toString();
@@ -372,6 +374,9 @@ function Filter<T>(props: FilterProps<T>) {
 			}
 		}
 	}
+
+	console.log(ls);
+	console.log(sortedUniqueValues);
 
 	if (filter === "select") {
 		return (

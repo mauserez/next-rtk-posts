@@ -7,11 +7,11 @@ import { AlbumType } from "@/entities/album/types";
 import { useRouter } from "next/navigation";
 import { ButtonLike } from "@/shared/ui/controls/buttons";
 
-import { useAppSelector, useAppDispatch } from "@/shared/store/redux/hooks";
+import { useAppSelector, useAppDispatch } from "@/shared/redux/hooks";
 
 import clsx from "clsx";
 import s from "./MyAlbums.module.css";
-import { removeAlbum } from "@/shared/store/redux/slices/albums/AlbumsSlice";
+import { removeAlbum } from "@/shared/redux/slices/albums/AlbumsSlice";
 
 export const MyAlbums = () => {
 	const albums = useAppSelector((state) => state.albums.favoriteAlbums);

@@ -15,6 +15,13 @@
 			"password": 654321
 		}
 	],
+	"langList": [
+		{ "value": "1", "label": "ru" },
+		{ "value": "2", "label": "en" },
+		{ "value": "3", "label": "de" },
+		{ "value": "4", "label": "fr" },
+		{ "value": "5", "label": "us" }
+	],
 	"countryList": [
 		{ "value": "1", "label": "Russia" },
 		{ "value": "2", "label": "England" },

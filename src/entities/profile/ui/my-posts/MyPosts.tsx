@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { SectionTitle, TextClamp } from "@/shared/ui";
 import { Stack, Group, Avatar } from "@mantine/core";
-import { useAppSelector, useAppDispatch } from "@/shared/store/redux/hooks";
-import { removePost } from "@/shared/store/redux/slices/posts/PostsSlice";
+import { useAppSelector, useAppDispatch } from "@/shared/redux/hooks";
+import { removePost } from "@/shared/redux/slices/posts/PostsSlice";
 import { ButtonLike } from "@/shared/ui/controls/buttons";
 
 import s from "./MyPosts.module.css";

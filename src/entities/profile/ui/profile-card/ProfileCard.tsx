@@ -1,7 +1,7 @@
 "use client";
 
 import { Group, Avatar, Stack } from "@mantine/core";
-import { useAppSelector } from "shared/store/redux/hooks";
+import { useAppSelector } from "@/shared/redux/hooks";
 import { MyAlbums, MyPosts, ProfileCardAvatar } from "entities/profile/ui";
 
 import { cn } from "@/shared/utils/cn";

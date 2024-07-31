@@ -1,6 +1,7 @@
 import axios from "axios";
 import { getServerSession } from "next-auth";
 import { isServer } from "@tanstack/react-query";
+import { getSession } from "next-auth/react";
 
 export const instance = axios.create({
 	baseURL: isServer
@@ -10,10 +11,19 @@ export const instance = axios.create({
 });
 
 instance.interceptors.request.use(async (request) => {
-	const session = await getServerSession();
+	if (isServer) {
+		const session = await getServerSession();
+		if (!session?.user) {
+			return request;
+		}
+	}
 
-	if (!session?.user) {
-		return request;
+	if (!isServer) {
+		const session = await getSession();
+
+		if (!session?.user) {
+			return request;
+		}
 	}
 
 	//request.headers["Authorization"] = `Bearer ${session.user.name}`;
