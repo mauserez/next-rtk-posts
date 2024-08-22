@@ -15,7 +15,7 @@
 			"password": 654321
 		}
 	],
-	"langList": [
+	"countryLangList": [
 		{ "value": "1", "label": "ru" },
 		{ "value": "2", "label": "en" },
 		{ "value": "3", "label": "de" },

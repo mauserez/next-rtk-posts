@@ -4,16 +4,16 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { DataTable, QueryTable } from "shared/ui/tables";
 
 import {
+	getAllCountries,
 	getCountryList,
+	getPaginatedCountries,
+	GetPaginatedCountriesOptions,
+	getCountryLangList,
 	COUNTRIES_PAGINATED_QUERY_KEY,
 	COUNTRY_LIST_QUERY_KEY,
 	COUNTRY_LANG_LIST_QUERY_KEY,
-	getPaginatedCountries,
-	GetPaginatedCountriesOptions,
-	getLangList,
 	COUNTRIES_ALL_QUERY_KEY,
-	getAllCountries,
-} from "api/country";
+} from "entities/country";
 
 import { getUrlParams } from "shared/utils/urlClient";
 import { CountryType } from "entities/country/types";
@@ -28,7 +28,7 @@ export const CountryTable = () => {
 	const { data: langList } = useQuery({
 		queryKey: [COUNTRY_LANG_LIST_QUERY_KEY],
 		queryFn: async () => {
-			return await getLangList();
+			return await getCountryLangList();
 		},
 		placeholderData: keepPreviousData,
 	});
@@ -67,9 +67,6 @@ export const CountryTable = () => {
 		},
 		placeholderData: keepPreviousData,
 	});
-
-	//console.log(countries);
-	//console.log(countryList);
 
 	return (
 		<>

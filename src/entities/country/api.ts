@@ -6,8 +6,7 @@ import {
 } from "entities/country/types";
 import { backendApi } from "shared/axios/api";
 
-export const COUNTRY_LANG_LIST_QUERY_KEY = "country-lang-list";
-export const getLangList = async (): Promise<
+export const getCountryLangList = async (): Promise<
 	LangListItemType["label"][] | void
 > => {
 	return await backendApi
@@ -18,7 +17,6 @@ export const getLangList = async (): Promise<
 		.catch((e) => console.log(e));
 };
 
-export const COUNTRY_LIST_QUERY_KEY = "country-list";
 export const getCountryList = async (): Promise<
 	void | CountryListItemType["label"][]
 > => {
@@ -32,14 +30,12 @@ export const getCountryList = async (): Promise<
 		});
 };
 
-export const COUNTRIES_ALL_QUERY_KEY = "countries";
 export const getAllCountries = async (): Promise<CountryType[]> => {
 	return await backendApi.get("/countries").then((response) => {
 		return response.data;
 	});
 };
 
-export const COUNTRIES_PAGINATED_QUERY_KEY = "countries-paginated";
 export type GetPaginatedCountriesOptions = {
 	page?: string;
 	limit?: string;

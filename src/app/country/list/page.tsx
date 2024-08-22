@@ -3,7 +3,7 @@ import { CountryTable } from "@/widgets/country/country-table/ui/CountryTable";
 import {
 	COUNTRIES_PAGINATED_QUERY_KEY,
 	getPaginatedCountries,
-} from "@/api/country";
+} from "entities/country";
 import { getQueryClient } from "@/core/providers/tanstack-query/utils/getQueryClient";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import { getUrlParamsServer } from "@/shared/utils/urlServer";
