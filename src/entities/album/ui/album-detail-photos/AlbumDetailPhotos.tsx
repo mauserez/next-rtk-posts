@@ -5,9 +5,9 @@ import { Button } from "@/shared/ui/controls/buttons";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { AlbumType, AlbumPhotoType } from "@/entities/album/types";
 import { randomGradient } from "@/shared/utils/element";
-import { getPhotos } from "@/api/album-photos";
+import { getPhotos } from "entities/album/api";
 
-import { ALBUM_PHOTOS_QUERY_KEY } from "@/api/album-photos";
+import { ALBUM_PHOTOS_QUERY_KEY } from "entities/album/constants";
 import { useRef } from "react";
 import s from "./AlbumDetailPhotos.module.css";
 

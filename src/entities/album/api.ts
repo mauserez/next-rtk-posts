@@ -1,11 +1,8 @@
 import { AssocArray } from "@/shared/types";
-import { AlbumType } from "@/entities/album/types";
+import { AlbumType, AlbumPhotoType } from "@/entities/album/types";
 import { mainApi } from "@/shared/axios/mainApi";
 import { randomInt } from "@/shared/utils/number";
 import queryString from "query-string";
-
-export const ALBUM_QUERY_KEY = "album";
-export const ALBUMS_QUERY_KEY = "albums";
 
 export const getAlbum = async (id: AlbumType["id"]): Promise<AlbumType> => {
 	return await mainApi
@@ -30,5 +27,21 @@ export const getAlbums = async (options: AssocArray): Promise<AlbumType[]> => {
 	const searchUrl = queryString.stringify(searchParams);
 	return await mainApi
 		.get(`/albums?${searchUrl}`)
+		.then((response) => response.data);
+};
+
+type GetPhotosOptions = {
+	albumId: number;
+	limit?: number;
+	page?: number;
+};
+
+export const getPhotos = async (
+	options: GetPhotosOptions
+): Promise<AlbumPhotoType[]> => {
+	const { albumId, limit = 10, page = 1 } = options;
+
+	return await mainApi
+		.get(`/photos?albumId=${albumId}&_page=${page}&_limit=${limit}`)
 		.then((response) => response.data);
 };

@@ -2,12 +2,14 @@
 
 import { Stack, Skeleton } from "@mantine/core";
 import { SectionTitle, CardLoader } from "@/shared/ui";
-
 import { useQuery } from "@tanstack/react-query";
-import { getAlbum, ALBUM_QUERY_KEY } from "api/album";
 
-import { AlbumType } from "@/entities/album/types";
-import { AlbumDetailPhotos } from "@/entities/album/album-detail-photos/ui/AlbumDetailPhotos";
+import {
+	AlbumDetailPhotos,
+	getAlbum,
+	type AlbumType,
+	ALBUM_QUERY_KEY,
+} from "entities/album";
 import { uid } from "@/shared/utils/number";
 
 import clsx from "clsx";

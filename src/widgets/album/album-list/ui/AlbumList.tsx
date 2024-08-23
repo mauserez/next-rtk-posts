@@ -5,10 +5,12 @@ import { HorizontalScroller, SectionTitle, CardLoader } from "@/shared/ui";
 import { Button } from "@/shared/ui/controls/buttons";
 
 import { useQuery } from "@tanstack/react-query";
-import { ALBUMS_QUERY_KEY, getAlbums } from "api/album/index";
-
-import { AlbumType } from "@/entities/album/types";
-import { AlbumListItem } from "@/entities/album/album-list-item/ui/AlbumListItem";
+import {
+	getAlbums,
+	AlbumListItem,
+	ALBUMS_QUERY_KEY,
+	type AlbumType,
+} from "entities/album";
 
 import clsx from "clsx";
 import albumStyle from "@/entities/album/album-list-item/ui/AlbumListItem.module.css";
