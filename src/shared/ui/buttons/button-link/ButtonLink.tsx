@@ -1,4 +1,4 @@
-import { Button, ButtonProps } from "shared/ui/controls/buttons";
+import { Button, ButtonProps } from "shared/ui/buttons";
 import Link from "next/link";
 import { cn } from "@/shared/utils/cn";
 

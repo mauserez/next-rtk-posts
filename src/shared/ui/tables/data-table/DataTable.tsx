@@ -2,9 +2,9 @@
 
 import { Group, Paper, Stack } from "@mantine/core";
 import { Table, TableProps, Tbody, Thead, Tr, Th, Td } from "shared/ui/table";
-import { MemoTextInput } from "shared/ui/controls/inputs";
-import { MemoSelect, MemoMultiSelect } from "shared/ui/controls/selects";
-import { ButtonActionIcon } from "shared/ui/controls/buttons";
+import { MemoTextInput } from "shared/ui/inputs";
+import { MemoSelect, MemoMultiSelect } from "shared/ui/selects";
+import { ButtonActionIcon } from "shared/ui/buttons";
 import { BiSortAlt2, BiSortDown, BiSortUp } from "react-icons/bi";
 import { LuSearch } from "react-icons/lu";
 

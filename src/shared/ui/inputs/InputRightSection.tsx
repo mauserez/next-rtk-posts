@@ -1,6 +1,6 @@
 import { ReactNode, RefObject, AwaitedReactNode } from "react";
 import { clearInput } from "shared/utils/input";
-import { ExtraInputProps } from "shared/ui/controls/inputs/types";
+import { ExtraInputProps } from "shared/ui/inputs/types";
 import { Group } from "@mantine/core";
 import { MdClear } from "react-icons/md";
 

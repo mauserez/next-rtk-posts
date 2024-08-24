@@ -6,7 +6,7 @@ import {
 	type FieldValues,
 } from "react-hook-form";
 
-import { MultiSelect, type MultiSelectProps } from "shared/ui/controls/selects";
+import { MultiSelect, type MultiSelectProps } from "shared/ui/selects";
 
 export type FormMultiSelectProps<T extends FieldValues> =
 	UseControllerProps<T> & Omit<MultiSelectProps, "value" | "defaultValue">;

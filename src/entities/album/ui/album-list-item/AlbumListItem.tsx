@@ -3,7 +3,7 @@ import { randomGradient } from "@/shared/utils/element";
 import { AlbumType } from "@/entities/album/types";
 import { useRouter } from "next/navigation";
 import { TextClamp } from "@/shared/ui";
-import { ButtonLike } from "@/shared/ui/controls/buttons";
+import { ButtonLike } from "@/shared/ui/buttons";
 
 import { useAppDispatch, useAppSelector } from "@/shared/redux/hooks";
 import {

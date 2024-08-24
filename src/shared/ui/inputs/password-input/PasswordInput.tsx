@@ -1,19 +1,29 @@
 "use client";
 
 import { memo, useRef } from "react";
+
 import {
-	NumberInput as MNumberInput,
-	NumberInputProps as MNumberInputProps,
+	PasswordInput as MPasswordInput,
+	PasswordInputProps as MPasswordInputProps,
 } from "@mantine/core";
 
-import { ExtraInputProps } from "shared/ui/controls/inputs/types";
-import { InputLeftSection, InputRightSection } from "shared/ui/controls/inputs";
+import { useDisclosure } from "@mantine/hooks";
+import { MdVisibility, MdVisibilityOff } from "react-icons/md";
+
+import {
+	ExtraInputProps,
+	InputLeftSection,
+	InputRightSection,
+} from "@/shared/ui/inputs";
+
 import { cn } from "@/shared/utils/cn";
 
-export type NumberInputProps = MNumberInputProps &
+export type PasswordInputProps = MPasswordInputProps &
 	Omit<ExtraInputProps, "isSearch">;
 
-export const NumberInput = (props: NumberInputProps) => {
+export const PasswordInput = (props: PasswordInputProps) => {
+	const [visible, { toggle }] = useDisclosure(false);
+
 	const {
 		className = "",
 		clearIcon,
@@ -21,8 +31,8 @@ export const NumberInput = (props: NumberInputProps) => {
 		value,
 		variant,
 		size = "md",
-		leftSectionWidth,
 		leftSection,
+		leftSectionWidth,
 		rightSection,
 		rightSectionWidth,
 		...restProps
@@ -34,12 +44,20 @@ export const NumberInput = (props: NumberInputProps) => {
 		<InputLeftSection leftSection={leftSection} inputRef={inputRef} />
 	);
 
+	const visibilityIconContent = (
+		<div className="cursor-pointer" onClick={toggle}>
+			{visible ? <MdVisibilityOff /> : <MdVisibility />}
+		</div>
+	);
+
 	const rightSectionContent = (
 		<InputRightSection
 			inputRef={inputRef}
 			rightSection={rightSection}
 			value={value}
-		/>
+		>
+			{visibilityIconContent}
+		</InputRightSection>
 	);
 
 	const unstyled = variant === "unstyled";
@@ -47,22 +65,22 @@ export const NumberInput = (props: NumberInputProps) => {
 	const isRightSection = clearable || rightSection;
 
 	return (
-		<MNumberInput
+		<MPasswordInput
 			data-no-border={unstyled}
 			data-no-shadow={unstyled}
+			value={value}
 			size={size}
 			ref={inputRef}
 			spellCheck={false}
-			value={value}
-			variant={variant}
 			leftSectionWidth={isLeftSection ? leftSectionWidth : 0}
 			leftSection={isLeftSection ? leftSectionContent : null}
 			rightSectionWidth={isRightSection ? rightSectionWidth : 0}
 			rightSection={isRightSection ? rightSectionContent : null}
 			className={cn("w-full", className)}
+			visible={visible}
 			{...restProps}
 		/>
 	);
 };
 
-export const MemoNumberInput = memo(NumberInput) as typeof NumberInput;
+export const MemoPasswordInput = memo(PasswordInput) as typeof PasswordInput;

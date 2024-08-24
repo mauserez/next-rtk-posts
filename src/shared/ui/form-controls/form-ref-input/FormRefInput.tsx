@@ -8,12 +8,12 @@ import {
 	type FieldValues,
 } from "react-hook-form";
 
-import { Input, type InputProps } from "shared/ui/controls/inputs";
+import { RefInput, type RefInputProps } from "shared/ui/inputs";
 
 export type FormInputProps<T extends FieldValues> = UseControllerProps<T> &
-	Omit<InputProps, "value" | "defaultValue">;
+	Omit<RefInputProps, "value" | "defaultValue">;
 
-function FormInputInit<T extends FieldValues>(
+function FormRefInputInit<T extends FieldValues>(
 	{
 		name,
 		control,
@@ -38,7 +38,7 @@ function FormInputInit<T extends FieldValues>(
 	});
 
 	return (
-		<Input
+		<RefInput
 			ref={ref}
 			value={value}
 			onInput={(e) => {
@@ -56,4 +56,4 @@ function FormInputInit<T extends FieldValues>(
 	);
 }
 
-export const FormInput = typedForwardRef(FormInputInit);
+export const FormInput = typedForwardRef(FormRefInputInit);

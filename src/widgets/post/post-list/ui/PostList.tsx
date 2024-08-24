@@ -1,15 +1,13 @@
 "use client";
-
+import { Grid, Group, Skeleton, Stack } from "@mantine/core";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { SectionTitle } from "shared/ui";
-import { Button } from "shared/ui/controls/buttons";
-import { ButtonGroup } from "shared/ui/controls/button-group/ButtonGroup";
-import { Grid, Group, Skeleton, Stack } from "@mantine/core";
+import { Button } from "shared/ui/buttons";
+import { ButtonGroup } from "@/shared/ui/button-group/ButtonGroup";
 
-import { POSTS_QUERY_KEY, getPosts } from "api/post";
 import { PostType } from "entities/post/types";
-import { PostListItem } from "entities/post/post-list-item/ui/PostListItem";
+import { PostListItem, POSTS_QUERY_KEY, getPosts } from "@/entities/post";
 import { PrimitiveType } from "shared/types";
 
 import s from "./PostList.module.css";

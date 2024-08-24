@@ -6,7 +6,7 @@ import {
 	type FieldValues,
 } from "react-hook-form";
 
-import { Select, type SelectProps } from "shared/ui/controls/selects";
+import { Select, type SelectProps } from "shared/ui/selects";
 
 export type FormSelectProps<T extends FieldValues> = UseControllerProps<T> &
 	Omit<SelectProps, "value" | "defaultValue">;
@@ -21,7 +21,7 @@ export function FormSelect<T extends FieldValues>({
 	...props
 }: FormSelectProps<T>) {
 	const {
-		field: { value, onChange: fieldOnChange, ref:fieldRef, ...field },
+		field: { value, onChange: fieldOnChange, ref: fieldRef, ...field },
 		fieldState,
 	} = useController<T>({
 		name,

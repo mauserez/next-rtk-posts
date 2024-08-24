@@ -2,7 +2,7 @@
 
 import { useSessionUser } from "@/core/nextauth/hooks";
 import { Avatar, AvatarProps, PolymorphicComponentProps } from "@mantine/core";
-import { Button } from "../controls/buttons";
+import { Button } from "../buttons";
 import { cn } from "@/shared/utils/cn";
 import s from "./UserAvatar.module.css";
 

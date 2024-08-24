@@ -13,9 +13,9 @@ export type PaginatedData<T> = {
 import { memo, useState, Dispatch, SetStateAction } from "react";
 import { Group, Paper, Stack, LoadingOverlay } from "@mantine/core";
 import { Table, TableProps, Tbody, Thead, Tr, Th, Td } from "shared/ui/table";
-import { MemoTextInput } from "shared/ui/controls/inputs";
-import { MemoSelect, MemoMultiSelect } from "shared/ui/controls/selects";
-import { ButtonActionIcon } from "shared/ui/controls/buttons";
+import { MemoTextInput } from "shared/ui/inputs";
+import { MemoSelect, MemoMultiSelect } from "shared/ui/selects";
+import { ButtonActionIcon } from "shared/ui/buttons";
 import { BiSortAlt2, BiSortDown, BiSortUp } from "react-icons/bi";
 import { ImSpinner6 } from "react-icons/im";
 
@@ -255,7 +255,7 @@ export const QueryTable = <T extends object = {}, P extends object = {}>(
 					</Tbody>
 				</Table>
 			</Paper>
-			<Paper className={cn(tableStyle.tableControlsWrap)}>
+			<Paper className={cn(tableStyle.tableWrap)}>
 				<Group className="p-8 pb-6" align="flex-end" justify="flex-end">
 					<Group gap="xs" align="flex-end">
 						<MemoSelect

@@ -13,7 +13,7 @@ import {
 import { uid } from "@/shared/utils/number";
 
 import clsx from "clsx";
-import photosStyle from "@/entities/album/album-detail-photos/ui/AlbumDetailPhotos.module.css";
+import photosStyle from "@/entities/album/ui/album-detail-photos/AlbumDetailPhotos.module.css";
 
 type AlbumsProps = {
 	id: AlbumType["id"];

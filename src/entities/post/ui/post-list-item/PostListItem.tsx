@@ -1,6 +1,6 @@
 import { Group, Avatar, Stack } from "@mantine/core";
 import { TextClamp } from "@/shared/ui";
-import { ButtonLike } from "@/shared/ui/controls/buttons";
+import { ButtonLike } from "@/shared/ui/buttons";
 import { PostType } from "@/entities/post/types";
 import { useAppDispatch, useAppSelector } from "@/shared/redux/hooks";
 import { useRouter } from "next/navigation";

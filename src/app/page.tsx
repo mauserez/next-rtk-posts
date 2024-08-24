@@ -1,6 +1,6 @@
 "use client";
 
-import { TextInput } from "@/shared/ui/controls/inputs";
+import { TextInput } from "@/shared/ui/inputs";
 import { Stack, Group } from "@mantine/core";
 import { Albums } from "@/widgets/album/album-list/ui/AlbumList";
 import { Posts } from "@/widgets/post/post-list/ui/PostList";

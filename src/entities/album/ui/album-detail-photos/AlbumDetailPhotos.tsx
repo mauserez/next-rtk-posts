@@ -1,13 +1,16 @@
 "use client";
 
 import { Stack } from "@mantine/core";
-import { Button } from "@/shared/ui/controls/buttons";
+import { Button } from "@/shared/ui/buttons";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { AlbumType, AlbumPhotoType } from "@/entities/album/types";
 import { randomGradient } from "@/shared/utils/element";
-import { getPhotos } from "entities/album/api";
+import {
+	getPhotos,
+	ALBUM_PHOTOS_QUERY_KEY,
+	AlbumType,
+	AlbumPhotoType,
+} from "entities/album";
 
-import { ALBUM_PHOTOS_QUERY_KEY } from "entities/album/constants";
 import { useRef } from "react";
 import s from "./AlbumDetailPhotos.module.css";
 

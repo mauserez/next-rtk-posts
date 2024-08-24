@@ -6,7 +6,7 @@ import {
 	type FieldValues,
 } from "react-hook-form";
 
-import { TextInput, type TextInputProps } from "shared/ui/controls/inputs";
+import { TextInput, type TextInputProps } from "shared/ui/inputs";
 
 export type FormTextInputProps<T extends FieldValues> = UseControllerProps<T> &
 	Omit<TextInputProps, "value" | "defaultValue">;

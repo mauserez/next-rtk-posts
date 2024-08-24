@@ -1,8 +1,9 @@
 "use client";
+
 import { Group, Skeleton, Stack } from "@mantine/core";
 
 import { HorizontalScroller, SectionTitle, CardLoader } from "@/shared/ui";
-import { Button } from "@/shared/ui/controls/buttons";
+import { Button } from "shared/ui/buttons";
 
 import { useQuery } from "@tanstack/react-query";
 import {
@@ -13,8 +14,8 @@ import {
 } from "entities/album";
 
 import clsx from "clsx";
-import albumStyle from "@/entities/album/album-list-item/ui/AlbumListItem.module.css";
-import s from "./AlbumList.module.css";
+import albumListItemStyle from "entities/album/ui/album-list-item/AlbumListItem.module.css";
+import s from "widgets/album/album-list/ui/AlbumList.module.css";
 
 type AlbumsProps = {
 	title?: string;
@@ -90,8 +91,8 @@ const Loader = () => {
 	return (
 		<>
 			{[...Array(4)].map((i, idx) => (
-				<CardLoader key={idx} className={clsx(albumStyle.album)}>
-					<div className={clsx(albumStyle.info, s.loaderInfo)}>
+				<CardLoader key={idx} className={clsx(albumListItemStyle.album)}>
+					<div className={clsx(albumListItemStyle.info, s.loaderInfo)}>
 						<Skeleton color="#fff" height={8} radius="xl" />
 						<Skeleton color="#fff" height={8} mt={6} radius="xl" />
 					</div>

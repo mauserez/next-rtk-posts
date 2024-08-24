@@ -1,6 +1,6 @@
+import { mainApi } from "@/shared/axios/mainApi";
 import { AssocArray } from "@/shared/types";
 import { AlbumType, AlbumPhotoType } from "@/entities/album/types";
-import { mainApi } from "@/shared/axios/mainApi";
 import { randomInt } from "@/shared/utils/number";
 import queryString from "query-string";
 

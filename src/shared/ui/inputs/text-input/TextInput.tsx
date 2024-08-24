@@ -1,35 +1,32 @@
 "use client";
 
-import { memo, forwardRef, useRef } from "react";
-import { mergeRefs } from "@mantine/hooks";
-import { LuSearch } from "react-icons/lu";
+import { memo, useRef } from "react";
 
 import {
-	InputBase as MInput,
-	InputBaseProps as MInputProps,
-	PolymorphicComponentProps,
+	TextInput as MTextInput,
+	TextInputProps as MTextInputProps,
 } from "@mantine/core";
 
-import { ExtraInputProps } from "shared/ui/controls/inputs/types";
-import { InputLeftSection, InputRightSection } from "shared/ui/controls/inputs";
-import { cn } from "@/shared/utils/cn";
+import { ExtraInputProps } from "shared/ui/inputs/types";
+import { LuSearch } from "react-icons/lu";
+import { InputLeftSection, InputRightSection } from "shared/ui/inputs";
+import { cn } from "shared/utils/cn";
 
-export type InputProps = PolymorphicComponentProps<"input", MInputProps> &
-	ExtraInputProps;
+export type TextInputProps = MTextInputProps & ExtraInputProps;
 
-export const Input = forwardRef(function Input(props: InputProps, ref) {
+export const TextInput = (props: TextInputProps) => {
 	const {
 		className = "",
 		clearIcon,
 		clearable = true,
 		isSearch = false,
 		value,
-		variant,
 		size = "md",
 		leftSectionWidth,
 		leftSection,
 		rightSection,
 		rightSectionWidth,
+		variant,
 		...restProps
 	} = props;
 
@@ -37,7 +34,7 @@ export const Input = forwardRef(function Input(props: InputProps, ref) {
 	const searchIcon = isSearch ? <LuSearch /> : null;
 
 	const leftSectionContent = (
-		<InputLeftSection inputRef={inputRef} leftSection={leftSection}>
+		<InputLeftSection leftSection={leftSection} inputRef={inputRef}>
 			{searchIcon}
 		</InputLeftSection>
 	);
@@ -55,11 +52,11 @@ export const Input = forwardRef(function Input(props: InputProps, ref) {
 	const isRightSection = clearable || rightSection;
 
 	return (
-		<MInput
+		<MTextInput
 			data-no-border={unstyled}
 			data-no-shadow={unstyled}
 			size={size}
-			ref={mergeRefs(inputRef, ref)}
+			ref={inputRef}
 			spellCheck={false}
 			value={value}
 			leftSectionWidth={isLeftSection ? leftSectionWidth : 0}
@@ -70,6 +67,6 @@ export const Input = forwardRef(function Input(props: InputProps, ref) {
 			{...restProps}
 		/>
 	);
-});
+};
 
-export const MemoInput = memo(Input) as typeof Input;
+export const MemoTextInput = memo(TextInput) as typeof TextInput;

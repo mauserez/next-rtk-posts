@@ -5,7 +5,7 @@ import { signIn } from "next-auth/react";
 
 import { Form, useForm } from "react-hook-form";
 
-import { Button } from "@/shared/ui/controls/buttons";
+import { Button } from "@/shared/ui/buttons";
 import { MdPhone } from "react-icons/md";
 
 import {

@@ -2,7 +2,7 @@
 
 import { Group, GroupProps } from "@mantine/core";
 import { ReactNode, useState } from "react";
-import { Button, ButtonProps } from "shared/ui/controls/buttons";
+import { Button, ButtonProps } from "shared/ui/buttons";
 import { uid } from "shared/utils/number";
 import { PrimitiveType } from "shared/types";
 import clsx from "clsx";
@@ -33,7 +33,7 @@ export const ButtonGroup = (props: ButtonGroupTypes) => {
 
 	const [active, setActive] = useState(0);
 
-	const controls = buttons.map((item, index) => (
+	const Buttons = buttons.map((item, index) => (
 		<Button
 			key={uid()}
 			className={clsx({
@@ -52,5 +52,5 @@ export const ButtonGroup = (props: ButtonGroupTypes) => {
 		</Button>
 	));
 
-	return <Group {...buttonGroupProps}>{controls}</Group>;
+	return <Group {...buttonGroupProps}>{Buttons}</Group>;
 };
