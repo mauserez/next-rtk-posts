@@ -1,10 +1,9 @@
 "use client";
-
-import { Logo } from "@/shared/ui";
 import { Group } from "@mantine/core";
+import { Logo } from "shared/ui";
 import { useEffect } from "react";
 
-import { cn } from "@/shared/utils/cn";
+import { cn } from "shared/utils/cn";
 import s from "./Header.module.css";
 
 export const Header = () => {

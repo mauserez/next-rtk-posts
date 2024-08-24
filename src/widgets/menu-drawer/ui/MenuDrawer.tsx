@@ -3,7 +3,7 @@
 import { useDisclosure } from "@mantine/hooks";
 import { Drawer, NavLink, Stack } from "@mantine/core";
 import { BsList } from "react-icons/bs";
-import { menu, type MenuItem } from "../menu";
+import { menuItems, type MenuItem } from "../lib/menuItems";
 import { uid } from "@/shared/utils/number";
 import { usePathname, useRouter } from "next/navigation";
 import s from "./MenuDrawer.module.css";
@@ -15,7 +15,7 @@ export const MenuDrawer = () => {
 		<>
 			<Drawer opened={opened} onClose={close} size={400} title="">
 				<Stack>
-					<DrawMenu handle={close} menu={menu} />
+					<DrawMenu handle={close} menu={menuItems} />
 				</Stack>
 			</Drawer>
 

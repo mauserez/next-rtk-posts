@@ -12,7 +12,7 @@ export type MenuItem = PolymorphicComponentProps<"a", NavLinkProps> & {
 	icon?: ReactNode | IconType;
 };
 
-export const menu: MenuItem[] = [
+export const menuItems: MenuItem[] = [
 	{ href: "/", label: "Home", leftSection: <BiHomeAlt2 /> },
 	{
 		href: "/country/list",
