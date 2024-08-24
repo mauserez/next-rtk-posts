@@ -9,7 +9,7 @@ import {
 	useIsAuthenticated,
 	useIsNotAuthenticated,
 	useSessionUser,
-} from "@/core/nextauth/hooks";
+} from "config/nextauth/hooks";
 import { LoginForm } from "widgets/login-form/LoginForm";
 
 import s from "./ProfileCard.module.css";

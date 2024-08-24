@@ -1,5 +1,5 @@
-import { KanbanBoard } from "@/widgets/kanban/board/ui/KanbanBoard";
-import { PageLayout } from "@/core/layouts/page-layout/PageLayout";
+import { KanbanBoard } from "widgets/kanban/board/ui/KanbanBoard";
+import { PageLayout } from "config/layouts";
 
 export default function Board() {
 	return (

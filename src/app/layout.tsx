@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { Providers } from "@/core/providers";
+import { Providers } from "config/providers";
 //import { ColorSchemeScript } from "@mantine/core";
 import { fontMontserrat } from "./fonts";
 
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 	description: "Posts and Albums app",
 };
 
-import "../core/styles/styles.css";
+import "config/styles/styles.css";
 
 export default function RootLayout({
 	children,

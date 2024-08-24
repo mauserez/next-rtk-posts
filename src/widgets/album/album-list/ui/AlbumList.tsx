@@ -21,7 +21,7 @@ type AlbumsProps = {
 	title?: string;
 };
 
-export const Albums = (props: AlbumsProps) => {
+export const AlbumList = (props: AlbumsProps) => {
 	const { title = "" } = props;
 	const options = { title: title };
 
@@ -44,7 +44,7 @@ export const Albums = (props: AlbumsProps) => {
 	} else if (status === "error") {
 		content = error.message;
 	} else {
-		content = <AlbumList albums={albums} />;
+		content = <Albums albums={albums} />;
 	}
 
 	return (
@@ -71,7 +71,7 @@ type AlbumListProps = {
 	albums: AlbumType[] | undefined;
 };
 
-const AlbumList = (props: AlbumListProps) => {
+const Albums = (props: AlbumListProps) => {
 	const { albums } = props;
 
 	if (!albums?.length) {

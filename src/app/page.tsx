@@ -2,11 +2,11 @@
 
 import { TextInput } from "@/shared/ui/inputs";
 import { Stack, Group } from "@mantine/core";
-import { Albums } from "@/widgets/album/album-list/ui/AlbumList";
-import { Posts } from "@/widgets/post/post-list/ui/PostList";
+import { AlbumList } from "@/widgets/album/album-list/ui/AlbumList";
+import { PostList } from "@/widgets/post/post-list/ui/PostList";
 import { useState } from "react";
 import { useDebounce } from "@/shared/hooks/useDebounce";
-import { ProfileLayout } from "@/core/layouts/profile-layout/ProfileLayout";
+import { ProfileLayout } from "config/layouts";
 
 export default function Home() {
 	const [searchString, setSearchString] = useState("");
@@ -25,8 +25,8 @@ export default function Home() {
 					/>
 				</Group>
 
-				<Albums title={debouncedSearch} />
-				<Posts title={debouncedSearch} />
+				<AlbumList title={debouncedSearch} />
+				<PostList title={debouncedSearch} />
 			</Stack>
 		</ProfileLayout>
 	);

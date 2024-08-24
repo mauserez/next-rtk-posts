@@ -16,7 +16,7 @@ type PostsProps = {
 	title?: string;
 };
 
-export const Posts = (props: PostsProps) => {
+export const PostList = (props: PostsProps) => {
 	const { title = "" } = props;
 	const [userFilter, setUserFilter] = useState<PrimitiveType>(1);
 
@@ -49,7 +49,7 @@ export const Posts = (props: PostsProps) => {
 	} else if (status === "error") {
 		content = "error";
 	} else {
-		content = <PostList posts={posts} />;
+		content = <Posts posts={posts} />;
 	}
 
 	return (
@@ -78,7 +78,7 @@ type PostListProps = {
 	posts: PostType[];
 };
 
-const PostList = (props: PostListProps) => {
+const Posts = (props: PostListProps) => {
 	const { posts } = props;
 
 	return (

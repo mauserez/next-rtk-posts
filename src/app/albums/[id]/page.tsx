@@ -1,4 +1,4 @@
-import { PageLayout } from "@/core/layouts/page-layout/PageLayout";
+import { PageLayout } from "config/layouts";
 import { Album } from "@/widgets/album/album-detail/ui/AlbumDetail";
 
 type AlbumPageParams = {

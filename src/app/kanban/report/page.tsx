@@ -1,4 +1,4 @@
-import { PageLayout } from "@/core/layouts/page-layout/PageLayout";
+import { PageLayout } from "config/layouts";
 
 export default function Report() {
 	return (

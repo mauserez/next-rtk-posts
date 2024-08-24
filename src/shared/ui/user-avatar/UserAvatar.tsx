@@ -1,8 +1,7 @@
 "use client";
 
-import { useSessionUser } from "@/core/nextauth/hooks";
+import { useSessionUser } from "config/nextauth/hooks";
 import { Avatar, AvatarProps, PolymorphicComponentProps } from "@mantine/core";
-import { Button } from "../buttons";
 import { cn } from "@/shared/utils/cn";
 import s from "./UserAvatar.module.css";
 

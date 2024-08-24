@@ -1,5 +1,5 @@
-import { Post } from "@/widgets/post/post-detail/ui/Post";
-import { PageLayout } from "@/core/layouts/page-layout/PageLayout";
+import { Post } from "widgets/post/post-detail/ui/Post";
+import { PageLayout } from "config/layouts";
 
 type PostPageParams = {
 	id: string;

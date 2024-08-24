@@ -1,6 +1,5 @@
 "use client";
 
-import { mainApi } from "@/shared/axios/mainApi";
 import { Group, Skeleton, Stack, Text } from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
 import {
@@ -8,7 +7,7 @@ import {
 	POST_USER_QUERY_KEY,
 	getPost,
 	getPostUser,
-} from "api/post";
+} from "entities/post";
 
 import { SectionTitle } from "@/shared/ui";
 import { PostType, PostUserType } from "@/entities/post/types";

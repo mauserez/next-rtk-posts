@@ -5,11 +5,11 @@ import { Stack, Group } from "@mantine/core";
 import { LoginForm } from "widgets/login-form/LoginForm";
 
 import { usePathname } from "next/navigation";
-import { useIsAuthenticated } from "@/core/nextauth/hooks";
-import { ButtonLink } from "@/shared/ui/buttons";
+import { useIsAuthenticated } from "config/nextauth/hooks";
+import { ButtonLink } from "shared/ui/buttons";
 
 import { cn } from "@/shared/utils/cn";
-import s from "./AuthProtected.module.css";
+import s from "config/providers/auth-protected/AuthProtected.module.css";
 import { useSession } from "next-auth/react";
 
 const protectedRoutes = ["/albums", "/posts", "/country"];

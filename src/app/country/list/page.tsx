@@ -1,10 +1,10 @@
-import { PageLayout } from "@/core/layouts/page-layout/PageLayout";
-import { CountryTable } from "@/widgets/country/country-table/ui/CountryTable";
+import { PageLayout } from "config/layouts/page-layout/PageLayout";
+import { CountryTable } from "widgets/country/country-table/ui/CountryTable";
 import {
 	COUNTRIES_PAGINATED_QUERY_KEY,
 	getPaginatedCountries,
 } from "entities/country";
-import { getQueryClient } from "@/core/providers/tanstack-query/utils/getQueryClient";
+import { getQueryClient } from "config/providers/tanstack-query/utils/getQueryClient";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import { getUrlParamsServer } from "@/shared/utils/urlServer";
 
