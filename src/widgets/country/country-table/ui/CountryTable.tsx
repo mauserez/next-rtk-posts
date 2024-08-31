@@ -8,31 +8,31 @@ import {
 	getCountryList,
 	getPaginatedCountries,
 	GetPaginatedCountriesOptions,
-	getCountryLangList,
+	//getCountryLangList,
 	COUNTRIES_PAGINATED_QUERY_KEY,
 	COUNTRY_LIST_QUERY_KEY,
-	COUNTRY_LANG_LIST_QUERY_KEY,
+	//COUNTRY_LANG_LIST_QUERY_KEY,
 	COUNTRIES_ALL_QUERY_KEY,
 } from "entities/country";
 
-import { getUrlParams } from "shared/utils/urlClient";
-import { CountryType } from "entities/country/types";
-import { countryTableColumns } from "../lib";
+//import { getUrlParams } from "shared/lib/urlClient";
+import { CountryType } from "entities/country";
+import { countryTableColumns } from "widgets/country/country-table/lib";
 import { useState } from "react";
 
-export const CountryTable = () => {
+export function CountryTable() {
 	/* const params = getUrlParams();
 	const page = params["page"] ?? "1";
 	const limit = params["limit"] ?? "10"; */
 
-	const { data: langList } = useQuery({
+	/* const { data: langList } = useQuery({
 		queryKey: [COUNTRY_LANG_LIST_QUERY_KEY],
 		queryFn: async () => {
 			return await getCountryLangList();
 		},
 		placeholderData: keepPreviousData,
 	});
-
+ */
 	const { data: countryList } = useQuery({
 		queryKey: [COUNTRY_LIST_QUERY_KEY],
 		queryFn: async () => {
@@ -104,4 +104,4 @@ export const CountryTable = () => {
 			}
 		</>
 	);
-};
+}

@@ -1,5 +1,5 @@
 import { LoginForm } from "@/widgets/login-form/LoginForm";
-import { cn } from "@/shared/utils/cn";
+import { cn } from "@/shared/lib/cn";
 
 export default function LoginPage() {
 	return (

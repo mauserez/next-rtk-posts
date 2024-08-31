@@ -2,7 +2,7 @@
 
 import { useSession } from "next-auth/react";
 
-export const useIsAuthenticated = () => {
+export function useIsAuthenticated() {
 	const auth = useSession();
 	return auth.status !== "loading" && auth.status === "authenticated";
-};
+}

@@ -1,9 +1,9 @@
 "use client";
 
 import { Stack } from "@mantine/core";
-import { Button } from "@/shared/ui/buttons";
+import { Button } from "shared/ui/buttons";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { randomGradient } from "@/shared/utils/element";
+import { randomGradient } from "shared/lib/element";
 import {
 	getPhotos,
 	ALBUM_PHOTOS_QUERY_KEY,
@@ -12,13 +12,13 @@ import {
 } from "entities/album";
 
 import { useRef } from "react";
-import s from "./AlbumDetailPhotos.module.css";
+import s from "entities/album/ui/album-detail-photos/AlbumDetailPhotos.module.css";
 
 type AlbumDetailPhotosProps = {
 	albumId: AlbumType["id"];
 };
 
-export const AlbumDetailPhotos = (props: AlbumDetailPhotosProps) => {
+export function AlbumDetailPhotos(props: AlbumDetailPhotosProps) {
 	const { albumId } = props;
 	const page = useRef(1);
 	const options = { albumId: albumId, page: page.current };
@@ -63,7 +63,7 @@ export const AlbumDetailPhotos = (props: AlbumDetailPhotosProps) => {
 						disabled={isFetching}
 						loading={isFetching}
 						onClick={() => {
-							fetchNextPage();
+							void fetchNextPage();
 						}}
 					>
 						Load more
@@ -74,7 +74,7 @@ export const AlbumDetailPhotos = (props: AlbumDetailPhotosProps) => {
 	}
 
 	return content;
-};
+}
 
 type PhotoGalleryProps = {
 	photos: AlbumPhotoType[];

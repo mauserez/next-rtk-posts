@@ -1,5 +1,5 @@
 import { ComponentProps } from "react";
-import s from "./CardLoader.module.css";
+import s from "shared/ui/card-loader/CardLoader.module.css";
 import clsx from "clsx";
 
 type CardLoaderProps = ComponentProps<"div">;

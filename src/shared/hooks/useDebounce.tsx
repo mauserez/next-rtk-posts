@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { PrimitiveType } from "../types";
 
-export const useDebounce = <T,>(val: T, delay: number) => {
+export function useDebounce<T>(val: T, delay: number) {
 	const [debounceVal, setDebounceVal] = useState(val);
 
 	useEffect(() => {
@@ -15,4 +14,4 @@ export const useDebounce = <T,>(val: T, delay: number) => {
 	}, [val, delay]);
 
 	return debounceVal;
-};
+}

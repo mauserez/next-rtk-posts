@@ -8,8 +8,8 @@ import {
 import { LuLoader } from "react-icons/lu";
 import { IconBaseProps, IconType } from "react-icons/lib";
 
-import { cn } from "@/shared/utils/cn";
-import s from "./Button.module.css";
+import { cn } from "@/shared/lib/cn";
+import s from "shared/ui/buttons/button/Button.module.css";
 
 export type ButtonProps = PolymorphicComponentProps<"button", MButtonProps> & {
 	isLoading?: boolean;

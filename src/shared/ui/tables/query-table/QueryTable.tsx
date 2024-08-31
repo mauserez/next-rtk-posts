@@ -34,7 +34,7 @@ import {
 	ColumnDef,
 } from "@tanstack/react-table";
 
-import { cn } from "@/shared/utils/cn";
+import { cn } from "shared/lib/cn";
 import tableStyle from "shared/ui/tables/data-table/DataTable.module.css";
 
 type TableFilterType = "select" | "multiselect" | "input" | "checkbox";
@@ -62,9 +62,9 @@ type QueryTableProps<T, P> = {
 	withGlobalFilter?: boolean;
 } & Omit<TableProps, "data">;
 
-export const QueryTable = <T extends object = {}, P extends object = {}>(
+export function QueryTable<T extends object = {}, P extends object = {}>(
 	props: QueryTableProps<T, P>
-) => {
+) {
 	const {
 		data,
 		columns,
@@ -79,9 +79,9 @@ export const QueryTable = <T extends object = {}, P extends object = {}>(
 	const tableData = data?.data ? data?.data : [];
 
 	const sortIcons: Record<TableSortType, JSX.Element> = {
-		"asc": <BiSortUp size={"20px"} />,
-		"desc": <BiSortDown size={"20px"} />,
-		"default": <BiSortAlt2 size={"20px"} />,
+		"asc": <BiSortUp size="20px" />,
+		"desc": <BiSortDown size="20px" />,
+		"default": <BiSortAlt2 size="20px" />,
 	};
 
 	const sortNext: Record<TableSortType, TableSortType> = {
@@ -168,8 +168,8 @@ export const QueryTable = <T extends object = {}, P extends object = {}>(
 			<Paper className={cn(tableStyle.tableWrap, "overflow-auto flex-1")}>
 				{/* 	{isLoading ? <CgSpinnerTwoAlt className={tableStyle.loader} /> : null} */}
 				<Table
-					horizontalSpacing={"md"}
-					verticalSpacing={"10px"}
+					horizontalSpacing="md"
+					verticalSpacing="10px"
 					stickyHeader
 					striped
 					className={cn(tableStyle.table)}
@@ -205,7 +205,7 @@ export const QueryTable = <T extends object = {}, P extends object = {}>(
 														header.column.getCanSort() ? "select-none" : ""
 													)}
 												>
-													<Stack gap={"4px"} justify="flex-start">
+													<Stack gap="4px" justify="flex-start">
 														<Group justify="space-between" wrap="nowrap">
 															<div
 																className="cursor-pointer"
@@ -341,7 +341,7 @@ export const QueryTable = <T extends object = {}, P extends object = {}>(
 			</Paper>
 		</Stack>
 	);
-};
+}
 
 type FilterProps<T, P> = {
 	setParams: Dispatch<SetStateAction<P>>;

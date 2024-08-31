@@ -9,12 +9,13 @@ import {
 
 import { ExtraInputProps } from "shared/ui/inputs/types";
 import { LuSearch } from "react-icons/lu";
-import { InputLeftSection, InputRightSection } from "shared/ui/inputs";
-import { cn } from "shared/utils/cn";
+import { InputLeftSection } from "shared/ui/inputs/InputLeftSection";
+import { InputRightSection } from "shared/ui/inputs/InputRightSection";
+import { cn } from "shared/lib/cn";
 
 export type TextInputProps = MTextInputProps & ExtraInputProps;
 
-export const TextInput = (props: TextInputProps) => {
+export function TextInput(props: TextInputProps) {
 	const {
 		className = "",
 		clearIcon,
@@ -67,6 +68,6 @@ export const TextInput = (props: TextInputProps) => {
 			{...restProps}
 		/>
 	);
-};
+}
 
 export const MemoTextInput = memo(TextInput) as typeof TextInput;

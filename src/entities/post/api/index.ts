@@ -1,6 +1,6 @@
 import { PostType, PostUserType } from "entities/post/types";
 import { jsonPlaceholderApi } from "shared/axios/jsonPlaceholderApi";
-import { randomInt } from "@/shared/utils/number";
+import { randomInt } from "shared/lib/number";
 import queryString from "query-string";
 
 export const getPost = async (id: PostType["id"]): Promise<PostType> => {

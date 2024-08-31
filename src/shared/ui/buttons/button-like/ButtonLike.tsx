@@ -3,7 +3,7 @@ import { IconBaseProps } from "react-icons/lib";
 import { MouseEvent } from "react";
 
 import clsx from "clsx";
-import s from "./ButtonLike.module.css";
+import s from "shared/ui/buttons/button-like/ButtonLike.module.css";
 
 type ButtonLikeProps = {
 	active: boolean;

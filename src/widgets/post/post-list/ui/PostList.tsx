@@ -4,19 +4,19 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { SectionTitle } from "shared/ui";
 import { Button } from "shared/ui/buttons";
-import { ButtonGroup } from "@/shared/ui/button-group/ButtonGroup";
+import { ButtonGroup } from "shared/ui/button-group/ButtonGroup";
 
 import { PostType } from "entities/post/types";
-import { PostListItem, POSTS_QUERY_KEY, getPosts } from "@/entities/post";
+import { PostListItem, POSTS_QUERY_KEY, getPosts } from "entities/post";
 import { PrimitiveType } from "shared/types";
 
-import s from "./PostList.module.css";
+import s from "widgets/post/post-list/ui/PostList.module.css";
 
 type PostsProps = {
 	title?: string;
 };
 
-export const PostList = (props: PostsProps) => {
+export function PostList(props: PostsProps) {
 	const { title = "" } = props;
 	const [userFilter, setUserFilter] = useState<PrimitiveType>(1);
 
@@ -60,7 +60,7 @@ export const PostList = (props: PostsProps) => {
 					isLoading={isFetching}
 					disabled={isFetching}
 					onClick={() => {
-						refetch();
+						void refetch();
 					}}
 				>
 					Refresh
@@ -72,13 +72,13 @@ export const PostList = (props: PostsProps) => {
 			</Stack>
 		</Stack>
 	);
-};
+}
 
 type PostListProps = {
 	posts: PostType[];
 };
 
-const Posts = (props: PostListProps) => {
+function Posts(props: PostListProps) {
 	const { posts } = props;
 
 	return (
@@ -88,9 +88,9 @@ const Posts = (props: PostListProps) => {
 			))}
 		</div>
 	);
-};
+}
 
-const Loader = () => {
+function Loader() {
 	return (
 		<Grid>
 			{[...Array(4)].map((_, i) => (
@@ -111,4 +111,4 @@ const Loader = () => {
 			))}
 		</Grid>
 	);
-};
+}

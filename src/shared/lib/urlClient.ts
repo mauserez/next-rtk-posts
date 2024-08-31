@@ -1,17 +1,17 @@
 import queryString from "query-string";
 
-export const getUrl = () => {
+export function getUrl() {
 	return window.location.href;
-};
+}
 
-export const getPathName = () => {
+export function getPathName() {
 	return window.location.pathname;
-};
+}
 
-export const getUrlParams = () => {
+export function getUrlParams() {
 	return queryString.parseUrl(getUrl()).query;
-};
+}
 
-export const getUrlParamsString = () => {
+export function getUrlParamsString() {
 	return queryString.stringify(getUrlParams());
-};
+}

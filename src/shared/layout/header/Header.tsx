@@ -3,8 +3,8 @@ import { Group } from "@mantine/core";
 import { Logo } from "shared/ui";
 import { useEffect } from "react";
 
-import { cn } from "shared/utils/cn";
-import s from "./Header.module.css";
+import { cn } from "@/shared/lib/cn";
+import s from "shared/layout/header/Header.module.css";
 
 export const Header = () => {
 	useEffect(() => {

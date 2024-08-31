@@ -1,13 +1,13 @@
-import { Content, Header } from "@/shared/layout";
+import { Content, Header } from "shared/layout";
 import { ReactNode } from "react";
-import { ProfileCardDrawer } from "@/entities/profile/ui";
+import { ProfileCardDrawer } from "entities/profile";
 import { Group } from "@mantine/core";
 
 type PageLayoutProps = {
 	children: ReactNode;
 };
 
-export const PageLayout = (props: PageLayoutProps) => {
+export function PageLayout(props: PageLayoutProps) {
 	const { children } = props;
 
 	return (
@@ -19,4 +19,4 @@ export const PageLayout = (props: PageLayoutProps) => {
 			{children}
 		</Content>
 	);
-};
+}

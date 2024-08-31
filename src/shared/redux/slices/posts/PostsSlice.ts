@@ -1,6 +1,6 @@
 import { PostType } from "@/entities/post/types";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { removeFromArrayByKeyValue } from "@/shared/utils/array";
+import { removeFromArrayByKeyValue } from "@/shared/lib/array";
 
 export interface PostsState {
 	favoritePosts: PostType[];

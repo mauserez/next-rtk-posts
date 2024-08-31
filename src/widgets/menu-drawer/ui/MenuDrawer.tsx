@@ -3,12 +3,12 @@
 import { useDisclosure } from "@mantine/hooks";
 import { Drawer, NavLink, Stack } from "@mantine/core";
 import { BsList } from "react-icons/bs";
-import { menuItems, type MenuItem } from "../lib/menuItems";
-import { uid } from "@/shared/utils/number";
+import { menuItems, type MenuItem } from "widgets/menu-drawer/lib/menuItems";
+import { uid } from "shared/lib/number";
 import { usePathname, useRouter } from "next/navigation";
-import s from "./MenuDrawer.module.css";
+import s from "widgets/menu-drawer/ui/MenuDrawer.module.css";
 
-export const MenuDrawer = () => {
+export function MenuDrawer() {
 	const [opened, { open, close }] = useDisclosure(false);
 
 	return (
@@ -22,11 +22,11 @@ export const MenuDrawer = () => {
 			<BsList className={s.menuIcon} onClick={open} color="#bbb" size={24} />
 		</>
 	);
-};
+}
 
 type DrawMenuProps = { menu: MenuItem[]; handle: () => void };
 
-export const DrawMenu = (props: DrawMenuProps) => {
+export function DrawMenu(props: DrawMenuProps) {
 	const { menu, handle } = props;
 	const path = usePathname();
 	const router = useRouter();
@@ -59,7 +59,7 @@ export const DrawMenu = (props: DrawMenuProps) => {
 			/>
 		);
 	});
-};
+}
 
 const isChildActiveUrl = (path: string, menuItem: MenuItem) => {
 	let result = 0;

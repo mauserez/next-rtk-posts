@@ -1,8 +1,8 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
-import postsReducer from "./slices/posts/PostsSlice";
-import albumsReducer from "./slices/albums/AlbumsSlice";
+import postsReducer from "shared/redux/slices/posts/PostsSlice";
+import albumsReducer from "shared/redux/slices/albums/AlbumsSlice";
 
 import storage from "redux-persist/lib/storage";
 import { persistStore, persistReducer } from "redux-persist";

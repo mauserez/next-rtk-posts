@@ -1,16 +1,16 @@
-import { jsonPlaceholderApi } from "@/shared/axios/jsonPlaceholderApi";
-import { AssocArray } from "@/shared/types";
-import { AlbumType, AlbumPhotoType } from "@/entities/album/types";
-import { randomInt } from "@/shared/utils/number";
+import { jsonPlaceholderApi } from "shared/axios/jsonPlaceholderApi";
+import { AssocArray } from "shared/types";
+import { AlbumType, AlbumPhotoType } from "entities/album/types";
+import { randomInt } from "shared/lib/number";
 import queryString from "query-string";
 
-export const getAlbum = async (id: AlbumType["id"]): Promise<AlbumType> => {
+export async function getAlbum(id: AlbumType["id"]): Promise<AlbumType> {
 	return await jsonPlaceholderApi
 		.get(`/albums?id=${id}&_embed=photos`)
 		.then((response) => response.data[0]);
-};
+}
 
-export const getAlbums = async (options: AssocArray): Promise<AlbumType[]> => {
+export async function getAlbums(options: AssocArray): Promise<AlbumType[]> {
 	const { title = "" } = options;
 
 	const sortValue = ["userId", "id", "title", "url"][randomInt(0, 3)];
@@ -28,7 +28,7 @@ export const getAlbums = async (options: AssocArray): Promise<AlbumType[]> => {
 	return await jsonPlaceholderApi
 		.get(`/albums?${searchUrl}`)
 		.then((response) => response.data);
-};
+}
 
 type GetPhotosOptions = {
 	albumId: number;
@@ -36,12 +36,12 @@ type GetPhotosOptions = {
 	page?: number;
 };
 
-export const getPhotos = async (
+export async function getPhotos(
 	options: GetPhotosOptions
-): Promise<AlbumPhotoType[]> => {
+): Promise<AlbumPhotoType[]> {
 	const { albumId, limit = 10, page = 1 } = options;
 
 	return await jsonPlaceholderApi
 		.get(`/photos?albumId=${albumId}&_page=${page}&_limit=${limit}`)
 		.then((response) => response.data);
-};
+}

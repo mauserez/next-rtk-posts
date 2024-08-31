@@ -1,6 +1,6 @@
 import { Button, ButtonProps } from "shared/ui/buttons";
 import Link from "next/link";
-import { cn } from "@/shared/utils/cn";
+import { cn } from "@/shared/lib/cn";
 
 type ButtonLinkProps = ButtonProps & { href: string };
 

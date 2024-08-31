@@ -3,7 +3,7 @@ import {
 	CountryType,
 	CountryListItemType,
 	LangListItemType,
-} from "entities/country/types";
+} from "@/entities/country/types/types";
 import { backendApi } from "shared/axios/api";
 
 export const getCountryLangList = async (): Promise<

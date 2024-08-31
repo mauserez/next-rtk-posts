@@ -1,7 +1,7 @@
 "use client";
 
 import { Stack, Skeleton } from "@mantine/core";
-import { SectionTitle, CardLoader } from "@/shared/ui";
+import { SectionTitle, CardLoader } from "shared/ui";
 import { useQuery } from "@tanstack/react-query";
 
 import {
@@ -10,7 +10,7 @@ import {
 	type AlbumType,
 	ALBUM_QUERY_KEY,
 } from "entities/album";
-import { uid } from "@/shared/utils/number";
+import { uid } from "shared/lib/number";
 
 import clsx from "clsx";
 import photosStyle from "entities/album/ui/album-detail-photos/AlbumDetailPhotos.module.css";
@@ -19,7 +19,7 @@ type AlbumsProps = {
 	id: AlbumType["id"];
 };
 
-export const Album = (props: AlbumsProps) => {
+export function Album(props: AlbumsProps) {
 	const { id } = props;
 
 	const {
@@ -47,12 +47,12 @@ export const Album = (props: AlbumsProps) => {
 			{content}
 		</Stack>
 	);
-};
+}
 
 const Loader = () => {
 	return (
 		<div className={clsx(photosStyle.photos)}>
-			{[...Array(7)].map((_, i) => (
+			{[...Array(7)].map(() => (
 				<CardLoader key={uid()}>
 					<Skeleton />
 				</CardLoader>

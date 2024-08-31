@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { randomGradient } from "@/shared/utils/element";
+import { randomGradient } from "@/shared/lib/element";
 import { AlbumType } from "@/entities/album/types";
 import { useRouter } from "next/navigation";
 import { TextClamp } from "@/shared/ui";
@@ -12,7 +12,7 @@ import {
 	isFavoriteAlbum,
 } from "@/shared/redux/slices/albums/AlbumsSlice";
 
-import s from "./AlbumListItem.module.css";
+import s from "entities/album/ui/album-list-item/AlbumListItem.module.css";
 
 type AlbumListItemProps = {
 	album: AlbumType;

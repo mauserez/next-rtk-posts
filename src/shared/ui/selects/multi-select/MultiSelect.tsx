@@ -5,10 +5,10 @@ import {
 } from "@mantine/core";
 
 import { MdClear } from "react-icons/md";
-import { cn } from "@/shared/utils/cn";
+import { cn } from "shared/lib/cn";
 
 export type MultiSelectProps = Omit<MSelectProps, "searchable">;
-export const MultiSelect = (props: MultiSelectProps) => {
+export function MultiSelect(props: MultiSelectProps) {
 	const {
 		checkIconPosition = "right",
 		className,
@@ -62,6 +62,6 @@ export const MultiSelect = (props: MultiSelectProps) => {
 			{...restProps}
 		/>
 	);
-};
+}
 
 export const MemoMultiSelect = memo(MultiSelect) as typeof MultiSelect;

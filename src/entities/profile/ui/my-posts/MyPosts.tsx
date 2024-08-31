@@ -7,7 +7,7 @@ import { useAppSelector, useAppDispatch } from "@/shared/redux/hooks";
 import { removePost } from "@/shared/redux/slices/posts/PostsSlice";
 import { ButtonLike } from "@/shared/ui/buttons";
 
-import s from "./MyPosts.module.css";
+import s from "entities/profile/ui/my-posts/MyPosts.module.css";
 
 export const MyPosts = () => {
 	const dispatch = useAppDispatch();
@@ -25,7 +25,7 @@ export const MyPosts = () => {
 									<Avatar color="#fff" bg="#666" size="48px" radius="lg">
 										{post.id}
 									</Avatar>
-									<Stack gap={"4px"}>
+									<Stack gap="4px">
 										<TextClamp
 											firstLetterUppercase={true}
 											lineCount={2}

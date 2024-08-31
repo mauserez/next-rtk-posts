@@ -6,7 +6,7 @@ export const removeFromArrayByKeyValue = <T>(arr: T[], k: keyof T, value: unknow
 };
 
 export const chunk = <T>(arr: T[], size: number) => {
-	let result = [];
+	const result = [];
 	while (arr.length) {
 		result.push(arr.splice(0, size));
 	}

@@ -1,5 +1,5 @@
-import { AssocArray } from "@/shared/types";
-import { accessApi, backendApi, refreshApi } from "@/shared/axios/api";
+import { AssocArray } from "shared/types";
+import { accessApi, backendApi, refreshApi } from "shared/axios/api";
 import { jwtDecode } from "jwt-decode";
 import { User } from "next-auth";
 
@@ -25,21 +25,21 @@ const ACCESS_ERRORS: AssocArray = {
 	"Bad credentials": "Неверный логин или пароль",
 };
 
-const parseAccessToken = (accessToken: string) => {
+function parseAccessToken(accessToken: string) {
 	const tokenData = jwtDecode(accessToken);
 	const exp = tokenData.exp ?? Math.floor(Date.now() / 1000);
 
 	return { exp: exp };
-};
+}
 
-const prepareTokenData = (tokenData: SessionUserType) => {
+function prepareTokenData(tokenData: SessionUserType) {
 	/*  const extra = parseAccessToken(tokenData.access_token);
 	const prepareTokenData = { ...tokenData, ...extra };
 
 	return prepareTokenData;  */
-};
+}
 
-export const getAccess = async (credentials: AuthParams) => {
+export async function getAccess(credentials: AuthParams) {
 	return await accessApi<SessionUserType>({
 		method: "post",
 		data: credentials,
@@ -64,9 +64,9 @@ export const getAccess = async (credentials: AuthParams) => {
 				errorText: errorText,
 			};
 		});
-};
+}
 
-export const refreshAccess = async (refreshToken: string) => {
+export async function refreshAccess(refreshToken: string) {
 	return await refreshApi<SessionUserType>({
 		method: "post",
 		data: { refresh_token: refreshToken },
@@ -87,9 +87,9 @@ export const refreshAccess = async (refreshToken: string) => {
 				errorText: "Не удалось обновить токен",
 			};
 		});
-};
+}
 
-export const getAccessByCredentials = async (credentials: AuthParams) => {
+export async function getAccessByCredentials(credentials: AuthParams) {
 	//headers: { "Content-Type": "multipart/form-data" },
 	const { username, password } = credentials;
 
@@ -116,4 +116,4 @@ export const getAccessByCredentials = async (credentials: AuthParams) => {
 				errorText: "Неправильные логин или пароль",
 			};
 		});
-};
+}

@@ -2,7 +2,7 @@ import { ComponentProps, ReactNode } from "react";
 import { Group, GroupProps } from "@mantine/core";
 
 import clsx from "clsx";
-import s from "./SectionTitle.module.css";
+import s from "shared/ui/section-title/SectionTitle.module.css";
 
 type SectionTitleProps = {
 	boldText?: string | ReactNode;
@@ -33,7 +33,7 @@ export const SectionTitle = (props: SectionTitleProps) => {
 					{boldText}
 				</p>
 
-				{!!lightText ? <p className={s.light}>{lightText}</p> : null}
+				{lightText ? <p className={s.light}>{lightText}</p> : null}
 			</Group>
 		</Group>
 	);

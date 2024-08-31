@@ -3,16 +3,18 @@
 import { Group, GroupProps } from "@mantine/core";
 import { ReactNode, useState } from "react";
 import { Button, ButtonProps } from "shared/ui/buttons";
-import { uid } from "shared/utils/number";
+import { uid } from "@/shared/lib/number";
 import { PrimitiveType } from "shared/types";
 import clsx from "clsx";
 
-import s from "./ButtonGroup.module.css";
+import s from "shared/ui/button-group/ButtonGroup.module.css";
 
-type AssocButtons = {
+type AssocButton = {
 	value: PrimitiveType;
 	label: string | ReactNode;
-}[];
+};
+
+type AssocButtons = AssocButton[];
 
 type ButtonGroupTypes = {
 	buttonProps?: ButtonProps;
@@ -33,7 +35,7 @@ export const ButtonGroup = (props: ButtonGroupTypes) => {
 
 	const [active, setActive] = useState(0);
 
-	const Buttons = buttons.map((item, index) => (
+	const buttonList = buttons.map((item, index) => (
 		<Button
 			key={uid()}
 			className={clsx({
@@ -52,5 +54,5 @@ export const ButtonGroup = (props: ButtonGroupTypes) => {
 		</Button>
 	));
 
-	return <Group {...buttonGroupProps}>{Buttons}</Group>;
+	return <Group {...buttonGroupProps}>{buttonList}</Group>;
 };

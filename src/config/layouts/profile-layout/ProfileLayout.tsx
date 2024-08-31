@@ -1,15 +1,15 @@
-import { Content, Header } from "@/shared/layout";
+import { Content, Header } from "shared/layout";
 import { ReactNode } from "react";
-import { ProfileCard } from "@/entities/profile/ui";
-import { cn } from "@/shared/utils/cn";
+import { ProfileCard } from "entities/profile";
+import { cn } from "shared/lib/cn";
 
-import s from "./ProfileLayout.module.css";
+import s from "config/layouts/profile-layout/ProfileLayout.module.css";
 
 type ProfileLayoutProps = {
 	children: ReactNode;
 };
 
-export const ProfileLayout = (props: ProfileLayoutProps) => {
+export function ProfileLayout(props: ProfileLayoutProps) {
 	const { children } = props;
 
 	return (
@@ -21,4 +21,4 @@ export const ProfileLayout = (props: ProfileLayoutProps) => {
 			<ProfileCard />
 		</section>
 	);
-};
+}

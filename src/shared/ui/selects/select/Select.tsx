@@ -1,9 +1,9 @@
 import { memo } from "react";
 import { Select as MSelect, SelectProps as MSelectProps } from "@mantine/core";
-import { cn } from "@/shared/utils/cn";
+import { cn } from "shared/lib/cn";
 
 export type SelectProps = MSelectProps;
-export const Select = (props: SelectProps) => {
+export function Select(props: SelectProps) {
 	const {
 		checkIconPosition = "right",
 		className,
@@ -31,6 +31,6 @@ export const Select = (props: SelectProps) => {
 			{...restProps}
 		/>
 	);
-};
+}
 
 export const MemoSelect = memo(Select) as typeof Select;

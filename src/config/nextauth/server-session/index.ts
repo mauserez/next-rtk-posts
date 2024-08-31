@@ -1,16 +1,16 @@
 import { getServerSession } from "next-auth";
-import { nextAuthOptions } from "../auth.config";
+import { nextAuthOptions } from "config/nextauth/auth.config";
 
-export const session = async () => {
+export async function session() {
 	return await getServerSession(nextAuthOptions);
-};
+}
 
-export const sessionUser = async () => {
+export async function sessionUser() {
 	const session = await getServerSession(nextAuthOptions);
 	return session?.user;
-};
+}
 
-export const isAuthenticated = async () => {
+export async function isAuthenticated() {
 	const session = await getServerSession(nextAuthOptions);
 	return !!session?.user.name;
-};
+}

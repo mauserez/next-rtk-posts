@@ -1,6 +1,6 @@
 "use client";
 
-import { typedForwardRef } from "@/shared/utils/typedForwardRef";
+import { typedForwardRef } from "@/shared/lib/typedForwardRef";
 import { ForwardedRef } from "react";
 import {
 	useController,
@@ -56,4 +56,4 @@ function FormRefInputInit<T extends FieldValues>(
 	);
 }
 
-export const FormInput = typedForwardRef(FormRefInputInit);
+export const FormRefInput = typedForwardRef(FormRefInputInit);

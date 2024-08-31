@@ -32,8 +32,8 @@ import {
 	PaginationState,
 } from "@tanstack/react-table";
 
-import { cn } from "@/shared/utils/cn";
-import s from "./DataTable.module.css";
+import { cn } from "shared/lib/cn";
+import s from "shared/ui/tables/data-table/DataTable.module.css";
 
 type TableFilterType = "select" | "multiselect" | "input" | "checkbox";
 type TableFilterOptionsType = {
@@ -127,8 +127,8 @@ export const DataTable = <T,>(props: DataTableProps<T>) => {
 				</Group>
 
 				<Table
-					horizontalSpacing={"md"}
-					verticalSpacing={"10px"}
+					horizontalSpacing="md"
+					verticalSpacing="10px"
 					stickyHeader
 					stickyHeaderOffset={withGlobalFilter ? "72px" : "0"}
 					striped
@@ -162,12 +162,12 @@ export const DataTable = <T,>(props: DataTableProps<T>) => {
 															? header.column.getNextSortingOrder() === "asc"
 																? "Сортировка"
 																: header.column.getNextSortingOrder() === "desc"
-																? "От меньшего к большему"
-																: "От большего к меньшему"
+																	? "От меньшего к большему"
+																	: "От большего к меньшему"
 															: undefined
 													}
 												>
-													<Stack gap={"4px"} justify="flex-start">
+													<Stack gap="4px" justify="flex-start">
 														<Group justify="space-between" wrap="nowrap">
 															<div
 																className="cursor-pointer"
@@ -183,10 +183,10 @@ export const DataTable = <T,>(props: DataTableProps<T>) => {
 																onClick={header.column.getToggleSortingHandler()}
 															>
 																{{
-																	asc: <BiSortUp size={"20px"} />,
-																	desc: <BiSortDown size={"20px"} />,
+																	asc: <BiSortUp size="20px" />,
+																	desc: <BiSortDown size="20px" />,
 																}[header.column.getIsSorted() as string] ?? (
-																	<BiSortAlt2 size={"20px"} />
+																	<BiSortAlt2 size="20px" />
 																)}
 															</div>
 														</Group>
@@ -328,7 +328,7 @@ function Filter<T>(props: FilterProps<T>) {
 				classNames={{ input: cn("p-0") }}
 				label={label}
 				onChange={(e) => column.setFilterValue(e.target.value)}
-				placeholder={"Search"}
+				placeholder="Search"
 				variant="unstyled"
 			/>
 		);

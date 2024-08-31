@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { Providers } from "config/providers";
 //import { ColorSchemeScript } from "@mantine/core";
-import { fontMontserrat } from "./fonts";
+import { fontMontserrat } from "app/fonts";
 
 export const metadata: Metadata = {
 	title: "Posts",

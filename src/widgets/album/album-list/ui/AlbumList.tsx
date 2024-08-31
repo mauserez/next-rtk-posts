@@ -1,8 +1,7 @@
 "use client";
 
 import { Group, Skeleton, Stack } from "@mantine/core";
-
-import { HorizontalScroller, SectionTitle, CardLoader } from "@/shared/ui";
+import { HorizontalScroller, SectionTitle, CardLoader } from "shared/ui";
 import { Button } from "shared/ui/buttons";
 
 import { useQuery } from "@tanstack/react-query";
@@ -21,7 +20,7 @@ type AlbumsProps = {
 	title?: string;
 };
 
-export const AlbumList = (props: AlbumsProps) => {
+export function AlbumList(props: AlbumsProps) {
 	const { title = "" } = props;
 	const options = { title: title };
 
@@ -56,7 +55,7 @@ export const AlbumList = (props: AlbumsProps) => {
 					isLoading={isFetching}
 					disabled={isFetching}
 					onClick={() => {
-						refetch();
+						void refetch();
 					}}
 				>
 					Refresh
@@ -65,13 +64,13 @@ export const AlbumList = (props: AlbumsProps) => {
 			<HorizontalScroller>{content}</HorizontalScroller>
 		</Stack>
 	);
-};
+}
 
 type AlbumListProps = {
 	albums: AlbumType[] | undefined;
 };
 
-const Albums = (props: AlbumListProps) => {
+function Albums(props: AlbumListProps) {
 	const { albums } = props;
 
 	if (!albums?.length) {
@@ -85,9 +84,9 @@ const Albums = (props: AlbumListProps) => {
 			))}
 		</>
 	);
-};
+}
 
-const Loader = () => {
+function Loader() {
 	return (
 		<>
 			{[...Array(4)].map((i, idx) => (
@@ -100,4 +99,4 @@ const Loader = () => {
 			))}
 		</>
 	);
-};
+}

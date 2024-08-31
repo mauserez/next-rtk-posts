@@ -12,7 +12,7 @@ import {
 
 import { ExtraInputProps } from "shared/ui/inputs/types";
 import { InputLeftSection, InputRightSection } from "shared/ui/inputs";
-import { cn } from "@/shared/utils/cn";
+import { cn } from "shared/lib/cn";
 
 export type RefInputProps = PolymorphicComponentProps<"input", MInputProps> &
 	ExtraInputProps;

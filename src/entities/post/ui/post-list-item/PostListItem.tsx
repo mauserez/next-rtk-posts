@@ -5,7 +5,7 @@ import { PostType } from "@/entities/post/types";
 import { useAppDispatch, useAppSelector } from "@/shared/redux/hooks";
 import { useRouter } from "next/navigation";
 
-import s from "./PostListItem.module.css";
+import s from "entities/post/ui/post-list-item/PostListItem.module.css";
 
 import {
 	addPost,

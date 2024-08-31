@@ -4,15 +4,15 @@ import { Group, Avatar, Stack } from "@mantine/core";
 import { useAppSelector } from "@/shared/redux/hooks";
 import { MyAlbums, MyPosts, ProfileCardAvatar } from "entities/profile/ui";
 
-import { cn } from "@/shared/utils/cn";
+import { cn } from "@/shared/lib/cn";
 import {
 	useIsAuthenticated,
 	useIsNotAuthenticated,
 	useSessionUser,
 } from "config/nextauth/hooks";
-import { LoginForm } from "widgets/login-form/LoginForm";
+import { LoginForm } from "widgets/login-form";
 
-import s from "./ProfileCard.module.css";
+import s from "entities/profile/ui/profile-card/ProfileCard.module.css";
 
 export const ProfileCard = () => {
 	const albums = useAppSelector((state) => state.albums.favoriteAlbums || []);

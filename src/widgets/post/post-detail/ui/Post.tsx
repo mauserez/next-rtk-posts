@@ -9,17 +9,17 @@ import {
 	getPostUser,
 } from "entities/post";
 
-import { SectionTitle } from "@/shared/ui";
-import { PostType, PostUserType } from "@/entities/post/types";
-import { randomInt, uid } from "@/shared/utils/number";
+import { SectionTitle } from "shared/ui";
+import { PostType } from "entities/post/types";
+import { randomInt, uid } from "shared/lib/number";
 
-import s from "./Post.module.css";
+import s from "widgets/post/post-detail/ui/Post.module.css";
 
 type PostProps = {
 	id: PostType["id"];
 };
 
-export const Post = (props: PostProps) => {
+export function Post(props: PostProps) {
 	const { id } = props;
 
 	const {
@@ -56,9 +56,9 @@ export const Post = (props: PostProps) => {
 			{content}
 		</Stack>
 	);
-};
+}
 
-const Loader = () => {
+function Loader() {
 	return (
 		<Stack className={s.loader} gap={32}>
 			<Skeleton height={8} width={250} />
@@ -70,13 +70,13 @@ const Loader = () => {
 			</Stack>
 		</Stack>
 	);
-};
+}
 
 type PostDetailProps = {
 	post: PostType;
 };
 
-const PostDetail = (props: PostDetailProps) => {
+function PostDetail(props: PostDetailProps) {
 	const { post } = props;
 
 	return (
@@ -85,4 +85,4 @@ const PostDetail = (props: PostDetailProps) => {
 			<Text className={s.text}>{post.body}</Text>
 		</Stack>
 	);
-};
+}

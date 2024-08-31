@@ -1,14 +1,10 @@
 import { ReactNode, RefObject, AwaitedReactNode } from "react";
-import { clearInput } from "shared/utils/input";
+import { clearInput } from "shared/lib/input";
 import { ExtraInputProps } from "shared/ui/inputs/types";
 import { Group } from "@mantine/core";
 import { MdClear } from "react-icons/md";
 
-export const createLeftSection = (children: ReactNode) => {
-	return children;
-};
-
-type CreateRightSectionType = {
+type RightSectionType = {
 	inputRef: RefObject<HTMLInputElement>;
 	value: string | number | readonly string[] | undefined;
 	rightSection: ReactNode;
@@ -24,7 +20,7 @@ type CreateRightSectionType = {
 		| Promise<AwaitedReactNode>;
 };
 
-export const InputRightSection = (props: CreateRightSectionType) => {
+export function InputRightSection(props: RightSectionType) {
 	const {
 		inputRef,
 		value,
@@ -74,4 +70,4 @@ export const InputRightSection = (props: CreateRightSectionType) => {
 	}
 
 	return null;
-};
+}

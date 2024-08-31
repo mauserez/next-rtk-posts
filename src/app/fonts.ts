@@ -1,4 +1,4 @@
-import { Inter, Montserrat, Sen } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 
 export const fontInter = Inter({
 	subsets: ["latin"],

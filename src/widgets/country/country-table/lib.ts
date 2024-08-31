@@ -1,5 +1,5 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { CountryType } from "@/entities/country/types";
+import { CountryType } from "@/entities/country/types/types";
 
 export const countryTableColumns: ColumnDef<CountryType>[] = [
 	{

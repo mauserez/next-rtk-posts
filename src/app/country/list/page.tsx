@@ -4,9 +4,9 @@ import {
 	COUNTRIES_PAGINATED_QUERY_KEY,
 	getPaginatedCountries,
 } from "entities/country";
-import { getQueryClient } from "config/providers/tanstack-query/utils/getQueryClient";
+import { getQueryClient } from "config/providers/tanstack-query/lib/getQueryClient";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
-import { getUrlParamsServer } from "@/shared/utils/urlServer";
+//import { getUrlParamsServer } from "shared/lib/urlServer";
 
 export default async function CountryList() {
 	/* const params = getUrlParamsServer();

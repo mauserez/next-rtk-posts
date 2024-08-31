@@ -10,6 +10,6 @@ export {
 	POST_QUERY_KEY,
 	POSTS_QUERY_KEY,
 	POST_USER_QUERY_KEY,
-} from "./constants";
+} from "entities/post/constants";
 
-export { PostListItem } from "./ui/post-list-item/PostListItem";
+export { PostListItem } from "entities/post/ui/post-list-item/PostListItem";

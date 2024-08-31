@@ -1,5 +1,5 @@
 import { ComponentProps, ReactNode } from "react";
-import s from "./TextClamp.module.css";
+import s from "shared/ui/text-clamp/TextClamp.module.css";
 import clsx from "clsx";
 
 type TextClampProps = {
@@ -8,7 +8,7 @@ type TextClampProps = {
 	firstLetterUppercase?: boolean;
 } & ComponentProps<"div">;
 
-export const TextClamp = (props: TextClampProps) => {
+export function TextClamp(props: TextClampProps) {
 	const {
 		children,
 		className = "",
@@ -31,4 +31,4 @@ export const TextClamp = (props: TextClampProps) => {
 			</div>
 		</div>
 	);
-};
+}

@@ -4,8 +4,8 @@ import {
 	PolymorphicComponentProps,
 } from "@mantine/core";
 
-import { cn } from "@/shared/utils/cn";
-import s from "./ButtonActionIcon.module.css";
+import { cn } from "@/shared/lib/cn";
+import s from "shared/ui/buttons/button-action-icon/ButtonActionIcon.module.css";
 
 type ButtonActionIconProps = PolymorphicComponentProps<
 	"button",

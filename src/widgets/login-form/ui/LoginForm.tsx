@@ -2,79 +2,29 @@
 import { ComponentProps, useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
-
 import { Form, useForm } from "react-hook-form";
-
-import { Button } from "@/shared/ui/buttons";
+import { Button } from "shared/ui/buttons";
 import { MdPhone } from "react-icons/md";
 
 import {
-	FormInput,
+	FormRefInput,
 	FormTextInput,
 	FormPasswordInput,
 	FormMultiSelect,
 	FormCheckbox,
-} from "@/shared/ui/form-controls";
+} from "shared/ui/form-controls";
 
-import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useMaskito } from "@maskito/react";
-import { MaskitoOptions, maskitoUpdateElement } from "@maskito/core";
-import { unMaskPhone } from "shared/utils/mask";
-
+import { unMaskPhone } from "shared/lib/mask";
 import {
-	maskitoWithPlaceholder,
-	maskitoEventHandler,
-	maskitoPrefixPostprocessorGenerator,
-} from "@maskito/kit";
+	phoneMaskitoMask,
+	PLACEHOLDER,
+} from "widgets/login-form/lib/phoneMaskitoMask";
 
-const PLACEHOLDER = "+7(9xx)xxx-xx-xx";
-const { removePlaceholder, plugins, ...placeholderOptions } =
-	maskitoWithPlaceholder(PLACEHOLDER);
-
-const phoneMask: MaskitoOptions = {
-	preprocessors: placeholderOptions.preprocessors,
-	postprocessors: [
-		maskitoPrefixPostprocessorGenerator("+7(9"),
-		...placeholderOptions.postprocessors,
-	],
-	plugins: [
-		...plugins,
-		maskitoEventHandler("focus", (element) => {
-			const initialValue = element.value || "+7(9";
-
-			maskitoUpdateElement(
-				element,
-				initialValue + PLACEHOLDER.slice(initialValue.length)
-			);
-		}),
-		maskitoEventHandler("blur", (element) => {
-			const cleanValue = removePlaceholder(element.value);
-			maskitoUpdateElement(element, cleanValue === "+7(9" ? "" : cleanValue);
-		}),
-	],
-	mask: [
-		"+",
-		"7",
-		"(",
-		/\d/,
-		/\d/,
-		/\d/,
-		")",
-		/\d/,
-		/\d/,
-		/\d/,
-		"-",
-		/\d/,
-		/\d/,
-		"-",
-		/\d/,
-		/\d/,
-	],
-};
-
-import s from "./LoginForm.module.css";
-import { cn } from "@/shared/utils/cn";
+import s from "widgets/login-form/ui/LoginForm.module.css";
+import { cn } from "shared/lib/cn";
 
 const validationSchema = yup.object({
 	username: yup.string().required("Введите логин").min(4).email(),
@@ -85,24 +35,21 @@ const validationSchema = yup.object({
 });
 
 type LoginFormProps = ComponentProps<"form">;
-export const LoginForm = (props: LoginFormProps) => {
+export function LoginForm(props: LoginFormProps) {
 	const { className } = props;
 	const [loading, setLoading] = useState(false);
 	const [errorText, setErrorText] = useState("");
 	const [buttonText, setButtonText] = useState("Submit");
 	const router = useRouter();
 
-	const phoneMaskRef = useMaskito({ options: phoneMask });
+	const phoneMaskRef = useMaskito({ options: phoneMaskitoMask });
 
 	const { control, formState } = useForm({
 		reValidateMode: "onSubmit",
 		resolver: yupResolver(validationSchema),
 		defaultValues: {
-			username: "",
-			password: "",
 			library: [],
 			accepted: false,
-			phone: "",
 		},
 	});
 
@@ -137,7 +84,7 @@ export const LoginForm = (props: LoginFormProps) => {
 				}
 			}}
 		>
-			<FormInput
+			<FormRefInput
 				ref={phoneMaskRef}
 				leftSection={<MdPhone />}
 				label="Label"
@@ -193,4 +140,4 @@ export const LoginForm = (props: LoginFormProps) => {
 			</Button>
 		</Form>
 	);
-};
+}

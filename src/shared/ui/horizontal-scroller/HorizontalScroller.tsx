@@ -2,7 +2,7 @@
 
 import { ReactNode, useLayoutEffect, useRef } from "react";
 import { Group, GroupProps } from "@mantine/core";
-import s from "./HorizontalScroller.module.css";
+import s from "shared/ui/horizontal-scroller/HorizontalScroller.module.css";
 
 type HorizontalScrollerProps = {
 	children: ReactNode;
@@ -39,11 +39,11 @@ export const HorizontalScroller = (props: HorizontalScrollerProps) => {
 			});
 
 			scroller.addEventListener("mousemove", (e) => {
-				if (!isDown) return;
+				if (!isDown) {return;}
 				e.preventDefault();
 				const x = e.pageX - scroller.offsetLeft;
 				const walk = (x - startX) * 3; //scroll-fast
-				var prevScrollLeft = scroller.scrollLeft;
+				const prevScrollLeft = scroller.scrollLeft;
 				scroller.scrollLeft = scrollLeft - walk;
 				velX = scroller.scrollLeft - prevScrollLeft;
 			});

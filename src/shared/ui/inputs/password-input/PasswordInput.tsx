@@ -10,18 +10,16 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 
-import {
-	ExtraInputProps,
-	InputLeftSection,
-	InputRightSection,
-} from "@/shared/ui/inputs";
+import { ExtraInputProps } from "shared/ui/inputs/types";
+import { InputLeftSection } from "shared/ui/inputs/InputLeftSection";
+import { InputRightSection } from "shared/ui/inputs/InputRightSection";
 
-import { cn } from "@/shared/utils/cn";
+import { cn } from "shared/lib/cn";
 
 export type PasswordInputProps = MPasswordInputProps &
 	Omit<ExtraInputProps, "isSearch">;
 
-export const PasswordInput = (props: PasswordInputProps) => {
+export function PasswordInput(props: PasswordInputProps) {
 	const [visible, { toggle }] = useDisclosure(false);
 
 	const {
@@ -81,6 +79,6 @@ export const PasswordInput = (props: PasswordInputProps) => {
 			{...restProps}
 		/>
 	);
-};
+}
 
 export const MemoPasswordInput = memo(PasswordInput) as typeof PasswordInput;

@@ -8,12 +8,12 @@ import {
 
 import { ExtraInputProps } from "shared/ui/inputs/types";
 import { InputLeftSection, InputRightSection } from "shared/ui/inputs";
-import { cn } from "@/shared/utils/cn";
+import { cn } from "shared/lib/cn";
 
 export type NumberInputProps = MNumberInputProps &
 	Omit<ExtraInputProps, "isSearch">;
 
-export const NumberInput = (props: NumberInputProps) => {
+export function NumberInput(props: NumberInputProps) {
 	const {
 		className = "",
 		clearIcon,
@@ -63,6 +63,6 @@ export const NumberInput = (props: NumberInputProps) => {
 			{...restProps}
 		/>
 	);
-};
+}
 
 export const MemoNumberInput = memo(NumberInput) as typeof NumberInput;
