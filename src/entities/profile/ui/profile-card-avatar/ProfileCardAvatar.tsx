@@ -1,11 +1,11 @@
 "use client";
 
 import { Menu } from "@mantine/core";
-import { UserAvatar } from "@/shared/ui";
+import { UserAvatar } from "shared/ui";
 import { IoCloudUploadOutline, IoExitOutline } from "react-icons/io5";
 import { signOut } from "next-auth/react";
 
-export const ProfileCardAvatar = () => {
+export function ProfileCardAvatar() {
 	return (
 		<Menu trigger="click" radius="sm">
 			<Menu.Target>
@@ -28,4 +28,4 @@ export const ProfileCardAvatar = () => {
 			</Menu.Dropdown>
 		</Menu>
 	);
-};
+}

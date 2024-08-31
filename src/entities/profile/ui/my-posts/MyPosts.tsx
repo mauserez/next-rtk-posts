@@ -1,15 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { SectionTitle, TextClamp } from "@/shared/ui";
+import { SectionTitle, TextClamp } from "shared/ui";
 import { Stack, Group, Avatar } from "@mantine/core";
-import { useAppSelector, useAppDispatch } from "@/shared/redux/hooks";
-import { removePost } from "@/shared/redux/slices/posts/PostsSlice";
-import { ButtonLike } from "@/shared/ui/buttons";
+import { useAppSelector, useAppDispatch } from "shared/redux/hooks";
+import { removePost } from "shared/redux/slices/posts/PostsSlice";
+import { ButtonLike } from "shared/ui/buttons";
 
 import s from "entities/profile/ui/my-posts/MyPosts.module.css";
 
-export const MyPosts = () => {
+export function MyPosts() {
 	const dispatch = useAppDispatch();
 	const posts = useAppSelector((state) => state.posts.favoritePosts);
 
@@ -54,7 +54,7 @@ export const MyPosts = () => {
 			)}
 		</Stack>
 	);
-};
+}
 
 const NoPosts = () => {
 	return "Add post to favorite";

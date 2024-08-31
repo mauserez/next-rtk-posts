@@ -8,7 +8,7 @@ type HorizontalScrollerProps = {
 	children: ReactNode;
 } & GroupProps;
 
-export const HorizontalScroller = (props: HorizontalScrollerProps) => {
+export function HorizontalScroller(props: HorizontalScrollerProps) {
 	const { children, ...groupProps } = props;
 	const scrollerRef = useRef<HTMLDivElement>(null);
 
@@ -39,7 +39,9 @@ export const HorizontalScroller = (props: HorizontalScrollerProps) => {
 			});
 
 			scroller.addEventListener("mousemove", (e) => {
-				if (!isDown) {return;}
+				if (!isDown) {
+					return;
+				}
 				e.preventDefault();
 				const x = e.pageX - scroller.offsetLeft;
 				const walk = (x - startX) * 3; //scroll-fast
@@ -82,4 +84,4 @@ export const HorizontalScroller = (props: HorizontalScrollerProps) => {
 			</Group>
 		</div>
 	);
-};
+}

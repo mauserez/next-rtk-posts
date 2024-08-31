@@ -3,24 +3,20 @@ import { jsonPlaceholderApi } from "shared/axios/jsonPlaceholderApi";
 import { randomInt } from "shared/lib/number";
 import queryString from "query-string";
 
-export const getPost = async (id: PostType["id"]): Promise<PostType> => {
-	return jsonPlaceholderApi
-		.get(`/posts?id=${id}&_embed=users`)
-		.then((response) => response.data[0]);
-};
+export async function getPost(id: PostType["id"]): Promise<PostType> {
+	const { data } = await jsonPlaceholderApi.get(`/posts?id=${id}&_embed=users`);
+	return data[0];
+}
 
-export const getPostUser = async (
+export async function getPostUser(
 	id: PostUserType["id"]
-): Promise<PostUserType> => {
-	return jsonPlaceholderApi
-		.get(`/users?id=${id}`)
-		.then((response) => response.data[0]);
-};
+): Promise<PostUserType> {
+	const { data } = await jsonPlaceholderApi.get(`/users?id=${id}`);
+	return data[0] ?? null;
+}
 
 type GetPostsOptions = { user: number; title: string };
-export const getPosts = async (
-	options: GetPostsOptions
-): Promise<PostType[]> => {
+export async function getPosts(options: GetPostsOptions): Promise<PostType[]> {
 	const { user, title = "" } = options;
 
 	const sortValue = ["userId", "id", "title", "body"][randomInt(0, 3)];
@@ -36,7 +32,6 @@ export const getPosts = async (
 
 	const searchUrl = queryString.stringify(searchParams);
 
-	return await jsonPlaceholderApi
-		.get(`/posts?${searchUrl}`)
-		.then((response) => response.data);
-};
+	const { data } = await jsonPlaceholderApi.get(`/posts?${searchUrl}`);
+	return data;
+}

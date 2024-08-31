@@ -5,9 +5,11 @@ import { randomInt } from "shared/lib/number";
 import queryString from "query-string";
 
 export async function getAlbum(id: AlbumType["id"]): Promise<AlbumType> {
-	return await jsonPlaceholderApi
-		.get(`/albums?id=${id}&_embed=photos`)
-		.then((response) => response.data[0]);
+	const { data } = await jsonPlaceholderApi.get(
+		`/albums?id=${id}&_embed=photos`
+	);
+
+	return data[0];
 }
 
 export async function getAlbums(options: AssocArray): Promise<AlbumType[]> {
@@ -25,9 +27,9 @@ export async function getAlbums(options: AssocArray): Promise<AlbumType[]> {
 	};
 
 	const searchUrl = queryString.stringify(searchParams);
-	return await jsonPlaceholderApi
-		.get(`/albums?${searchUrl}`)
-		.then((response) => response.data);
+
+	const { data } = await jsonPlaceholderApi.get(`/albums?${searchUrl}`);
+	return data;
 }
 
 type GetPhotosOptions = {
@@ -40,8 +42,9 @@ export async function getPhotos(
 	options: GetPhotosOptions
 ): Promise<AlbumPhotoType[]> {
 	const { albumId, limit = 10, page = 1 } = options;
+	const { data } = await jsonPlaceholderApi.get(
+		`/photos?albumId=${albumId}&_page=${page}&_limit=${limit}`
+	);
 
-	return await jsonPlaceholderApi
-		.get(`/photos?albumId=${albumId}&_page=${page}&_limit=${limit}`)
-		.then((response) => response.data);
+	return data;
 }

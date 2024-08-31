@@ -4,7 +4,7 @@ import {
 	PolymorphicComponentProps,
 } from "@mantine/core";
 
-import { cn } from "@/shared/lib/cn";
+import { cn } from "shared/lib/cn";
 import s from "shared/ui/buttons/button-action-icon/ButtonActionIcon.module.css";
 
 type ButtonActionIconProps = PolymorphicComponentProps<
@@ -12,10 +12,10 @@ type ButtonActionIconProps = PolymorphicComponentProps<
 	MActionIconProps
 >;
 
-export const ButtonActionIcon = (props: ButtonActionIconProps) => {
+export function ButtonActionIcon(props: ButtonActionIconProps) {
 	const { className, color = "#ffffff" } = props;
 
 	return (
 		<MActionIcon color={color} className={cn(className, s.btn)} {...props} />
 	);
-};
+}

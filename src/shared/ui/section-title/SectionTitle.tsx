@@ -1,4 +1,4 @@
-import { ComponentProps, ReactNode } from "react";
+import { ReactNode } from "react";
 import { Group, GroupProps } from "@mantine/core";
 
 import clsx from "clsx";
@@ -11,7 +11,7 @@ type SectionTitleProps = {
 	uppercase?: boolean;
 } & GroupProps;
 
-export const SectionTitle = (props: SectionTitleProps) => {
+export function SectionTitle(props: SectionTitleProps) {
 	const {
 		className = "",
 		boldText = "",
@@ -37,4 +37,4 @@ export const SectionTitle = (props: SectionTitleProps) => {
 			</Group>
 		</Group>
 	);
-};
+}

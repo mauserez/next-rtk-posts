@@ -2,10 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import { Button } from "@mantine/core";
-import { cn } from "@/shared/lib/cn";
+import { cn } from "shared/lib/cn";
 import s from "shared/ui/buttons/button-back/ButtonBack.module.css";
 
-export const ButtonBack = () => {
+export function ButtonBack() {
 	const router = useRouter();
 	const handleBack = () => {
 		router.back();
@@ -16,4 +16,4 @@ export const ButtonBack = () => {
 			Back
 		</Button>
 	);
-};
+}

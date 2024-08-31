@@ -20,7 +20,7 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const makeStore = () => {
+export function makeStore() {
 	const store = configureStore({
 		reducer: persistedReducer,
 		middleware: (getDefaultMiddleware) => {
@@ -32,7 +32,7 @@ export const makeStore = () => {
 
 	setupListeners(store.dispatch);
 	return store;
-};
+}
 
 export const store = makeStore();
 export const persistor = persistStore(store);

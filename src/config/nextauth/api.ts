@@ -2,6 +2,7 @@ import { AssocArray } from "shared/types";
 import { accessApi, backendApi, refreshApi } from "shared/axios/api";
 import { jwtDecode } from "jwt-decode";
 import { User } from "next-auth";
+import { AxiosError } from "axios";
 
 export type SessionUserType = {
 	/* access_token: string;
@@ -25,14 +26,14 @@ const ACCESS_ERRORS: AssocArray = {
 	"Bad credentials": "Неверный логин или пароль",
 };
 
-function parseAccessToken(accessToken: string) {
+export function parseAccessToken(accessToken: string) {
 	const tokenData = jwtDecode(accessToken);
 	const exp = tokenData.exp ?? Math.floor(Date.now() / 1000);
 
 	return { exp: exp };
 }
 
-function prepareTokenData(tokenData: SessionUserType) {
+export function prepareTokenData(/* tokenData: SessionUserType */) {
 	/*  const extra = parseAccessToken(tokenData.access_token);
 	const prepareTokenData = { ...tokenData, ...extra };
 
@@ -40,80 +41,75 @@ function prepareTokenData(tokenData: SessionUserType) {
 }
 
 export async function getAccess(credentials: AuthParams) {
-	return await accessApi<SessionUserType>({
+	const { data, status } = await accessApi<SessionUserType>({
 		method: "post",
 		data: credentials,
 		headers: { "Content-Type": "multipart/form-data" },
-	})
-		.then(function (response) {
-			//const data = prepareTokenData(response.data);
-			return {
-				data: response.data as User,
-				status: response.status,
-				errorText: "",
-			};
-		})
-		.catch(function (error) {
-			const response = error.response;
-			const errorAccessText = response.data.error_description;
-			const errorText = ACCESS_ERRORS[errorAccessText] ?? errorAccessText;
+	});
+	try {
+		return {
+			data: data as User,
+			status: status,
+			errorText: "",
+		};
+	} catch (e) {
+		const error = e as AxiosError;
+		const response = error.response as { data: { error_description: string } };
+		const errorAccessText = response.data.error_description;
+		const errorText = ACCESS_ERRORS[errorAccessText] ?? errorAccessText;
 
-			return {
-				data: null,
-				status: error,
-				errorText: errorText,
-			};
-		});
+		return {
+			data: null,
+			status: error,
+			errorText: errorText,
+		};
+	}
 }
 
 export async function refreshAccess(refreshToken: string) {
-	return await refreshApi<SessionUserType>({
-		method: "post",
-		data: { refresh_token: refreshToken },
-		headers: { "Content-Type": "multipart/form-data" },
-	})
-		.then(function (response) {
-			const data = prepareTokenData(response.data);
-			return {
-				data: response.data as User,
-				status: response.status,
-				errorText: "",
-			};
-		})
-		.catch(function (error) {
-			return {
-				data: null,
-				status: "401",
-				errorText: "Не удалось обновить токен",
-			};
+	try {
+		const { data, status } = await refreshApi<SessionUserType>({
+			method: "post",
+			data: { refresh_token: refreshToken },
+			headers: { "Content-Type": "multipart/form-data" },
 		});
+
+		return {
+			data: data as User,
+			status: status,
+			errorText: "",
+		};
+	} catch {
+		return {
+			data: null,
+			status: "401",
+			errorText: "Не удалось обновить токен",
+		};
+	}
 }
 
 export async function getAccessByCredentials(credentials: AuthParams) {
 	//headers: { "Content-Type": "multipart/form-data" },
 	const { username, password } = credentials;
 
-	return await backendApi
-		.get<SessionUserType[]>("/users", {
+	try {
+		const { data, status } = await backendApi.get<SessionUserType[]>("/users", {
 			params: {
 				username,
 				password,
 			},
-		})
-		.then(function (response) {
-			//const data = prepareTokenData(response.data[0]);
-
-			return {
-				data: response.data[0] as User,
-				status: response.status,
-				errorText: "",
-			};
-		})
-		.catch(function (error) {
-			return {
-				data: null,
-				status: "401",
-				errorText: "Неправильные логин или пароль",
-			};
 		});
+
+		return {
+			data: data[0] as User,
+			status: status,
+			errorText: "",
+		};
+	} catch {
+		return {
+			data: null,
+			status: "401",
+			errorText: "Неправильные логин или пароль",
+		};
+	}
 }

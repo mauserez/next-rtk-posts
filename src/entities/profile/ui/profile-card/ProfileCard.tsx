@@ -1,10 +1,10 @@
 "use client";
 
 import { Group, Avatar, Stack } from "@mantine/core";
-import { useAppSelector } from "@/shared/redux/hooks";
-import { MyAlbums, MyPosts, ProfileCardAvatar } from "entities/profile/ui";
+import { useAppSelector } from "shared/redux/hooks";
+import { MyAlbums, MyPosts, ProfileCardAvatar } from "entities/profile";
 
-import { cn } from "@/shared/lib/cn";
+import { cn } from "shared/lib/cn";
 import {
 	useIsAuthenticated,
 	useIsNotAuthenticated,
@@ -14,7 +14,7 @@ import { LoginForm } from "widgets/login-form";
 
 import s from "entities/profile/ui/profile-card/ProfileCard.module.css";
 
-export const ProfileCard = () => {
+export function ProfileCard() {
 	const albums = useAppSelector((state) => state.albums.favoriteAlbums || []);
 	const albumCount = albums.length.toString();
 	const posts = useAppSelector((state) => state.posts.favoritePosts || []);
@@ -61,4 +61,4 @@ export const ProfileCard = () => {
 			) : null}
 		</Stack>
 	);
-};
+}

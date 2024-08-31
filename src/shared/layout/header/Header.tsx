@@ -3,14 +3,14 @@ import { Group } from "@mantine/core";
 import { Logo } from "shared/ui";
 import { useEffect } from "react";
 
-import { cn } from "@/shared/lib/cn";
+import { cn } from "shared/lib/cn";
 import s from "shared/layout/header/Header.module.css";
 
-export const Header = () => {
+export function Header() {
 	useEffect(() => {
 		const body = document.querySelector("body");
 
-		const resize_ob = new ResizeObserver(function (entries) {
+		const resize_ob = new ResizeObserver(function () {
 			const scrollHeight = body?.scrollHeight || 0;
 			const clientHeight = body?.clientHeight || 0;
 
@@ -33,4 +33,4 @@ export const Header = () => {
 			</Group>
 		</header>
 	);
-};
+}

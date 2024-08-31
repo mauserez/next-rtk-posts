@@ -1,19 +1,19 @@
 "use client";
 
-import { SectionTitle, TextClamp, HorizontalScroller } from "@/shared/ui";
-import { randomGradient } from "@/shared/lib/element";
+import { SectionTitle, TextClamp, HorizontalScroller } from "shared/ui";
+import { randomGradient } from "shared/lib/element";
 import { Stack } from "@mantine/core";
-import { AlbumType } from "@/entities/album/types";
+import { AlbumType } from "entities/album/types";
 import { useRouter } from "next/navigation";
-import { ButtonLike } from "@/shared/ui/buttons";
+import { ButtonLike } from "shared/ui/buttons";
 
-import { useAppSelector, useAppDispatch } from "@/shared/redux/hooks";
+import { useAppSelector, useAppDispatch } from "shared/redux/hooks";
 
 import clsx from "clsx";
 import s from "entities/profile/ui/my-albums/MyAlbums.module.css";
-import { removeAlbum } from "@/shared/redux/slices/albums/AlbumsSlice";
+import { removeAlbum } from "shared/redux/slices/albums/AlbumsSlice";
 
-export const MyAlbums = () => {
+export function MyAlbums() {
 	const albums = useAppSelector((state) => state.albums.favoriteAlbums);
 
 	return (
@@ -30,7 +30,7 @@ export const MyAlbums = () => {
 			)}
 		</Stack>
 	);
-};
+}
 
 type MyAlbumProps = {
 	album: AlbumType;

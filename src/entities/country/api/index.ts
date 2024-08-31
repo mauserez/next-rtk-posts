@@ -3,38 +3,27 @@ import {
 	CountryType,
 	CountryListItemType,
 	LangListItemType,
-} from "@/entities/country/types/types";
+} from "entities/country/types";
 import { backendApi } from "shared/axios/api";
 
-export const getCountryLangList = async (): Promise<
+export async function getCountryLangList(): Promise<
 	LangListItemType["label"][] | void
-> => {
-	return await backendApi
-		.get<LangListItemType[]>("/langList")
-		.then((response) => {
-			return response.data.map((item) => item.label);
-		})
-		.catch((e) => console.log(e));
-};
+> {
+	const { data } = await backendApi.get<LangListItemType[]>("/langList");
+	return data.map((item) => item.label) ?? [];
+}
 
-export const getCountryList = async (): Promise<
+export async function getCountryList(): Promise<
 	void | CountryListItemType["label"][]
-> => {
-	return await backendApi
-		.get<CountryListItemType[]>("/countryList")
-		.then((response) => {
-			return response.data.map((item) => item.label);
-		})
-		.catch((e) => {
-			console.log(e);
-		});
-};
+> {
+	const { data } = await backendApi.get<CountryListItemType[]>("/countryList");
+	return data.map((item) => item.label) ?? [];
+}
 
-export const getAllCountries = async (): Promise<CountryType[]> => {
-	return await backendApi.get("/countries").then((response) => {
-		return response.data;
-	});
-};
+export async function getAllCountries(): Promise<CountryType[]> {
+	const { data } = await backendApi.get("/countries");
+	return data ?? [];
+}
 
 export type GetPaginatedCountriesOptions = {
 	page?: string;
@@ -44,9 +33,9 @@ export type GetPaginatedCountriesOptions = {
 	sort?: string;
 };
 
-export const getPaginatedCountries = async (
+export async function getPaginatedCountries(
 	options: GetPaginatedCountriesOptions
-): Promise<PaginatedData<CountryType>> => {
+): Promise<PaginatedData<CountryType>> {
 	const {
 		page = "1",
 		limit = "10",
@@ -63,9 +52,6 @@ export const getPaginatedCountries = async (
 		lang: lang,
 	};
 
-	return await backendApi
-		.get(`/countries`, { params: params })
-		.then((response) => {
-			return response.data;
-		});
-};
+	const { data } = await backendApi.get(`/countries`, { params: params });
+	return data;
+}

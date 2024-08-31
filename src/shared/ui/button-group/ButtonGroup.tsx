@@ -3,7 +3,7 @@
 import { Group, GroupProps } from "@mantine/core";
 import { ReactNode, useState } from "react";
 import { Button, ButtonProps } from "shared/ui/buttons";
-import { uid } from "@/shared/lib/number";
+import { uid } from "shared/lib/number";
 import { PrimitiveType } from "shared/types";
 import clsx from "clsx";
 
@@ -24,7 +24,7 @@ type ButtonGroupTypes = {
 	onClick?: (value: PrimitiveType) => void;
 };
 
-export const ButtonGroup = (props: ButtonGroupTypes) => {
+export function ButtonGroup(props: ButtonGroupTypes) {
 	const {
 		buttonProps,
 		buttonGroupProps,
@@ -55,4 +55,4 @@ export const ButtonGroup = (props: ButtonGroupTypes) => {
 	));
 
 	return <Group {...buttonGroupProps}>{buttonList}</Group>;
-};
+}

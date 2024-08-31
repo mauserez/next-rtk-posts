@@ -1,4 +1,5 @@
 "use client";
+
 import { ReactNode } from "react";
 
 import { Stack, Group } from "@mantine/core";
@@ -8,7 +9,7 @@ import { usePathname } from "next/navigation";
 import { useIsAuthenticated } from "config/nextauth/hooks";
 import { ButtonLink } from "shared/ui/buttons";
 
-import { cn } from "@/shared/lib/cn";
+import { cn } from "shared/lib/cn";
 import s from "config/providers/auth-protected/AuthProtected.module.css";
 import { useSession } from "next-auth/react";
 
@@ -16,7 +17,7 @@ const protectedRoutes = ["/albums", "/posts", "/country"];
 
 type AuthProtectedProps = { children: ReactNode };
 
-export const AuthProtected = (props: AuthProtectedProps) => {
+export function AuthProtected(props: AuthProtectedProps) {
 	const { children } = props;
 	const pathName = usePathname();
 
@@ -56,4 +57,4 @@ export const AuthProtected = (props: AuthProtectedProps) => {
 			</Group>
 		</div>
 	);
-};
+}

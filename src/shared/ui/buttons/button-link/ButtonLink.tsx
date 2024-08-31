@@ -1,10 +1,10 @@
 import { Button, ButtonProps } from "shared/ui/buttons";
 import Link from "next/link";
-import { cn } from "@/shared/lib/cn";
+import { cn } from "shared/lib/cn";
 
 type ButtonLinkProps = ButtonProps & { href: string };
 
-export const ButtonLink = (props: ButtonLinkProps) => {
+export function ButtonLink(props: ButtonLinkProps) {
 	const { href, className, children, ...restProps } = props;
 
 	return (
@@ -14,4 +14,4 @@ export const ButtonLink = (props: ButtonLinkProps) => {
 			</Button>
 		</Link>
 	);
-};
+}

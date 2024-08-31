@@ -8,7 +8,7 @@ import {
 import { LuLoader } from "react-icons/lu";
 import { IconBaseProps, IconType } from "react-icons/lib";
 
-import { cn } from "@/shared/lib/cn";
+import { cn } from "shared/lib/cn";
 import s from "shared/ui/buttons/button/Button.module.css";
 
 export type ButtonProps = PolymorphicComponentProps<"button", MButtonProps> & {
@@ -17,7 +17,7 @@ export type ButtonProps = PolymorphicComponentProps<"button", MButtonProps> & {
 	cssVariant?: "violet" | "success" | "warning" | "danger";
 };
 
-export const Button = (props: ButtonProps) => {
+export function Button(props: ButtonProps) {
 	const {
 		children,
 		isLoading = false,
@@ -43,7 +43,7 @@ export const Button = (props: ButtonProps) => {
 			</Group>
 		</MButton>
 	);
-};
+}
 
 type LoaderProps = {
 	loader?: IconType | null;

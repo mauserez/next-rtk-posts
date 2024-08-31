@@ -1,11 +1,11 @@
 "use client";
 
-import { ProfileCard } from "entities/profile/ui/index";
+import { ProfileCard } from "entities/profile";
 import { UserAvatar } from "shared/ui";
 import { Drawer } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 
-export const ProfileCardDrawer = () => {
+export function ProfileCardDrawer() {
 	const [opened, { open, close }] = useDisclosure(false);
 
 	return (
@@ -23,4 +23,4 @@ export const ProfileCardDrawer = () => {
 			<UserAvatar top={12} onClick={open} />
 		</>
 	);
-};
+}

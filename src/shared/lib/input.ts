@@ -1,6 +1,6 @@
 import { RefObject } from "react";
 
-export const clearInput = (inputRef: RefObject<HTMLInputElement>) => {
+export function clearInput(inputRef: RefObject<HTMLInputElement>) {
 	if (inputRef.current) {
 		const valueSetter = Object.getOwnPropertyDescriptor(
 			inputRef.current,
@@ -21,4 +21,4 @@ export const clearInput = (inputRef: RefObject<HTMLInputElement>) => {
 
 		inputRef.current.dispatchEvent(new Event("input", { bubbles: true }));
 	}
-};
+}

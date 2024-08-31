@@ -2,14 +2,14 @@
 
 import { ReactNode } from "react";
 import { Provider } from "react-redux";
-import { persistor, store } from "@/shared/redux/store";
+import { persistor, store } from "shared/redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 
 type ReduxStoreProviderProps = {
 	children: ReactNode;
 };
 
-export const ReduxStoreProvider = (props: ReduxStoreProviderProps) => {
+export function ReduxStoreProvider(props: ReduxStoreProviderProps) {
 	const { children } = props;
 
 	return (
@@ -19,4 +19,4 @@ export const ReduxStoreProvider = (props: ReduxStoreProviderProps) => {
 			</PersistGate>
 		</Provider>
 	);
-};
+}

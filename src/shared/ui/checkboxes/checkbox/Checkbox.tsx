@@ -5,7 +5,7 @@ import {
 	type CheckboxProps as MCheckboxProps,
 } from "@mantine/core";
 
-import { cn } from "@/shared/lib/cn";
+import { cn } from "shared/lib/cn";
 
 export type CheckboxProps = MCheckboxProps & {
 	verticalLabel?: boolean;
@@ -13,7 +13,7 @@ export type CheckboxProps = MCheckboxProps & {
 	labelClassName?: string;
 };
 
-export const Checkbox = (props: CheckboxProps) => {
+export function Checkbox(props: CheckboxProps) {
 	const {
 		radius = "xs",
 		size = "md",
@@ -37,7 +37,7 @@ export const Checkbox = (props: CheckboxProps) => {
 			color="violet"
 			label={horizontalLabel}
 			size={size}
-			radius="xs"
+			radius={radius}
 			{...restProps}
 		/>
 	);
@@ -52,4 +52,4 @@ export const Checkbox = (props: CheckboxProps) => {
 			{checkbox}
 		</Stack>
 	);
-};
+}

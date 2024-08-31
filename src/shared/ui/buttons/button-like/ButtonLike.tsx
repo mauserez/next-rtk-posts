@@ -11,7 +11,7 @@ type ButtonLikeProps = {
 } & IconBaseProps &
 	React.SVGAttributes<SVGElement>;
 
-export const ButtonLike = (props: ButtonLikeProps) => {
+export function ButtonLike(props: ButtonLikeProps) {
 	const { active, className = "", onClick, size = 24, ...restProps } = props;
 	const cn = clsx(s.icon, className);
 
@@ -30,4 +30,4 @@ export const ButtonLike = (props: ButtonLikeProps) => {
 			)}
 		</div>
 	);
-};
+}

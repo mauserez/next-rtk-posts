@@ -20,7 +20,7 @@ type AlbumDetailPhotosProps = {
 
 export function AlbumDetailPhotos(props: AlbumDetailPhotosProps) {
 	const { albumId } = props;
-	const page = useRef(1);
+	const page = useRef<number>(1);
 	const options = { albumId: albumId, page: page.current };
 
 	const {
@@ -35,7 +35,8 @@ export function AlbumDetailPhotos(props: AlbumDetailPhotosProps) {
 		queryFn: () => getPhotos(options),
 		enabled: !!albumId,
 		initialPageParam: 1,
-		getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) => {
+		//eslint-disable-next-line
+		getNextPageParam: (lastPage, allPages, lastPageParam) => {
 			page.current = lastPageParam + 1;
 			return !!lastPage.length === false ? undefined : page.current;
 		},

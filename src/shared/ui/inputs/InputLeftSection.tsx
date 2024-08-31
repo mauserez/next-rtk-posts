@@ -1,13 +1,13 @@
 import { Group } from "@mantine/core";
 import { ReactNode, RefObject } from "react";
 
-type LeftSectionPropsType = {
+type LeftSectionProps = {
 	inputRef: RefObject<HTMLInputElement>;
 	leftSection: ReactNode;
 	children?: ReactNode;
 };
 
-export const InputLeftSection = (props: LeftSectionPropsType) => {
+export function InputLeftSection(props: LeftSectionProps) {
 	const { inputRef, leftSection, children } = props;
 
 	if (!leftSection && !children) {
@@ -26,4 +26,4 @@ export const InputLeftSection = (props: LeftSectionPropsType) => {
 			{leftSection}
 		</Group>
 	);
-};
+}
